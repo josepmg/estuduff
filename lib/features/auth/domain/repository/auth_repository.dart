@@ -8,7 +8,6 @@ abstract class AuthRepository {
     String email,
     String password,
     int programId,
-    int studyProfileId,
   });
 
   Future<Either<Failure, Student>> signIn(String email, String password);

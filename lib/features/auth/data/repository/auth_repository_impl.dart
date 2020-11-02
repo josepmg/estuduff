@@ -25,7 +25,6 @@ class AuthRepositoryImpl implements AuthRepository {
     String email,
     String password,
     int programId,
-    int studyProfileId,
   }) async {
     if (await networkInfo.isConnected) {
       try {
@@ -34,7 +33,6 @@ class AuthRepositoryImpl implements AuthRepository {
           email: email,
           password: password,
           programId: programId,
-          studyProfileId: studyProfileId,
         );
         if (studentModel != null && studentModel.id != null)
           await localDataSource.cacheUserToken(studentModel.id);

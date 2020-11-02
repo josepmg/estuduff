@@ -12,7 +12,6 @@ abstract class AuthRemoteDataSource {
     String email,
     String password,
     int programId,
-    int studyProfileId,
   });
 }
 
@@ -33,19 +32,18 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<Student> signUp(
-      {String name,
-      String email,
-      String password,
-      int programId,
-      int studyProfileId}) async {
+  Future<Student> signUp({
+    String name,
+    String email,
+    String password,
+    int programId,
+  }) async {
     try {
       Response response = await Connection.post('/register', data: {
         "name": name,
         "email": email,
         "password": password,
         "programId": programId,
-        "studyProfileId": studyProfileId,
       });
       return StudentModel.fromJson(response.data);
     } catch (e) {

@@ -17,7 +17,6 @@ class SignUpseCase implements GenericUseCase<Student, Params> {
       password: params.password,
       name: params.name,
       programId: params.programId,
-      studyProfileId: params.studyProfileId,
     );
   }
 }
@@ -27,16 +26,14 @@ class Params extends Equatable {
   final String name;
   final String email;
   final int programId;
-  final int studyProfileId;
 
   Params({
     @required this.email,
     @required this.password,
     this.name,
     this.programId,
-    this.studyProfileId,
   });
 
   @override
-  List<Object> get props => [email, password, name, programId, studyProfileId];
+  List<Object> get props => [email, password, name, programId];
 }
