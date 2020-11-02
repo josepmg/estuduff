@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:estuduff/features/auth/domain/model/degree.dart';
-import 'package:estuduff/features/auth/domain/model/modality.dart';
+import 'package:estuduff/features/auth/domain/entity/degree.dart';
+import 'package:estuduff/features/auth/domain/entity/modality.dart';
 
 class Program extends Equatable {
   final int id;

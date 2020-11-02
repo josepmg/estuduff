@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:estuduff/core/error/failure.dart';
-import 'package:estuduff/features/auth/domain/model/student.dart';
+import 'package:estuduff/features/auth/domain/entity/student.dart';
 
 abstract class AuthRepository {
   Future<Either<Failure, Student>> signIn(String email, String password);

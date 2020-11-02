@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:estuduff/core/error/failure.dart';
 import 'package:estuduff/core/platform/generic_use_case.dart';
-import 'package:estuduff/features/auth/domain/model/student.dart';
+import 'package:estuduff/features/auth/domain/entity/student.dart';
 import 'package:estuduff/features/auth/domain/repository/auth_repository.dart';
 import 'package:flutter/foundation.dart';
 
