@@ -11,7 +11,7 @@ class EnvironmentRepositoryImpl implements EnvironmentRepository {
   final EnvironmentRemoteDataSource remoteDataSource;
   final NetworkInfo networkInfo;
 
-  EnvironmentRepositoryImpl(this.remoteDataSource, this.networkInfo);
+  EnvironmentRepositoryImpl({this.remoteDataSource, this.networkInfo});
 
   @override
   Future<Either<Failure, List<Environment>>> getEnvironments(
