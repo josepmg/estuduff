@@ -35,8 +35,9 @@ class Connection {
       //TODO: recuperar token do Preference
       var token = withToken ? getToken() : null;
 
-      _http.options.headers["authorization"] =
-          (token != null) ? "Bearer $token" : null;
+      path = (token != null) ? path + "/$token" : null;
+      // _http.options.headers["authorization"] =
+      //     (token != null) ? "Bearer $token" : null;
 
       Response response =
           await _http.get(path, queryParameters: queryParameters);
@@ -73,8 +74,10 @@ class Connection {
       //TODO: recuperar token do Preference
       var token = withToken ? getToken() : null;
 
-      _http.options.headers["authorization"] =
-          (token != null) ? "Bearer $token" : null;
+      path = (token != null) ? path + "/$token" : null;
+      // _http.options.headers["authorization"] =
+      //     (token != null) ? "Bearer $token" : null;
+
       _http.options.headers['content-Type'] = 'application/json';
 
       response =
@@ -108,8 +111,9 @@ class Connection {
 
       var token = withToken ? getToken() : null;
 
-      _http.options.headers["authorization"] =
-          (token != null) ? "Bearer $token" : null;
+      path = (token != null) ? path + "/$token" : null;
+      // _http.options.headers["authorization"] =
+      //     (token != null) ? "Bearer $token" : null;
       _http.options.headers['content-Type'] = 'application/json';
 
       Response response =

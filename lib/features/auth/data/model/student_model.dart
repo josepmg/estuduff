@@ -1,10 +1,8 @@
-import 'dart:convert';
-
 import 'package:estuduff/features/auth/data/model/program_model.dart';
 import 'package:estuduff/features/auth/domain/entity/program.dart';
 import 'package:estuduff/features/auth/domain/entity/student.dart';
 import 'package:estuduff/features/profile/data/model/study_profile_model.dart';
-import 'package:estuduff/features/profile/domain/entity/study_profile.dart';
+import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 import 'package:flutter/foundation.dart';
 
 class StudentModel extends Student {
@@ -51,7 +49,7 @@ class StudentModel extends Student {
     if (email != null) json['email'] = email;
     if (program != null && program is Program)
       json['program'] = (program as ProgramModel).toJson();
-    if (studyProfile != null && studyProfile is StudyProfile)
+    if (studyProfile != null && studyProfile is StudyProfileEnum)
       json['studyProfile'] = (studyProfile as StudyProfileModel).toJson();
     return json;
   }
