@@ -19,6 +19,7 @@ class AuthRepositoryImpl implements AuthRepository {
       {@required this.localDataSource,
       @required this.remoteDataSource,
       @required this.networkInfo});
+
   @override
   Future<Either<Failure, Student>> signUp({
     String name,
