@@ -72,7 +72,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, void>> signOut() async {
+  Future<Either<Failure, bool>> signOut() async {
     try {
       return Right(await localDataSource.cleanCache());
     } on PlatformException catch (e) {
@@ -80,6 +80,19 @@ class AuthRepositoryImpl implements AuthRepository {
     } catch (e) {
       print("[AuthRemoteDataSourceImpl] ${e.toString()}");
       throw ServerException();
+    }
+  }
+
+  @override
+  Future<Either<Failure, int>> getToken() async {
+    try {
+      return Right(await localDataSource.getToken());
+    } on CacheException {
+      return Left(CacheFailure());
+    } on PlatformException catch (e) {
+      return Left(PlatformFailure(message: e.message));
+    } catch (e) {
+      return Left(GenericFailure(message: e.message));
     }
   }
 }

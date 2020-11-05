@@ -7,8 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AuthLocalDataSource {
   Future<void> cacheUserToken(int token);
-  Future<int> getUserToken();
-  Future<void> cleanCache();
+  Future<int> getToken();
+  Future<bool> cleanCache();
 }
 
 class AuthLocalDataSourceImpl implements AuthLocalDataSource {
@@ -22,17 +22,20 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   }
 
   @override
-  Future<void> cleanCache() async {
+  Future<bool> cleanCache() async {
     bool isCleared = await sharedPreferences.clear();
     if (!isCleared) {
       throw CacheException();
     }
+    return isCleared;
   }
 
   @override
-  Future<int> getUserToken() async {
+  Future<int> getToken() async {
     try {
-      return sharedPreferences.getInt(Settings.CACHED_USER_TOKEN_KEY);
+      return sharedPreferences.containsKey(Settings.CACHED_USER_TOKEN_KEY)
+          ? sharedPreferences.getInt(Settings.CACHED_USER_TOKEN_KEY)
+          : null;
     } catch (e) {
       logger.log(
         "Error: ${e.toString()}",

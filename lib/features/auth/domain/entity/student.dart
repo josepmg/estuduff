@@ -11,6 +11,8 @@ class Student extends Equatable {
 
   Student({this.id, this.name, this.email, this.program, this.studyProfile});
 
+  bool get isValid => id != null && email != null;
+
   @override
   List<Object> get props => [id, name, email, program, studyProfile];
 }

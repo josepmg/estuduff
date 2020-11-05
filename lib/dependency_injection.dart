@@ -4,6 +4,7 @@ import 'package:estuduff/features/auth/data/datasource/auth_local_data_source.da
 import 'package:estuduff/features/auth/data/datasource/auth_remote_data_source.dart';
 import 'package:estuduff/features/auth/data/repository/auth_repository_impl.dart';
 import 'package:estuduff/features/auth/domain/repository/auth_repository.dart';
+import 'package:estuduff/features/auth/domain/usecase/get_token_use_case.dart';
 import 'package:estuduff/features/auth/domain/usecase/sign_in_use_case.dart';
 import 'package:estuduff/features/auth/domain/usecase/sign_out_use_case.dart';
 import 'package:estuduff/features/auth/domain/usecase/sign_up_use_case.dart';
@@ -68,6 +69,7 @@ _initAuth() {
   getIt.registerLazySingleton(() => SignInUseCase(getIt()));
   getIt.registerLazySingleton(() => SignUpseCase(getIt()));
   getIt.registerLazySingleton(() => SignOutUseCase(getIt()));
+  getIt.registerLazySingleton(() => GetTokenUseCase(getIt()));
 
   // BLoC
 }
