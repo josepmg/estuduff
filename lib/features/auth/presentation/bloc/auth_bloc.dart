@@ -23,14 +23,14 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final getToken.GetTokenUseCase getTokenUseCase;
-  final signUp.SignUpseCase signUpseCase;
+  final signUp.SignUpseCase signUpUseCase;
   final signIn.SignInUseCase signInUseCase;
   final signOut.SignOutUseCase signOutUseCase;
   AuthBloc(
       {this.getTokenUseCase,
       this.signInUseCase,
       this.signOutUseCase,
-      this.signUpseCase})
+      this.signUpUseCase})
       : super(AuthInitial());
 
   @override
@@ -48,7 +48,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
     } else if (event is SignUpEvent) {
       yield AuthLoading();
-      final studentOrFailure = await signUpseCase(signUp.Params(
+      final studentOrFailure = await signUpUseCase(signUp.Params(
         email: event.email,
         password: event.password,
         name: event.name,
