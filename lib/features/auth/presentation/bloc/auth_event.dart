@@ -9,7 +9,7 @@ abstract class AuthEvent extends Equatable {
 
 class GetUserLocalTokenEvent implements AuthEvent {
   @override
-  List<Object> get props => null;
+  List<Object> get props => [];
 
   @override
   bool get stringify => null;

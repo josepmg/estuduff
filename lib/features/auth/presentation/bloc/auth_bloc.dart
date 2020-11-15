@@ -68,7 +68,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             AuthError(message: Converter.mapFailureToMessages(failure)),
         (bool didLogout) => didLogout != null && didLogout
             ? AuthNotSignedIn()
-            : AuthError(message: EstuduffStrings.cache_failure_message),
+            : AuthError(message: EstudUffStrings.cache_failure_message),
       );
     }
   }
