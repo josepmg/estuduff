@@ -1,4 +1,6 @@
 import 'package:estuduff/core/resource/dimensions.dart';
+import 'package:estuduff/core/resource/estuduff_strings.dart';
+import 'package:estuduff/core/resource/estuduff_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
@@ -16,11 +18,14 @@ class _LoginTabBarWidgetState extends State<LoginTabBarWidget> {
     return DefaultTabController(
       length: 2,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
+            width: Dimensions.getConvertedWidthSize(280, context),
             child: TabBar(
                 labelColor: Colors.black,
+                labelPadding: Dimensions.getEdgeInsetsAll(context, 0),
                 indicatorSize: TabBarIndicatorSize.label,
                 unselectedLabelColor: Colors.grey,
                 indicator: MaterialIndicator(
@@ -35,17 +40,17 @@ class _LoginTabBarWidgetState extends State<LoginTabBarWidget> {
                 tabs: [
                   Tab(
                       child: Text(
-                    'Login',
+                    EstudUffStrings.login_title,
                     style: TextStyle(
-                        fontFamily: 'Rubik',
+                        fontFamily: EstudUffFonts.rubik,
                         fontWeight: FontWeight.w500,
                         fontSize: Dimensions.getTextSize(22, context)),
                   )),
                   Tab(
                     child: Text(
-                      'Cadastre-se',
+                      EstudUffStrings.register_title,
                       style: TextStyle(
-                          fontFamily: 'Rubik',
+                          fontFamily: EstudUffFonts.rubik,
                           fontWeight: FontWeight.w500,
                           fontSize: Dimensions.getTextSize(22, context)),
                     ),
@@ -53,7 +58,10 @@ class _LoginTabBarWidgetState extends State<LoginTabBarWidget> {
                 ]),
           ),
           Container(
-            height: Dimensions.getConvertedHeightSize(256, context),
+            color: Colors.pink,
+            margin: Dimensions.getEdgeInsets(context, left: 30),
+            width: Dimensions.getConvertedWidthSize(280, context),
+            height: Dimensions.getConvertedHeightSize(300, context),
             child: TabBarView(children: [
               Container(
                 child: Text("Home Body"),

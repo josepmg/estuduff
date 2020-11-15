@@ -3,7 +3,7 @@ import 'package:estuduff/features/auth/presentation/widgets/LoginTabBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tab_indicator_styler/tab_indicator_styler.dart';
+import 'package:estuduff/core/resource/estuduff_strings.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -17,22 +17,19 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
-        // height: Dimensions.getConvertedHeightSize(330, context),
-        alignment: Alignment.center,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              child: SvgPicture.asset(
-                'assets/images/logo.svg',
-                width: Dimensions.getConvertedWidthSize(243, context),
-              ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            margin: Dimensions.getEdgeInsets(context, left: 30),
+            child: SvgPicture.asset(
+              EstudUffStrings.logo,
+              width: Dimensions.getConvertedWidthSize(280, context),
             ),
-            LoginTabBarWidget(),
-          ],
-        ),
+          ),
+          LoginTabBarWidget(),
+        ],
       ),
     );
   }

@@ -1,4 +1,4 @@
-class EstuduffStrings {
+class EstudUffStrings {
   // Failure messages
   static const server_failure_message =
       "Houve um erro no servidor. Tente mais tarde.";
@@ -9,6 +9,9 @@ class EstuduffStrings {
 
   // General strings
   static const send_button_title = "Enviar";
+
+  // Images Path
+  static const logo = 'assets/images/logo.svg';
 
   // Login and Register
   static const login_title = "Login";
