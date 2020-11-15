@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'dart:developer' as logger;
+import 'package:crypto/crypto.dart';
 import 'package:dio/dio.dart';
 import 'package:estuduff/core/platform/connection.dart';
+import 'package:estuduff/core/platform/settings.dart';
 import 'package:estuduff/features/auth/data/model/student_model.dart';
 import 'package:estuduff/features/auth/domain/entity/student.dart';
 
@@ -20,7 +23,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<Student> signIn(String email, String password) async {
     try {
       Response response = await Connection.post('/login',
-          data: {"email": email, "password": password});
+          data: {
+            "email": email,
+            "password": _hashPassword(password),
+          });
       return StudentModel.fromJson(response.data);
     } catch (e) {
       logger.log(
@@ -42,7 +48,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       Response response = await Connection.post('/register', data: {
         "name": name,
         "email": email,
-        "password": password,
+        "password": _hashPassword(password),
         "programId": programId,
       });
       return StudentModel.fromJson(response.data);
@@ -53,5 +59,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
       throw e();
     }
+  }
+
+  String _hashPassword(String plainText) {
+    var hmacSha256 =
+        new Hmac(sha256, utf8.encode(Settings.HMAC_KEY)); // HMAC-SHA256
+    var ciphertext = hmacSha256.convert(utf8.encode(plainText));
+    logger.log("ciphertext: $ciphertext",
+        name: "AuthRemoteDataSourceImpl - _hashPassword");
+    return ciphertext.toString();
   }
 }
