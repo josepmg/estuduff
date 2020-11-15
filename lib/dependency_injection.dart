@@ -8,14 +8,17 @@ import 'package:estuduff/features/auth/domain/usecase/get_token_use_case.dart';
 import 'package:estuduff/features/auth/domain/usecase/sign_in_use_case.dart';
 import 'package:estuduff/features/auth/domain/usecase/sign_out_use_case.dart';
 import 'package:estuduff/features/auth/domain/usecase/sign_up_use_case.dart';
+import 'package:estuduff/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:estuduff/features/environment/data/datasource/environment_remote_data_source.dart';
 import 'package:estuduff/features/environment/data/repository/environment_repository_impl.dart';
 import 'package:estuduff/features/environment/domain/repository/environment_repository.dart';
 import 'package:estuduff/features/environment/domain/usecase/get_environment_use_case.dart';
+import 'package:estuduff/features/environment/presentation/bloc/environment_bloc.dart';
 import 'package:estuduff/features/profile/data/datasource/study_profile_data_source.dart';
 import 'package:estuduff/features/profile/data/repository/study_profile_repository_impl.dart';
 import 'package:estuduff/features/profile/domain/repository/study_profile_repository.dart';
 import 'package:estuduff/features/profile/domain/usecase/set_study_profile_use_case.dart';
+import 'package:estuduff/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -33,7 +36,6 @@ Future<void> init() async {
   // Init features
   _initAuth();
   _initEnvironment();
-  _initHome();
   _initProfile();
 }
 
@@ -72,6 +74,12 @@ _initAuth() {
   getIt.registerLazySingleton(() => GetTokenUseCase(getIt()));
 
   // BLoC
+  getIt.registerFactory(() => AuthBloc(
+    getTokenUseCase: getIt(),
+    signInUseCase: getIt(),
+    signOutUseCase: getIt(),
+    signUpUseCase: getIt(),
+  ));
 }
 
 _initEnvironment() {
@@ -92,11 +100,7 @@ _initEnvironment() {
   getIt.registerLazySingleton(() => GetEnvironmentuseCase(getIt()));
 
   // BLoC
-}
-
-// TODO
-_initHome() {
-  // BLoC
+  getIt.registerFactory(() => EnvironmentBloc(getIt()));
 }
 
 _initProfile() {
@@ -115,6 +119,9 @@ _initProfile() {
 
   // Use cases
   getIt.registerLazySingleton(() => SetStudyProfileUseCase(getIt()));
+
+  // BLoC
+  getIt.registerFactory(() => ProfileBloc(getIt()));
 }
 
 void reset() {

@@ -36,6 +36,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
             return ErrorProfileState(EstuduffStrings.server_failure_message);
           else if (failure is GenericFailure)
             return ErrorProfileState(failure.message);
+          else if (failure is NoInternetConnectionFailure)
+              return ErrorProfileState(EstuduffStrings.no_internet_failure_message);
           else
             return ErrorProfileState(EstuduffStrings.generic_failure_message);
         },
