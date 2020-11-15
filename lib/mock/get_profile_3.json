@@ -1,0 +1,18 @@
+{
+  "id": 3,
+  "name": "Jack Doe",
+  "email": "johndoe@mail.com",
+  "program":{
+    "id": 23,
+    "name": "Física",
+    "modality": {
+      "id": 1,
+      "name": "Presencial"
+    },
+    "degree": {
+      "id": 2,
+      "name": "Licenciatura"
+    }
+  },
+  "studyProfile": 3
+}
