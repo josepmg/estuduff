@@ -13,6 +13,11 @@ class EstudUffStrings {
   // Images Path
   static const logo = 'assets/images/logo.svg';
 
+  // Accessibility
+  static const mail_icon_semantic_label = "ícone de um envelope fechado";
+  static const lock_icon_semantic_label = "ícone de um cadeado fechado";
+  static const open_book_icon_semantic_label = "ícone de um livro aberto";
+
   // Login and Register
   static const login_title = "Login";
   static const register_title = "Cadastre-se";

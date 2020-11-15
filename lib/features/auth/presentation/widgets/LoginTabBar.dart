@@ -1,6 +1,9 @@
 import 'package:estuduff/core/resource/dimensions.dart';
+import 'package:estuduff/core/resource/estuduff_colors.dart';
 import 'package:estuduff/core/resource/estuduff_strings.dart';
 import 'package:estuduff/core/resource/estuduff_fonts.dart';
+import 'package:estuduff/features/auth/presentation/widgets/LoginForm.dart';
+import 'package:estuduff/features/auth/presentation/widgets/RegisterForm.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
@@ -27,10 +30,10 @@ class _LoginTabBarWidgetState extends State<LoginTabBarWidget> {
                 labelColor: Colors.black,
                 labelPadding: Dimensions.getEdgeInsetsAll(context, 0),
                 indicatorSize: TabBarIndicatorSize.label,
-                unselectedLabelColor: Colors.grey,
+                unselectedLabelColor: EstudUffColors.Disabled,
                 indicator: MaterialIndicator(
                   height: 5,
-                  color: Colors.blue,
+                  color: EstudUffColors.PrimaryBlue,
                   bottomLeftRadius: 0,
                   bottomRightRadius: 0,
                   topLeftRadius: 0,
@@ -58,17 +61,12 @@ class _LoginTabBarWidgetState extends State<LoginTabBarWidget> {
                 ]),
           ),
           Container(
-            color: Colors.pink,
             margin: Dimensions.getEdgeInsets(context, left: 30),
             width: Dimensions.getConvertedWidthSize(280, context),
-            height: Dimensions.getConvertedHeightSize(300, context),
+            height: Dimensions.getConvertedHeightSize(320, context),
             child: TabBarView(children: [
-              Container(
-                child: Text("Home Body"),
-              ),
-              Container(
-                child: Text("Articles Body"),
-              ),
+              LoginForm(),
+              RegisterForm(),
             ]),
           ),
         ],
