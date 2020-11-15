@@ -33,17 +33,20 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           if (failure is PlatformFailure)
             return ErrorProfileState(failure.message);
           else if (failure is ServerFailure)
-            return ErrorProfileState(EstuduffStrings.server_failure_message);
+            return ErrorProfileState(EstudUffStrings.server_failure_message);
           else if (failure is GenericFailure)
             return ErrorProfileState(failure.message);
           else if (failure is NoInternetConnectionFailure)
-              return ErrorProfileState(EstuduffStrings.no_internet_failure_message);
+            return ErrorProfileState(
+                EstudUffStrings.no_internet_failure_message);
           else
-            return ErrorProfileState(EstuduffStrings.generic_failure_message);
+            return ErrorProfileState(EstudUffStrings.generic_failure_message);
         },
         (bool _result) {
-          if (_result) return SettedProfileState(event.studyProfile);
-          else return ErrorProfileState(EstuduffStrings.generic_failure_message);
+          if (_result)
+            return SettedProfileState(event.studyProfile);
+          else
+            return ErrorProfileState(EstudUffStrings.generic_failure_message);
         },
       );
     }
