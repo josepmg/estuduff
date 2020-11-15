@@ -1,0 +1,84 @@
+[
+    {
+        "id": 1,
+        "name": "Pilotis",
+        "complement": "Térreo",
+        "building":{
+            "id": 1,
+            "name": "Instituto de Computação",
+            "campus": {
+            "id": 3,
+            "name": "Praia Vermelha"
+            }
+        },
+        "type": {
+            "id": 1,
+            "name": "Ambiente externo"
+        },
+        "studyProfile": 2,
+        "latitude": -22.906382,
+        "longitude": -43.133637
+    },
+    {
+        "id": 2,
+        "name": "Bancos",
+        "complement": "Térreo",
+        "building":{
+            "id": 2,
+            "name": "NAB",
+            "campus": {
+            "id": 3,
+            "name": "Praia Vermelha"
+            }
+        },
+        "type": {
+            "id": 1,
+            "name": "Ambiente externo"
+        },
+        "studyProfile": 2,
+        "latitude": -22.906797,
+        "longitude": -43.132859
+    },
+    {
+        "id": 3,
+        "name": "Hall de entada",
+        "complement": "Térreo",
+        "building":{
+            "id": 3,
+            "name": "Física antiga",
+            "campus": {
+            "id": 3,
+            "name": "Praia Vermelha"
+            }
+        },
+        "type": {
+            "id": 1,
+            "name": "Ambiente comum"
+        },
+        "studyProfile": 1,
+        "latitude": -22.905237,
+        "longitude": -43.133365
+    },
+    {
+        "id": 4,
+        "name": "Sala de estudos",
+        "complement": "Térreo",
+        "building":{
+            "id": 1,
+            "name": "Instituto de Computação",
+            "campus": {
+            "id": 3,
+            "name": "Praia Vermelha"
+            }
+        },
+        "type": {
+            "id": 3,
+            "name": "Sala de estudos"
+        },
+        "studyProfile": 3,
+        "latitude": -22.906649,
+        "longitude": -43.133336
+    }
+]
+
+  
