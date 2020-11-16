@@ -2,10 +2,10 @@ import 'package:estuduff/core/error/exception.dart';
 import 'package:estuduff/core/platform/network_info.dart';
 import 'package:estuduff/features/auth/data/datasource/auth_local_data_source.dart';
 import 'package:estuduff/features/auth/data/datasource/auth_remote_data_source.dart';
-import 'package:estuduff/features/auth/data/model/student_model.dart';
-import 'package:estuduff/features/auth/domain/entity/student.dart';
+import 'package:estuduff/features/auth/data/model/user_model.dart';
 import 'package:estuduff/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
+import 'package:estuduff/features/auth/domain/entity/user.dart';
 import 'package:estuduff/features/auth/domain/repository/auth_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -21,7 +21,7 @@ class AuthRepositoryImpl implements AuthRepository {
       @required this.networkInfo});
 
   @override
-  Future<Either<Failure, Student>> signUp({
+  Future<Either<Failure, User>> signUp({
     String name,
     String email,
     String password,
@@ -29,7 +29,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }) async {
     if (await networkInfo.isConnected) {
       try {
-        StudentModel studentModel = await remoteDataSource.signUp(
+        UserModel studentModel = await remoteDataSource.signUp(
           name: name,
           email: email,
           password: password,
@@ -51,10 +51,10 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, Student>> signIn(String email, String password) async {
+  Future<Either<Failure, User>> signIn(String email, String password) async {
     if (await networkInfo.isConnected) {
       try {
-        StudentModel studentModel =
+        UserModel studentModel =
             await remoteDataSource.signIn(email, password);
         if (studentModel != null && studentModel.id != null)
           await localDataSource.cacheUserToken(studentModel.id);

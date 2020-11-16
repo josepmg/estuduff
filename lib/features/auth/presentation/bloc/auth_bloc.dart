@@ -7,7 +7,7 @@ import 'package:estuduff/core/error/failure.dart';
 import 'package:estuduff/core/platform/generic_use_case.dart';
 import 'package:estuduff/core/resource/estuduff_strings.dart';
 import 'package:estuduff/core/util/converter.dart';
-import 'package:estuduff/features/auth/domain/entity/student.dart';
+import 'package:estuduff/features/auth/domain/entity/user.dart';
 import 'package:estuduff/features/auth/domain/usecase/get_token_use_case.dart'
     as getToken;
 import 'package:estuduff/features/auth/domain/usecase/sign_in_use_case.dart'
@@ -74,10 +74,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Stream<AuthState> _eitherSignedInOrErrorWithInt(
-      Either<Failure, Student> studentOrFailure) async* {
+      Either<Failure, User> studentOrFailure) async* {
     yield studentOrFailure.fold(
       (failure) => AuthError(message: Converter.mapFailureToMessages(failure)),
-      (Student student) => student != null && student.isValid
+      (User student) => student != null && student.isValid
           ? AuthSignedIn(token: student.id)
           : AuthNotSignedIn(),
     );

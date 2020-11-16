@@ -4,13 +4,13 @@ import 'package:crypto/crypto.dart';
 import 'package:dio/dio.dart';
 import 'package:estuduff/core/platform/connection.dart';
 import 'package:estuduff/core/platform/settings.dart';
-import 'package:estuduff/features/auth/data/model/student_model.dart';
-import 'package:estuduff/features/auth/domain/entity/student.dart';
+import 'package:estuduff/features/auth/data/model/user_model.dart';
+import 'package:estuduff/features/auth/domain/entity/user.dart';
 
 abstract class AuthRemoteDataSource {
-  Future<Student> signIn(String email, String password);
+  Future<User> signIn(String email, String password);
 
-  Future<Student> signUp({
+  Future<User> signUp({
     String name,
     String email,
     String password,
@@ -20,14 +20,14 @@ abstract class AuthRemoteDataSource {
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
-  Future<Student> signIn(String email, String password) async {
+  Future<User> signIn(String email, String password) async {
     try {
       Response response = await Connection.post('/login',
           data: {
             "email": email,
             "password": _hashPassword(password),
           });
-      return StudentModel.fromJson(response.data);
+      return UserModel.fromJson(response.data);
     } catch (e) {
       logger.log(
         "Error: ${e.toString()}",
@@ -38,7 +38,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<Student> signUp({
+  Future<User> signUp({
     String name,
     String email,
     String password,
@@ -51,7 +51,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         "password": _hashPassword(password),
         "programId": programId,
       });
-      return StudentModel.fromJson(response.data);
+      return UserModel.fromJson(response.data);
     } catch (e) {
       logger.log(
         "Error: ${e.toString()}",

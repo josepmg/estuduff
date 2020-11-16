@@ -1,7 +1,7 @@
 import 'dart:developer' as logger;
 import 'package:dio/dio.dart';
 import 'package:estuduff/core/platform/connection.dart';
-import 'package:estuduff/features/auth/data/model/student_model.dart';
+import 'package:estuduff/features/auth/data/model/user_model.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 
 abstract class StudyProfileRemoteDatasource {
@@ -12,7 +12,7 @@ class StudyProfileRemoteDatasourceImpl implements StudyProfileRemoteDatasource {
   @override
   Future<bool> setStudyProfile(StudyProfileEnum studyProfile) async {
     try {
-      StudentModel studentModel = StudentModel.fromJson(
+      UserModel studentModel = UserModel.fromJson(
           (await Connection.get("/profile", withToken: true)).data);
       Response response = await Connection.put(
         '/login/${studentModel.id}/profile',

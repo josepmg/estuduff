@@ -1,12 +1,12 @@
 import 'package:estuduff/features/auth/data/model/program_model.dart';
 import 'package:estuduff/features/auth/domain/entity/program.dart';
-import 'package:estuduff/features/auth/domain/entity/student.dart';
+import 'package:estuduff/features/auth/domain/entity/user.dart';
 import 'package:estuduff/features/profile/data/model/study_profile_model.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 import 'package:flutter/foundation.dart';
 
-class StudentModel extends Student {
-  StudentModel(
+class UserModel extends User {
+  UserModel(
       {@required id,
       @required name,
       @required email,
@@ -20,9 +20,9 @@ class StudentModel extends Student {
           studyProfile: studyProfile,
         );
 
-  factory StudentModel.fromJson(Map<String, dynamic> json) {
+  factory UserModel.fromJson(Map<String, dynamic> json) {
     if (json == null) return null;
-    return StudentModel(
+    return UserModel(
       id: json['id'],
       name: json['name'],
       email: json['email'],
@@ -31,9 +31,9 @@ class StudentModel extends Student {
     );
   }
 
-  factory StudentModel.fromEntity(Student student) {
+  factory UserModel.fromEntity(User student) {
     if (student == null) return null;
-    return StudentModel(
+    return UserModel(
       id: student.id,
       name: student.name,
       email: student.email,

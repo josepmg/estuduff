@@ -2,16 +2,16 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:estuduff/core/error/failure.dart';
 import 'package:estuduff/core/platform/generic_use_case.dart';
-import 'package:estuduff/features/auth/domain/entity/student.dart';
+import 'package:estuduff/features/auth/domain/entity/user.dart';
 import 'package:estuduff/features/auth/domain/repository/auth_repository.dart';
 import 'package:flutter/foundation.dart';
 
-class SignUpseCase implements GenericUseCase<Student, Params> {
+class SignUpseCase implements GenericUseCase<User, Params> {
   final AuthRepository repository;
 
   SignUpseCase(this.repository);
 
-  Future<Either<Failure, Student>> call(Params params) async {
+  Future<Either<Failure, User>> call(Params params) async {
     return await repository.signUp(
       email: params.email,
       password: params.password,
