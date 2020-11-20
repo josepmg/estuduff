@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:estuduff/core/error/failure.dart';
 import 'package:estuduff/core/platform/generic_use_case.dart';
-import 'package:estuduff/core/resource/estuduff_strings.dart';
+import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/util/converter.dart';
 import 'package:estuduff/features/auth/domain/entity/user.dart';
 import 'package:estuduff/features/auth/domain/usecase/get_token_use_case.dart'
@@ -68,7 +68,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             AuthError(message: Converter.mapFailureToMessages(failure)),
         (bool didLogout) => didLogout != null && didLogout
             ? AuthNotSignedIn()
-            : AuthError(message: EstudUffStrings.cache_failure_message),
+            : AuthError(message: StringsEstudUff.cache_failure_message),
       );
     }
   }
