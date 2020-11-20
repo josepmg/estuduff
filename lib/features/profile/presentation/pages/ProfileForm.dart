@@ -26,7 +26,7 @@ class _ProfileFormState extends State<ProfileForm> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         actions: [
-          // open drawer
+          // go back to login/register
         ],
         title: Text(
           StringsEstudUff.profile_form_title,

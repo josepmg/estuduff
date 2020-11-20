@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer' as logger;
 
 import 'package:estuduff/features/auth/presentation/pages/LoginPage.dart';
-import 'package:estuduff/features/profile/presentation/pages/ProfileForm.dart';
 import 'package:flutter/material.dart';
 import 'dependency_injection.dart' as di;
 
@@ -55,6 +54,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return ProfileForm();
+    return LoginPage();
   }
 }
