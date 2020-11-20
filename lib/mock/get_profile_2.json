@@ -1,0 +1,18 @@
+{
+  "id": 2,
+  "name": "Jane Doe",
+  "email": "johndoe@mail.com",
+  "program":{
+    "id": 16,
+    "name": "Tecnologia em Sistemas de Computação",
+    "modality": {
+      "id": 2,
+      "name": "EAD"
+    },
+    "degree": {
+      "id": 5,
+      "name": "Tecnólogo"
+    }
+  },
+  "studyProfile": 2
+}

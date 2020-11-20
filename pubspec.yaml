@@ -23,6 +23,7 @@ dependencies:
   # Icons
   feather_icons_flutter: ^4.7.4
   cupertino_icons: ^0.1.3
+  flutter_svg: ^0.19.1
   # Service locator
   get_it: ^5.0.1
   # State managment
@@ -37,6 +38,10 @@ dependencies:
   shared_preferences: ^0.5.12+2
   # Maps
   google_maps_flutter: '0.5.29'
+  # Data encryptation
+  crypto: ^2.1.4
+  # Tab Styler
+  tab_indicator_styler: ^1.0.0
 
 dev_dependencies:
   flutter_test:
