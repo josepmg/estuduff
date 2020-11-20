@@ -30,10 +30,10 @@ class _LoginTabBarWidgetState extends State<LoginTabBarWidget> {
                 labelColor: Colors.black,
                 labelPadding: Dimensions.getEdgeInsetsAll(context, 0),
                 indicatorSize: TabBarIndicatorSize.label,
-                unselectedLabelColor: EstudUffColors.Disabled,
+                unselectedLabelColor: EstudUffColors.disabled,
                 indicator: MaterialIndicator(
                   height: 5,
-                  color: EstudUffColors.PrimaryBlue,
+                  color: EstudUffColors.primaryBlue,
                   bottomLeftRadius: 0,
                   bottomRightRadius: 0,
                   topLeftRadius: 0,

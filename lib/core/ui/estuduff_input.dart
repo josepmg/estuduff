@@ -56,11 +56,11 @@ class _EstudUffInputState extends State<EstudUffInput> {
         obscureText: (widget.isPassword != null) ? widget.isPassword : false,
         textAlign: TextAlign.start,
         style: TextStyle(
-          color: EstudUffColors.InputPlaceHolder,
+          color: EstudUffColors.inputPlaceHolder,
           fontFamily: EstudUffFonts.open_sans,
           fontSize: Dimensions.getTextSize(14, context),
         ),
-        cursorColor: EstudUffColors.PrimaryBlue,
+        cursorColor: EstudUffColors.primaryBlue,
         decoration: InputDecoration(
           hintText: widget.hintMessage,
           errorText: widget.errorMessage,

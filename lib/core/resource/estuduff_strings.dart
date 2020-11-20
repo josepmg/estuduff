@@ -27,4 +27,15 @@ class EstudUffStrings {
   static const save_account_button_title = "Salvar Conta";
   static const login_button_title = "Entrar";
   static const login_error_message = "E-mail e/ou senha inválidos";
+
+  // Drawer
+  static const greeting_drawer_title = "Olá,";
+  static const home_drawer_item = "Home";
+  static const available_environments_drawer_item = "Ambientes Disponíveis";
+  static const filter_environments_drawer_item = "Filtrar Ambientes";
+  static const type_filter_drawer_item = "Filtrar por Tipo";
+  static const study_profile_filter_drawer_item = "Filtrar por Perfils";
+  static const change_study_profile_drawer_item = "Trocar Perfil";
+  static const edit_account_item = "Editar Conta";
+  static const sign_out_item = "Sair da Conta";
 }
