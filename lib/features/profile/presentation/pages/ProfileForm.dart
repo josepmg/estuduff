@@ -1,5 +1,6 @@
 import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/dimensions.dart';
+import 'package:estuduff/core/resource/fonts_estuduf.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/ui/button_estuduff.dart';
 import 'package:estuduff/core/ui/input_estuduff.dart';
@@ -29,23 +30,52 @@ class _ProfileFormState extends State<ProfileForm> {
         ],
         title: Text(
           StringsEstudUff.profile_form_title,
-          style: TextStyle(color: ColorsEstudUff.inputPlaceHolder),
+          style: TextStyle(color: ColorsEstudUff.mediumGrey),
         ),
-        leading:
-            Icon(Icons.chevron_left, color: ColorsEstudUff.inputPlaceHolder),
+        leading: Icon(Icons.chevron_left, color: ColorsEstudUff.mediumGrey),
         elevation: 8.0,
       ),
       body: Container(
         alignment: Alignment.center,
-        width: Dimensions.getConvertedWidthSize(280, context),
+        padding: Dimensions.getEdgeInsetsAll(context, 28),
         child: Column(
           children: [
-            Text(StringsEstudUff.profile_form_instruction),
-            Text(StringsEstudUff.profile_form_question_one),
+            Container(
+                margin: Dimensions.getEdgeInsets(context, bottom: 28),
+                child: Text(
+                  StringsEstudUff.profile_form_instruction,
+                  style: TextStyle(
+                    color: ColorsEstudUff.mediumGrey,
+                    fontFamily: FontsEstudUff.open_sans,
+                    fontSize: Dimensions.getTextSize(14, context),
+                  ),
+                )),
+            Container(
+                margin: Dimensions.getEdgeInsets(context, bottom: 28),
+                child: Text(StringsEstudUff.profile_form_question_one,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: FontsEstudUff.open_sans,
+                      fontSize: Dimensions.getTextSize(14, context),
+                    ))),
             // DropBox
-            Text(StringsEstudUff.profile_form_question_two),
+            Container(
+                margin: Dimensions.getEdgeInsets(context, bottom: 28),
+                child: Text(StringsEstudUff.profile_form_question_two,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: FontsEstudUff.open_sans,
+                      fontSize: Dimensions.getTextSize(14, context),
+                    ))),
             // DropBox
-            Text(StringsEstudUff.profile_form_question_three),
+            Container(
+                margin: Dimensions.getEdgeInsets(context, bottom: 28),
+                child: Text(StringsEstudUff.profile_form_question_three,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: FontsEstudUff.open_sans,
+                      fontSize: Dimensions.getTextSize(14, context),
+                    ))),
             // DropBox
             ButtonEstudUff(
               text: StringsEstudUff.send_button_title,

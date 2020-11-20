@@ -6,6 +6,6 @@ class ColorsEstudUff {
   static const Color primaryRed = Color(0xffFF2B0F);
   static const Color disabled = Color(0xff787777);
   static const Color inputBorder = Color(0xffDBDBDB);
-  static const Color inputPlaceHolder = Color(0xff717171);
+  static const Color mediumGrey = Color(0xff717171);
   static const Color pageTitles = Color(0xff343333);
 }

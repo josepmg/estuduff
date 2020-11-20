@@ -56,7 +56,7 @@ class _InputEstudUffState extends State<InputEstudUff> {
         obscureText: (widget.isPassword != null) ? widget.isPassword : false,
         textAlign: TextAlign.start,
         style: TextStyle(
-          color: ColorsEstudUff.inputPlaceHolder,
+          color: ColorsEstudUff.mediumGrey,
           fontFamily: FontsEstudUff.open_sans,
           fontSize: Dimensions.getTextSize(14, context),
         ),

@@ -24,7 +24,7 @@ class _RegisterFormState extends State<RegisterForm> {
               placeHolder: StringsEstudUff.insert_mail_placeholder,
               suffixIcon: Icon(
                 FeatherIcons.mail,
-                color: ColorsEstudUff.inputPlaceHolder,
+                color: ColorsEstudUff.mediumGrey,
                 size: Dimensions.getTextSize(18, context),
                 semanticLabel: StringsEstudUff.mail_icon_semantic_label,
               ),
@@ -34,7 +34,7 @@ class _RegisterFormState extends State<RegisterForm> {
               isPassword: true,
               suffixIcon: Icon(
                 FeatherIcons.lock,
-                color: ColorsEstudUff.inputPlaceHolder,
+                color: ColorsEstudUff.mediumGrey,
                 size: Dimensions.getTextSize(18, context),
                 semanticLabel: StringsEstudUff.lock_icon_semantic_label,
               ),
@@ -44,7 +44,7 @@ class _RegisterFormState extends State<RegisterForm> {
               isPassword: true,
               suffixIcon: Icon(
                 FeatherIcons.bookOpen,
-                color: ColorsEstudUff.inputPlaceHolder,
+                color: ColorsEstudUff.mediumGrey,
                 size: Dimensions.getTextSize(18, context),
                 semanticLabel: StringsEstudUff.open_book_icon_semantic_label,
               ),

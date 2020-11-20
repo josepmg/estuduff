@@ -24,7 +24,7 @@ class _LoginFormState extends State<LoginForm> {
               placeHolder: StringsEstudUff.insert_mail_placeholder,
               suffixIcon: Icon(
                 FeatherIcons.mail,
-                color: ColorsEstudUff.inputPlaceHolder,
+                color: ColorsEstudUff.mediumGrey,
                 size: Dimensions.getTextSize(18, context),
                 semanticLabel: StringsEstudUff.mail_icon_semantic_label,
               ),
@@ -34,7 +34,7 @@ class _LoginFormState extends State<LoginForm> {
               isPassword: true,
               suffixIcon: Icon(
                 FeatherIcons.lock,
-                color: ColorsEstudUff.inputPlaceHolder,
+                color: ColorsEstudUff.mediumGrey,
                 size: Dimensions.getTextSize(18, context),
                 semanticLabel: StringsEstudUff.lock_icon_semantic_label,
               ),
