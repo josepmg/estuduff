@@ -12,6 +12,11 @@ class EstudUffStrings {
 
   // Images Path
   static const logo = 'assets/images/logo.svg';
+  static const icon = 'assets/images/icon.svg';
+  static const lonely_wolf_icon = "assets/images/lonely_wolf_icon.png";
+  static const jack_of_all_trades_icon =
+      "assets/images/jack_of_all_trades_icon.png";
+  static const outgoing_icon = "assets/images/outgoing_icon.png";
 
   // Accessibility
   static const mail_icon_semantic_label = "ícone de um envelope fechado";
@@ -38,4 +43,13 @@ class EstudUffStrings {
   static const change_study_profile_drawer_item = "Trocar Perfil";
   static const edit_account_item = "Editar Conta";
   static const sign_out_item = "Sair da Conta";
+
+  // Select Profile page
+  static const select_profile_app_bar_title = "Selecionar perfil";
+  static const lonely_wolf_title = "Lobo Solitário";
+  static const lonely_wolf_subtitle = "quero estudar sozinho";
+  static const jack_of_all_trades_title = "Não tem\ntempo ruim";
+  static const jack_of_all_trades_subtitle = "estou feliz em qualquer lugar";
+  static const outgoing_title = "Da Galera";
+  static const outgoing_subtitle = "cadê os migos?";
 }

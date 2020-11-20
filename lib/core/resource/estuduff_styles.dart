@@ -4,6 +4,14 @@ import 'package:flutter/cupertino.dart';
 
 class EstudUffStyles {
   // TextStyles
+  static TextStyle appbarTextStyle(BuildContext context) {
+    return TextStyle(
+      color: EstudUffColors.inputPlaceHolder,
+      fontSize: Dimensions.getTextSize(20, context),
+      fontWeight: FontWeight.w500,
+    );
+  }
+
   static TextStyle drawerTitleTextStyle(BuildContext context) {
     return TextStyle(
       color: EstudUffColors.drawerTitleBlack,
@@ -29,6 +37,7 @@ class EstudUffStyles {
       fontSize: Dimensions.getTextSize(14, context),
     );
   }
+
   // InputDecoration
 
   // BoxDecoration
