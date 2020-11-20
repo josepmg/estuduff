@@ -1,4 +1,7 @@
+import 'package:estuduff/core/resource/colors_estuduff.dart';
+import 'package:estuduff/core/resource/dimensions.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
+import 'package:estuduff/core/ui/button_estuduff.dart';
 import 'package:estuduff/core/ui/input_estuduff.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,25 +23,36 @@ class _ProfileFormState extends State<ProfileForm> {
   Widget buildBody(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         actions: [
           // open drawer
         ],
-        title: Text(StringsEstudUff.profile_form_title),
-        leading: Icon(FeatherIcons.arrowLeft),
-        elevation: 4.0,
+        title: Text(
+          StringsEstudUff.profile_form_title,
+          style: TextStyle(color: ColorsEstudUff.inputPlaceHolder),
+        ),
+        leading:
+            Icon(Icons.chevron_left, color: ColorsEstudUff.inputPlaceHolder),
+        elevation: 8.0,
       ),
       body: Container(
-        color: Colors.white,
+        alignment: Alignment.center,
+        width: Dimensions.getConvertedWidthSize(280, context),
         child: Column(
           children: [
-            Text(''),
-            Text(''),
+            Text(StringsEstudUff.profile_form_instruction),
+            Text(StringsEstudUff.profile_form_question_one),
             // DropBox
-            Text(''),
+            Text(StringsEstudUff.profile_form_question_two),
             // DropBox
-            Text(''),
+            Text(StringsEstudUff.profile_form_question_three),
             // DropBox
-            //Button
+            ButtonEstudUff(
+              text: StringsEstudUff.send_button_title,
+              onPressed: () {
+                // TO-DO: Criar redirecionamento para perfil correto
+              },
+            ),
           ],
         ),
       ),

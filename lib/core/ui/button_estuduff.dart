@@ -26,7 +26,7 @@ class _ButtonEstudUffState extends State<ButtonEstudUff> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4.0),
         ),
-        color: ColorsEstudUff.PrimaryBlue,
+        color: ColorsEstudUff.primaryBlue,
         onPressed: widget.onPressed,
         child: Text(
           widget.text,

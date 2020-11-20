@@ -24,7 +24,7 @@ class _RegisterFormState extends State<RegisterForm> {
               placeHolder: StringsEstudUff.insert_mail_placeholder,
               suffixIcon: Icon(
                 FeatherIcons.mail,
-                color: ColorsEstudUff.InputPlaceHolder,
+                color: ColorsEstudUff.inputPlaceHolder,
                 size: Dimensions.getTextSize(18, context),
                 semanticLabel: StringsEstudUff.mail_icon_semantic_label,
               ),
@@ -34,7 +34,7 @@ class _RegisterFormState extends State<RegisterForm> {
               isPassword: true,
               suffixIcon: Icon(
                 FeatherIcons.lock,
-                color: ColorsEstudUff.InputPlaceHolder,
+                color: ColorsEstudUff.inputPlaceHolder,
                 size: Dimensions.getTextSize(18, context),
                 semanticLabel: StringsEstudUff.lock_icon_semantic_label,
               ),
@@ -44,7 +44,7 @@ class _RegisterFormState extends State<RegisterForm> {
               isPassword: true,
               suffixIcon: Icon(
                 FeatherIcons.bookOpen,
-                color: ColorsEstudUff.InputPlaceHolder,
+                color: ColorsEstudUff.inputPlaceHolder,
                 size: Dimensions.getTextSize(18, context),
                 semanticLabel: StringsEstudUff.open_book_icon_semantic_label,
               ),
@@ -59,7 +59,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4.0),
                 ),
-                color: ColorsEstudUff.PrimaryBlue,
+                color: ColorsEstudUff.primaryBlue,
                 onPressed: () {
                   // TO-DO: implementar chamada de evento para cadastrar o usuário
                 },

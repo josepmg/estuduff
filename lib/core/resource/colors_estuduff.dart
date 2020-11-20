@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
 class ColorsEstudUff {
-  static const Color PrimaryBlue = Color(0xff2166CC);
-  static const Color PrimaryGreen = Color(0xffCDFF29);
-  static const Color PrimaryRed = Color(0xffFF2B0F);
-  static const Color Disabled = Color(0xff787777);
-  static const Color InputBorder = Color(0xffDBDBDB);
-  static const Color InputPlaceHolder = Color(0xff717171);
-  static const Color PageTitles = Color(0xff343333);
+  static const Color primaryBlue = Color(0xff2166CC);
+  static const Color primaryGreen = Color(0xffCDFF29);
+  static const Color primaryRed = Color(0xffFF2B0F);
+  static const Color disabled = Color(0xff787777);
+  static const Color inputBorder = Color(0xffDBDBDB);
+  static const Color inputPlaceHolder = Color(0xff717171);
+  static const Color pageTitles = Color(0xff343333);
 }

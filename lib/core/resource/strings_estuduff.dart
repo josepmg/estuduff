@@ -32,9 +32,10 @@ class StringsEstudUff {
   static const profile_form_title = "Questionário";
   static const profile_form_instruction =
       "Descubra o seu perfil de estudo avaliando as afirmações a seguir:";
-  static const question_one =
+  static const profile_form_question_one =
       "“Prefiro um lugar silencioso a um lugar barulhento para estudar”";
-  static const question_two =
+  static const profile_form_question_two =
       "“Prefiro um lugar privado a um lugar movimentado para meus estudos”";
-  static const question_three = "“Prefiro estudar só a estudar em grupo”";
+  static const profile_form_question_three =
+      "“Prefiro estudar só a estudar em grupo”";
 }

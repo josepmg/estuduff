@@ -24,7 +24,7 @@ class _LoginFormState extends State<LoginForm> {
               placeHolder: StringsEstudUff.insert_mail_placeholder,
               suffixIcon: Icon(
                 FeatherIcons.mail,
-                color: ColorsEstudUff.InputPlaceHolder,
+                color: ColorsEstudUff.inputPlaceHolder,
                 size: Dimensions.getTextSize(18, context),
                 semanticLabel: StringsEstudUff.mail_icon_semantic_label,
               ),
@@ -34,7 +34,7 @@ class _LoginFormState extends State<LoginForm> {
               isPassword: true,
               suffixIcon: Icon(
                 FeatherIcons.lock,
-                color: ColorsEstudUff.InputPlaceHolder,
+                color: ColorsEstudUff.inputPlaceHolder,
                 size: Dimensions.getTextSize(18, context),
                 semanticLabel: StringsEstudUff.lock_icon_semantic_label,
               ),
@@ -49,7 +49,7 @@ class _LoginFormState extends State<LoginForm> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4.0),
                 ),
-                color: ColorsEstudUff.PrimaryBlue,
+                color: ColorsEstudUff.primaryBlue,
                 onPressed: () {
                   // TO-DO: implementar chamada de evento para logar o usuário
                 },
