@@ -38,4 +38,5 @@ class StringsEstudUff {
       "“Prefiro um lugar privado a um lugar movimentado para meus estudos”";
   static const profile_form_question_three =
       "“Prefiro estudar só a estudar em grupo”";
+  static const profile_form_dropdown_placeholder = "Clique aqui para avaliar";
 }
