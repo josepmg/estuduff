@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class EstudUffColors {
+class ColorsEstudUff {
   static const Color PrimaryBlue = Color(0xff2166CC);
   static const Color PrimaryGreen = Color(0xffCDFF29);
   static const Color PrimaryRed = Color(0xffFF2B0F);

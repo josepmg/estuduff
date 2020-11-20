@@ -1,7 +1,7 @@
 import 'package:estuduff/core/resource/dimensions.dart';
-import 'package:estuduff/core/resource/estuduff_colors.dart';
-import 'package:estuduff/core/resource/estuduff_strings.dart';
-import 'package:estuduff/core/resource/estuduff_fonts.dart';
+import 'package:estuduff/core/resource/colors_estuduff.dart';
+import 'package:estuduff/core/resource/strings_estuduff.dart';
+import 'package:estuduff/core/resource/fonts_estuduf.dart';
 import 'package:estuduff/features/auth/presentation/widgets/LoginForm.dart';
 import 'package:estuduff/features/auth/presentation/widgets/RegisterForm.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,10 +30,10 @@ class _LoginTabBarWidgetState extends State<LoginTabBarWidget> {
                 labelColor: Colors.black,
                 labelPadding: Dimensions.getEdgeInsetsAll(context, 0),
                 indicatorSize: TabBarIndicatorSize.label,
-                unselectedLabelColor: EstudUffColors.Disabled,
+                unselectedLabelColor: ColorsEstudUff.Disabled,
                 indicator: MaterialIndicator(
                   height: 5,
-                  color: EstudUffColors.PrimaryBlue,
+                  color: ColorsEstudUff.PrimaryBlue,
                   bottomLeftRadius: 0,
                   bottomRightRadius: 0,
                   topLeftRadius: 0,
@@ -43,17 +43,17 @@ class _LoginTabBarWidgetState extends State<LoginTabBarWidget> {
                 tabs: [
                   Tab(
                       child: Text(
-                    EstudUffStrings.login_title,
+                    StringsEstudUff.login_title,
                     style: TextStyle(
-                        fontFamily: EstudUffFonts.rubik,
+                        fontFamily: FontsEstudUff.rubik,
                         fontWeight: FontWeight.w500,
                         fontSize: Dimensions.getTextSize(22, context)),
                   )),
                   Tab(
                     child: Text(
-                      EstudUffStrings.register_title,
+                      StringsEstudUff.register_title,
                       style: TextStyle(
-                          fontFamily: EstudUffFonts.rubik,
+                          fontFamily: FontsEstudUff.rubik,
                           fontWeight: FontWeight.w500,
                           fontSize: Dimensions.getTextSize(22, context)),
                     ),

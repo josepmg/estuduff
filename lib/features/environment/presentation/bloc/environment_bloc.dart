@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:estuduff/core/error/failure.dart';
-import 'package:estuduff/core/resource/estuduff_strings.dart';
+import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/features/environment/domain/entity/environment.dart';
 import 'package:estuduff/features/environment/domain/entity/study_place_type.dart';
 import 'package:estuduff/features/environment/domain/usecase/get_environment_use_case.dart';
@@ -45,11 +45,11 @@ class EnvironmentBloc extends Bloc<EnvironmentEvent, EnvironmentState> {
         if (failure is PlatformFailure)
           return ErrorEnvironmentState(failure.message);
         else if (failure is ServerFailure)
-          return ErrorEnvironmentState(EstudUffStrings.server_failure_message);
+          return ErrorEnvironmentState(StringsEstudUff.server_failure_message);
         else if (failure is GenericFailure)
           return ErrorEnvironmentState(failure.message);
         else
-          return ErrorEnvironmentState(EstudUffStrings.generic_failure_message);
+          return ErrorEnvironmentState(StringsEstudUff.generic_failure_message);
       },
       (List<Environment> _list) {
         return LoadedEnvironmentState(_list);

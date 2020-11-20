@@ -1,4 +1,4 @@
-class EstudUffStyles {
+class StylesEstudUff {
   // TextStyles
 
   // InputDecoration

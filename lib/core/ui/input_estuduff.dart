@@ -1,10 +1,10 @@
 import 'package:estuduff/core/resource/dimensions.dart';
-import 'package:estuduff/core/resource/estuduff_colors.dart';
-import 'package:estuduff/core/resource/estuduff_fonts.dart';
+import 'package:estuduff/core/resource/colors_estuduff.dart';
+import 'package:estuduff/core/resource/fonts_estuduf.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class EstudUffInput extends StatefulWidget {
+class InputEstudUff extends StatefulWidget {
   final String placeHolder;
   final Widget suffixIcon;
   final TextInputType keyboardType;
@@ -18,7 +18,7 @@ class EstudUffInput extends StatefulWidget {
   final String errorMessage;
   final bool isPassword;
 
-  const EstudUffInput(
+  const InputEstudUff(
       {Key key,
       this.placeHolder,
       this.suffixIcon,
@@ -36,11 +36,11 @@ class EstudUffInput extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _EstudUffInputState();
+    return _InputEstudUffState();
   }
 }
 
-class _EstudUffInputState extends State<EstudUffInput> {
+class _InputEstudUffState extends State<InputEstudUff> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,11 +56,11 @@ class _EstudUffInputState extends State<EstudUffInput> {
         obscureText: (widget.isPassword != null) ? widget.isPassword : false,
         textAlign: TextAlign.start,
         style: TextStyle(
-          color: EstudUffColors.InputPlaceHolder,
-          fontFamily: EstudUffFonts.open_sans,
+          color: ColorsEstudUff.InputPlaceHolder,
+          fontFamily: FontsEstudUff.open_sans,
           fontSize: Dimensions.getTextSize(14, context),
         ),
-        cursorColor: EstudUffColors.PrimaryBlue,
+        cursorColor: ColorsEstudUff.PrimaryBlue,
         decoration: InputDecoration(
           hintText: widget.hintMessage,
           errorText: widget.errorMessage,
