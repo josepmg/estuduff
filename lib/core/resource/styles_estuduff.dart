@@ -6,7 +6,7 @@ class StylesEstudUff {
   // TextStyles
   static TextStyle appbarTextStyle(BuildContext context) {
     return TextStyle(
-      color: ColorsEstudUff.lightGrey,
+      color: ColorsEstudUff.mediumGrey,
       fontSize: Dimensions.getTextSize(20, context),
       fontWeight: FontWeight.w500,
     );

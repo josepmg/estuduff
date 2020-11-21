@@ -1,7 +1,6 @@
-import 'package:estuduff/core/resource/dimensions.dart';
-import 'package:estuduff/core/resource/estuduff_colors.dart';
-import 'package:estuduff/core/resource/estuduff_strings.dart';
-import 'package:estuduff/core/resource/estuduff_styles.dart';
+import 'package:estuduff/core/resource/colors_estuduff.dart';
+import 'package:estuduff/core/resource/strings_estuduff.dart';
+import 'package:estuduff/core/resource/styles_estuduff.dart';
 import 'package:estuduff/core/ui/custom_drawer.dart';
 import 'package:estuduff/features/profile/presentation/widgets/profile_tile.dart';
 import 'package:flutter/material.dart';
@@ -17,11 +16,11 @@ class SelectProfilePage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 8,
         iconTheme: IconThemeData(
-          color: EstudUffColors.inputPlaceHolder,
+          color: ColorsEstudUff.mediumGrey,
         ),
         title: Text(
-          EstudUffStrings.select_profile_app_bar_title,
-          style: EstudUffStyles.appbarTextStyle(context),
+          StringsEstudUff.select_profile_app_bar_title,
+          style: StylesEstudUff.appbarTextStyle(context),
         ),
       ),
       body: SafeArea(
@@ -33,30 +32,30 @@ class SelectProfilePage extends StatelessWidget {
             Expanded(
               flex: 1,
               child: ProfileTile(
-                tileMarginColor: EstudUffColors.primaryBlue,
-                tileTitle: EstudUffStrings.lonely_wolf_title,
-                tileSubtitle: EstudUffStrings.lonely_wolf_subtitle,
-                tileIcon: EstudUffStrings.lonely_wolf_icon,
+                tileMarginColor: ColorsEstudUff.primaryBlue,
+                tileTitle: StringsEstudUff.lonely_wolf_title,
+                tileSubtitle: StringsEstudUff.lonely_wolf_subtitle,
+                tileIcon: StringsEstudUff.lonely_wolf_icon,
                 onTapFunction: () {},
               ),
             ),
             Expanded(
               flex: 1,
               child: ProfileTile(
-                tileMarginColor: EstudUffColors.primaryGreen,
-                tileTitle: EstudUffStrings.jack_of_all_trades_title,
-                tileSubtitle: EstudUffStrings.jack_of_all_trades_subtitle,
-                tileIcon: EstudUffStrings.jack_of_all_trades_icon,
+                tileMarginColor: ColorsEstudUff.primaryGreen,
+                tileTitle: StringsEstudUff.jack_of_all_trades_title,
+                tileSubtitle: StringsEstudUff.jack_of_all_trades_subtitle,
+                tileIcon: StringsEstudUff.jack_of_all_trades_icon,
                 onTapFunction: () {},
               ),
             ),
             Expanded(
               flex: 1,
               child: ProfileTile(
-                tileMarginColor: EstudUffColors.primaryRed,
-                tileTitle: EstudUffStrings.outgoing_title,
-                tileSubtitle: EstudUffStrings.outgoing_subtitle,
-                tileIcon: EstudUffStrings.outgoing_icon,
+                tileMarginColor: ColorsEstudUff.primaryRed,
+                tileTitle: StringsEstudUff.outgoing_title,
+                tileSubtitle: StringsEstudUff.outgoing_subtitle,
+                tileIcon: StringsEstudUff.outgoing_icon,
                 onTapFunction: () {},
               ),
             ),

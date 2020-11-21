@@ -1,7 +1,7 @@
+import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/dimensions.dart';
-import 'package:estuduff/core/resource/estuduff_colors.dart';
-import 'package:estuduff/core/resource/estuduff_strings.dart';
-import 'package:estuduff/core/resource/estuduff_styles.dart';
+import 'package:estuduff/core/resource/strings_estuduff.dart';
+import 'package:estuduff/core/resource/styles_estuduff.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +35,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   bottom: BorderSide(
                     width: Dimensions.getConvertedHeightSize(1, context),
                     style: BorderStyle.solid,
-                    color: EstudUffColors.spacerGray,
+                    color: ColorsEstudUff.spacerGray,
                   ),
                 ),
               ),
@@ -44,36 +44,36 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${EstudUffStrings.greeting_drawer_title} Bárbara",
-                    style: EstudUffStyles.drawerTitleTextStyle(context),
+                    "${StringsEstudUff.greeting_drawer_title} Bárbara",
+                    style: StylesEstudUff.drawerTitleTextStyle(context),
                   ),
                   SizedBox(
                     height: Dimensions.getConvertedHeightSize(5, context),
                   ),
                   Text(
                     "bramos@id.uff.br",
-                    style: EstudUffStyles.drawerSubtitleTextStyle(context),
+                    style: StylesEstudUff.drawerSubtitleTextStyle(context),
                   ),
                 ],
               ),
             ),
             // Items
             DrawerItem(
-              text: EstudUffStrings.home_drawer_item,
+              text: StringsEstudUff.home_drawer_item,
               iconData: FeatherIcons.home,
               onTapFunction: () {
                 //TODO Implement onTap function
               },
             ),
             DrawerItem(
-              text: EstudUffStrings.available_environments_drawer_item,
+              text: StringsEstudUff.available_environments_drawer_item,
               iconData: FeatherIcons.heart,
               onTapFunction: () {
                 //TODO Implement onTap function
               },
             ),
             DrawerItem(
-              text: EstudUffStrings.filter_environments_drawer_item,
+              text: StringsEstudUff.filter_environments_drawer_item,
               iconData: FeatherIcons.search,
               onTapFunction: () {
                 setState(() {
@@ -90,7 +90,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         DrawerItem(
-                          text: EstudUffStrings.type_filter_drawer_item,
+                          text: StringsEstudUff.type_filter_drawer_item,
                           onTapFunction: () {
                             //TODO Implement onTap function
                             setState(() {
@@ -100,7 +100,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         ),
                         DrawerItem(
                           text:
-                              EstudUffStrings.study_profile_filter_drawer_item,
+                              StringsEstudUff.study_profile_filter_drawer_item,
                           onTapFunction: () {
                             //TODO Implement onTap function
                             setState(() {
@@ -113,21 +113,21 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   )
                 : Container(),
             DrawerItem(
-              text: EstudUffStrings.change_study_profile_drawer_item,
+              text: StringsEstudUff.change_study_profile_drawer_item,
               iconData: FeatherIcons.edit,
               onTapFunction: () {
                 //TODO Implement onTap function
               },
             ),
             DrawerItem(
-              text: EstudUffStrings.edit_account_item,
+              text: StringsEstudUff.edit_account_item,
               iconData: FeatherIcons.settings,
               onTapFunction: () {
                 //TODO Implement onTap function
               },
             ),
             DrawerItem(
-              text: EstudUffStrings.sign_out_item,
+              text: StringsEstudUff.sign_out_item,
               iconData: FeatherIcons.logOut,
               onTapFunction: () {
                 //TODO Implement onTap function
@@ -153,18 +153,18 @@ class DrawerItem extends StatelessWidget {
         ? ListTile(
             leading: Icon(
               iconData,
-              color: EstudUffColors.inputPlaceHolder,
+              color: ColorsEstudUff.mediumGrey,
             ),
             title: Text(
               text,
-              style: EstudUffStyles.drawerItemTextStyle(context),
+              style: StylesEstudUff.drawerItemTextStyle(context),
             ),
             onTap: onTapFunction,
           )
         : ListTile(
             title: Text(
               text,
-              style: EstudUffStyles.drawerItemTextStyle(context),
+              style: StylesEstudUff.drawerItemTextStyle(context),
             ),
             onTap: onTapFunction,
           );
