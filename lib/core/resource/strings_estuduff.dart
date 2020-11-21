@@ -1,4 +1,4 @@
-class EstudUffStrings {
+class StringsEstudUff {
   // Failure messages
   static const server_failure_message =
       "Houve um erro no servidor. Tente mais tarde.";
@@ -52,4 +52,15 @@ class EstudUffStrings {
   static const jack_of_all_trades_subtitle = "estou feliz em qualquer lugar";
   static const outgoing_title = "Da Galera";
   static const outgoing_subtitle = "cadê os migos?";
+  // Profile Form
+  static const profile_form_title = "Questionário";
+  static const profile_form_instruction =
+      "Descubra o seu perfil de estudo avaliando as afirmações a seguir:";
+  static const profile_form_question_one =
+      "“Prefiro um lugar silencioso a um lugar barulhento para estudar”";
+  static const profile_form_question_two =
+      "“Prefiro um lugar privado a um lugar movimentado para meus estudos”";
+  static const profile_form_question_three =
+      "“Prefiro estudar só a estudar em grupo”";
+  static const profile_form_dropdown_placeholder = "Clique aqui para avaliar";
 }

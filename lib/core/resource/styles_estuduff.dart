@@ -1,12 +1,12 @@
+import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/dimensions.dart';
-import 'package:estuduff/core/resource/estuduff_colors.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class EstudUffStyles {
+class StylesEstudUff {
   // TextStyles
   static TextStyle appbarTextStyle(BuildContext context) {
     return TextStyle(
-      color: EstudUffColors.inputPlaceHolder,
+      color: ColorsEstudUff.lightGrey,
       fontSize: Dimensions.getTextSize(20, context),
       fontWeight: FontWeight.w500,
     );
@@ -14,7 +14,7 @@ class EstudUffStyles {
 
   static TextStyle drawerTitleTextStyle(BuildContext context) {
     return TextStyle(
-      color: EstudUffColors.drawerTitleBlack,
+      color: ColorsEstudUff.drawerTitleBlack,
       // fontFamily: "RobotoMono",
       fontWeight: FontWeight.w500,
       fontSize: Dimensions.getTextSize(20, context),
@@ -23,7 +23,7 @@ class EstudUffStyles {
 
   static TextStyle drawerSubtitleTextStyle(BuildContext context) {
     return TextStyle(
-      color: EstudUffColors.drawerSubtitleGray,
+      color: ColorsEstudUff.drawerSubtitleGray,
       // fontFamily: "RobotoMono",
       fontWeight: FontWeight.normal,
       fontSize: Dimensions.getTextSize(14, context),
@@ -32,7 +32,7 @@ class EstudUffStyles {
 
   static TextStyle drawerItemTextStyle(BuildContext context) {
     return TextStyle(
-      color: EstudUffColors.drawerItemBlack,
+      color: ColorsEstudUff.drawerItemBlack,
       fontWeight: FontWeight.w500,
       fontSize: Dimensions.getTextSize(14, context),
     );
