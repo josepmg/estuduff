@@ -9,9 +9,11 @@ class StringsEstudUff {
 
   // General strings
   static const send_button_title = "Enviar";
+  static const you_are_here = "você está aqui";
 
   // Images Path
   static const logo = 'assets/images/logo.svg';
+  static const available_env_icon = 'assets/images/logo-availabe.svg';
 
   // Accessibility
   static const mail_icon_semantic_label = "ícone de um envelope fechado";
@@ -39,4 +41,7 @@ class StringsEstudUff {
   static const profile_form_question_three =
       "“Prefiro estudar só a estudar em grupo”";
   static const profile_form_dropdown_placeholder = "Clique aqui para avaliar";
+
+  // Available Enviroments
+  static const available_title = "Ambientes Disponíveis";
 }
