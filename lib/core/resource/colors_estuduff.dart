@@ -8,4 +8,11 @@ class ColorsEstudUff {
   static const Color lightGrey = Color(0xffDBDBDB);
   static const Color mediumGrey = Color(0xff717171);
   static const Color pageTitles = Color(0xff343333);
+
+  static const Color drawerTitleBlack = Color(0xFF2121210);
+  static const Color drawerSubtitleGray = Color(0xFF757575);
+  static const Color drawerItemBlack = Color(0xFF343333);
+  static const Color spacerGray = Color(0xFFE0E0E0);
+
+  static const Color black = Color(0xFF000000);
 }
