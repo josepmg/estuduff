@@ -2,6 +2,7 @@ import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/dimensions.dart';
 import 'package:estuduff/core/resource/markers_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
+import 'package:estuduff/core/ui/appbar_estuduff.dart';
 import 'package:estuduff/features/environment/presentation/widgets/EnviromentsTopWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,17 +23,11 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
 
   Widget _buildBody(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        actions: [
-          // TODO: open drawer
-        ],
-        title: Text(
-          StringsEstudUff.available_title,
-          style: TextStyle(color: ColorsEstudUff.mediumGrey),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(56),
+        child: AppBarEstudUff(
+          title: StringsEstudUff.available_title,
         ),
-        leading: Icon(Icons.menu, color: ColorsEstudUff.mediumGrey),
-        elevation: 8.0,
       ),
       body: Column(
         children: [

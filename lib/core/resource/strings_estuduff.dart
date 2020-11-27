@@ -48,4 +48,11 @@ class StringsEstudUff {
 
   // Available Enviroments
   static const available_title = "Ambientes Disponíveis";
+
+  // Single Enviroment
+  static const enviroment_title = "Ambiente";
+  static const enviroment_adress = "Endereço";
+  static const enviroment_building = "Prédio";
+  static const enviroment_number = "Número";
+  static const enviroment_study_profile = "Perfil de Estudo";
 }
