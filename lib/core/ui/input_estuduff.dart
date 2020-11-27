@@ -1,6 +1,6 @@
 import 'package:estuduff/core/resource/dimensions.dart';
 import 'package:estuduff/core/resource/colors_estuduff.dart';
-import 'package:estuduff/core/resource/fonts_estuduf.dart';
+import 'package:estuduff/core/resource/fonts_estuduff.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

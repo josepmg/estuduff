@@ -1,7 +1,7 @@
 import 'package:estuduff/core/resource/dimensions.dart';
 import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
-import 'package:estuduff/core/resource/fonts_estuduf.dart';
+import 'package:estuduff/core/resource/fonts_estuduff.dart';
 import 'package:estuduff/features/auth/presentation/widgets/LoginForm.dart';
 import 'package:estuduff/features/auth/presentation/widgets/RegisterForm.dart';
 import 'package:flutter/cupertino.dart';
