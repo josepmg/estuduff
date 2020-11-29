@@ -15,6 +15,7 @@ class StringsEstudUff {
   static const green_marker = 'assets/images/green.png';
   static const red_marker = 'assets/images/red-marker.svg';
   static const blue_marker = 'assets/images/blue-marker.svg';
+  static const library_photo = "assets/images/biblioteca.png";
 
   // General strings
   static const send_button_title = "Enviar";

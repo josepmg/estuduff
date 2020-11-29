@@ -1,5 +1,5 @@
 import 'package:estuduff/core/resource/colors_estuduff.dart';
-import 'package:estuduff/core/resource/strings_estuduff.dart';
+import 'package:estuduff/core/resource/dimensions.dart';
 import 'package:flutter/material.dart';
 
 class AppBarEstudUff extends StatelessWidget {
@@ -16,7 +16,10 @@ class AppBarEstudUff extends StatelessWidget {
       ],
       title: Text(
         title,
-        style: TextStyle(color: ColorsEstudUff.mediumGrey),
+        style: TextStyle(
+            color: ColorsEstudUff.mediumGrey,
+            fontWeight: FontWeight.w500,
+            fontSize: Dimensions.getTextSize(20, context)),
       ),
       leading: Icon(Icons.menu, color: ColorsEstudUff.mediumGrey),
       elevation: 8.0,

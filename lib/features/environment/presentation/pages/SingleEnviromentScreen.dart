@@ -1,3 +1,4 @@
+import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/dimensions.dart';
 import 'package:estuduff/core/resource/fonts_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
@@ -6,7 +7,6 @@ import 'package:estuduff/features/environment/domain/entity/building.dart';
 import 'package:estuduff/features/environment/domain/entity/campus.dart';
 import 'package:estuduff/features/environment/domain/entity/environment.dart';
 import 'package:estuduff/features/environment/domain/entity/study_place_type.dart';
-import 'package:estuduff/features/profile/data/model/study_profile_model.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,6 +23,8 @@ class SingleEnviromentScreen extends StatefulWidget {
 }
 
 class _SingleEnviromentScreenState extends State<SingleEnviromentScreen> {
+  Color enviromentColor;
+
   @override
   Widget build(BuildContext context) {
     widget.enviroment = new Environment(
@@ -30,12 +32,14 @@ class _SingleEnviromentScreenState extends State<SingleEnviromentScreen> {
         name: 'Biblioteca',
         complement: 'Rua Passo da Pátria',
         studyProfile: StudyProfileEnum.LONELY_WOLF,
-        type: StudyPlaceType(id: 01, name: 'biblioteca'),
+        type: StudyPlaceType(id: 01, name: 'Biblioteca'),
         building: Building(
           id: 01,
           campus: Campus(id: 01, name: 'PV'),
           name: 'Biblioteca',
         ));
+
+    this.enviromentColor = _recoverProfileColor(widget.enviroment.studyProfile);
     return _buildBody(context);
   }
 
@@ -48,14 +52,74 @@ class _SingleEnviromentScreenState extends State<SingleEnviromentScreen> {
         ),
       ),
       body: Container(
-        alignment: Alignment.center,
+        alignment: Alignment.topCenter,
         padding: Dimensions.getEdgeInsetsAll(context, 32),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Row(),
+              Row(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: Dimensions.getConvertedWidthSize(5, context),
+                        color: enviromentColor,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(80)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.3),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(80.0),
+                      child: Image.asset(
+                        StringsEstudUff.library_photo,
+                        width: Dimensions.getConvertedWidthSize(100, context),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: Dimensions.getConvertedWidthSize(20, context),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.enviroment.type.name,
+                        style: TextStyle(
+                            color: Colors.black87,
+                            fontSize: Dimensions.getTextSize(22, context),
+                            fontFamily: FontsEstudUff.rubik),
+                      ),
+                      Container(
+                        width: Dimensions.getConvertedWidthSize(160, context),
+                        height: Dimensions.getConvertedHeightSize(3, context),
+                        color: enviromentColor,
+                        margin: Dimensions.getEdgeInsetsSymetric(context,
+                            vertical: 8),
+                      ),
+                      Text(
+                        widget.enviroment.name,
+                        style: TextStyle(
+                          fontFamily: FontsEstudUff.open_sans,
+                          color: ColorsEstudUff.mediumGrey,
+                          fontSize: Dimensions.getTextSize(14, context),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: Dimensions.getConvertedHeightSize(30, context),
+              ),
               _textInfo(
                   info: widget.enviroment.complement,
                   label: StringsEstudUff.enviroment_adress),
@@ -130,6 +194,16 @@ class _SingleEnviromentScreenState extends State<SingleEnviromentScreen> {
       return StringsEstudUff.wolf_env_icon;
     } else {
       return StringsEstudUff.share_env_icon;
+    }
+  }
+
+  Color _recoverProfileColor(StudyProfileEnum profile) {
+    if (profile == StudyProfileEnum.JACK_OF_ALL_TRADES) {
+      return ColorsEstudUff.primaryGreen;
+    } else if (profile == StudyProfileEnum.LONELY_WOLF) {
+      return ColorsEstudUff.primaryBlue;
+    } else {
+      return ColorsEstudUff.primaryRed;
     }
   }
 }
