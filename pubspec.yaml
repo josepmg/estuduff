@@ -42,6 +42,8 @@ dependencies:
   crypto: ^2.1.4
   # Tab Styler
   tab_indicator_styler: ^1.0.0
+  # Text autosize
+  auto_size_text: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -73,3 +75,9 @@ flutter:
         - asset: assets/fonts/Rubik-Regular.ttf
         - asset: assets/fonts/Rubik-Bold.ttf
         - asset: assets/fonts/Rubik-Light.ttf
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+        - asset: assets/fonts/Roboto-Medium.ttf
+        - asset: assets/fonts/Roboto-Light.ttf

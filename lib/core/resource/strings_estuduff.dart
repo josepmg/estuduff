@@ -7,16 +7,31 @@ class StringsEstudUff {
   static const cache_failure_message = "Erro ao recuperdar dados locais.";
   static const generic_failure_message = "Houve um erro. Tente mais tarde.";
 
+  // Images Path
+  static const logo = "assets/images/logo.svg";
+  static const available_env_icon = "assets/images/logo-availabe.svg";
+  static const wolf_env_icon = "assets/images/logo-wolf.svg";
+  static const share_env_icon = "assets/images/logo-share.svg";
+  static const out_env_icon = "assets/images/logo-jack.svg";
+  static const green_marker = "assets/images/green.png";
+  static const red_marker = "assets/images/red-marker.svg";
+  static const blue_marker = "assets/images/blue-marker.svg";
+  static const library_photo = "assets/images/biblioteca.png";
+  static const error_icon = "assets/images/error-icon.svg";
+
   // General strings
   static const send_button_title = "Enviar";
+  static const you_are_here = "você está aqui";
+  static const home_page_title = "Início";
+  static const wolf_profile = "Lobo Solitário";
+  static const jack_profile = "Não tem tempo ruim";
+  static const share_profile = "Da Galera";
 
   // Images Path
-  static const logo = 'assets/images/logo.svg';
-  static const icon = 'assets/images/icon.svg';
-  static const lonely_wolf_icon = "assets/images/lonely_wolf_icon.png";
+  /*static const lonely_wolf_icon = "assets/images/lonely_wolf_icon.png";
   static const jack_of_all_trades_icon =
       "assets/images/jack_of_all_trades_icon.png";
-  static const outgoing_icon = "assets/images/outgoing_icon.png";
+  static const outgoing_icon = "assets/images/outgoing_icon.png";*/
 
   // Accessibility
   static const mail_icon_semantic_label = "ícone de um envelope fechado";
@@ -63,4 +78,21 @@ class StringsEstudUff {
   static const profile_form_question_three =
       "“Prefiro estudar só a estudar em grupo”";
   static const profile_form_dropdown_placeholder = "Clique aqui para avaliar";
+
+  // Available Enviroments
+  static const available_title = "Ambientes Disponíveis";
+
+  // Single Enviroment
+  static const enviroment_title = "Ambiente";
+  static const enviroment_adress = "Endereço";
+  static const enviroment_building = "Prédio";
+  static const enviroment_number = "Número";
+  static const enviroment_study_profile = "Perfil de Estudo";
+
+  // Filter by Type
+  static const filter_by_type_title = "Filtrar por Tipo";
+  static const filter_by_type_placeholder =
+      "Ex: sala de estudos, biblioteca...";
+  static const filter_by_type_search_button = "Pesquisar";
+  static const select_type_title = "Selecionar Tipo";
 }

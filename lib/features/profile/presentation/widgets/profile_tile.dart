@@ -2,6 +2,7 @@ import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/dimensions.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfileTile extends StatelessWidget {
   final String tileTitle;
@@ -69,11 +70,11 @@ class ProfileTile extends StatelessWidget {
                 ),
               ],
             ),
-            // Image
-            Image.asset(
-              tileIcon ?? StringsEstudUff.icon,
+
+            SvgPicture.asset(
+              tileIcon ?? StringsEstudUff.available_env_icon,
               height: Dimensions.getConvertedHeightSize(87, context),
-              width: Dimensions.getConvertedWidthSize(94, context),
+              width: Dimensions.getConvertedWidthSize(90, context),
             ),
           ],
         ),

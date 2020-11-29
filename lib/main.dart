@@ -2,6 +2,9 @@ import 'dart:async';
 import 'dart:developer' as logger;
 
 import 'package:estuduff/features/auth/presentation/pages/LoginPage.dart';
+import 'package:estuduff/features/environment/presentation/pages/BaseEnviromentScreen.dart';
+import 'package:estuduff/features/environment/presentation/pages/FilterByTypeScreen.dart';
+import 'package:estuduff/features/environment/presentation/pages/SingleEnviromentScreen.dart';
 import 'package:flutter/material.dart';
 import 'dependency_injection.dart' as di;
 

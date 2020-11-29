@@ -1,6 +1,6 @@
 import 'package:estuduff/core/resource/dimensions.dart';
 import 'package:estuduff/core/resource/colors_estuduff.dart';
-import 'package:estuduff/core/resource/fonts_estuduf.dart';
+import 'package:estuduff/core/resource/fonts_estuduff.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -65,12 +65,18 @@ class _InputEstudUffState extends State<InputEstudUff> {
           hintText: widget.hintMessage,
           errorText: widget.errorMessage,
           labelText: widget.placeHolder,
+          labelStyle: TextStyle(
+              color: ColorsEstudUff.mediumGrey,
+              fontFamily: FontsEstudUff.open_sans),
           suffixIcon: widget.suffixIcon,
-          border: OutlineInputBorder(
+          enabledBorder: OutlineInputBorder(
+            borderSide:
+                const BorderSide(color: ColorsEstudUff.lightGrey, width: 1.0),
             borderRadius: const BorderRadius.all(
               const Radius.circular(4.0),
             ),
           ),
+          //   border:
         ),
       ),
     );

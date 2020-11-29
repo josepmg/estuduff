@@ -1,7 +1,7 @@
 import 'package:estuduff/core/resource/dimensions.dart';
 import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
-import 'package:estuduff/core/resource/fonts_estuduf.dart';
+import 'package:estuduff/core/resource/fonts_estuduff.dart';
 import 'package:estuduff/features/auth/presentation/widgets/LoginForm.dart';
 import 'package:estuduff/features/auth/presentation/widgets/RegisterForm.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,7 +32,7 @@ class _LoginTabBarWidgetState extends State<LoginTabBarWidget> {
                 indicatorSize: TabBarIndicatorSize.label,
                 unselectedLabelColor: ColorsEstudUff.disabled,
                 indicator: MaterialIndicator(
-                  height: 5,
+                  height: Dimensions.getConvertedHeightSize(5, context),
                   color: ColorsEstudUff.primaryBlue,
                   bottomLeftRadius: 0,
                   bottomRightRadius: 0,
@@ -42,13 +42,14 @@ class _LoginTabBarWidgetState extends State<LoginTabBarWidget> {
                 ),
                 tabs: [
                   Tab(
-                      child: Text(
-                    StringsEstudUff.login_title,
-                    style: TextStyle(
-                        fontFamily: FontsEstudUff.rubik,
-                        fontWeight: FontWeight.w500,
-                        fontSize: Dimensions.getTextSize(22, context)),
-                  )),
+                    child: Text(
+                      StringsEstudUff.login_title,
+                      style: TextStyle(
+                          fontFamily: FontsEstudUff.rubik,
+                          fontWeight: FontWeight.w500,
+                          fontSize: Dimensions.getTextSize(22, context)),
+                    ),
+                  ),
                   Tab(
                     child: Text(
                       StringsEstudUff.register_title,
@@ -62,12 +63,14 @@ class _LoginTabBarWidgetState extends State<LoginTabBarWidget> {
           ),
           Container(
             margin: Dimensions.getEdgeInsets(context, left: 30),
-            width: Dimensions.getConvertedWidthSize(280, context),
+            width: Dimensions.getConvertedWidthSize(295, context),
             height: Dimensions.getConvertedHeightSize(320, context),
-            child: TabBarView(children: [
-              LoginForm(),
-              RegisterForm(),
-            ]),
+            child: TabBarView(
+              children: [
+                LoginForm(),
+                RegisterForm(),
+              ],
+            ),
           ),
         ],
       ),

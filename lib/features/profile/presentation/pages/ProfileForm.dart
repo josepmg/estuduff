@@ -1,7 +1,7 @@
 import 'package:estuduff/core/resource/arrays_estuduff.dart';
 import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/dimensions.dart';
-import 'package:estuduff/core/resource/fonts_estuduf.dart';
+import 'package:estuduff/core/resource/fonts_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/ui/button_estuduff.dart';
 import 'package:estuduff/core/ui/dropdown_estuduff.dart';
