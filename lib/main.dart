@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer' as logger;
 
+import 'package:estuduff/features/auth/presentation/pages/LoginPage.dart';
 import 'package:estuduff/features/environment/presentation/pages/BaseEnviromentScreen.dart';
 import 'package:estuduff/features/environment/presentation/pages/FilterByTypeScreen.dart';
 import 'package:estuduff/features/environment/presentation/pages/SingleEnviromentScreen.dart';
@@ -56,6 +57,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return FilterByTypeScreen();
+    return LoginPage();
   }
 }
