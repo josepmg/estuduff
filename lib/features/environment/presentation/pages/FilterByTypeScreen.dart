@@ -1,6 +1,5 @@
 import 'package:estuduff/core/resource/dimensions.dart';
 import 'package:estuduff/core/resource/fonts_estuduff.dart';
-import 'package:estuduff/core/resource/markers_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/ui/appbar_estuduff.dart';
 import 'package:estuduff/core/ui/button_estuduff.dart';

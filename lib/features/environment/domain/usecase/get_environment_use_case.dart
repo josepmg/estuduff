@@ -15,7 +15,9 @@ class GetEnvironmentuseCase extends GenericUseCase<List<Environment>, Params> {
   @override
   Future<Either<Failure, List<Environment>>> call(Params params) async {
     return await repository.getEnvironments(
-        profileId: params.studyProfile.getProfileId(), typeId: params.type.id);
+      profileId: params.studyProfile?.getProfileId(),
+      typeId: params.type?.id,
+    );
   }
 }
 

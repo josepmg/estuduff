@@ -1,3 +1,4 @@
+import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:estuduff/core/platform/settings.dart';
 import 'package:estuduff/features/auth/data/datasource/auth_local_data_source.dart';
@@ -46,6 +47,7 @@ _initExternal() async {
 }
 
 _initCore() {
+  getIt.registerLazySingleton(() => DataConnectionChecker());
   getIt.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(getIt()));
   getIt.registerLazySingleton<Settings>(() => Settings());
 }
@@ -75,11 +77,11 @@ _initAuth() {
 
   // BLoC
   getIt.registerFactory(() => AuthBloc(
-    getTokenUseCase: getIt(),
-    signInUseCase: getIt(),
-    signOutUseCase: getIt(),
-    signUpUseCase: getIt(),
-  ));
+        getTokenUseCase: getIt(),
+        signInUseCase: getIt(),
+        signOutUseCase: getIt(),
+        signUpUseCase: getIt(),
+      ));
 }
 
 _initEnvironment() {

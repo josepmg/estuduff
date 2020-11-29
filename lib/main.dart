@@ -1,11 +1,15 @@
 import 'dart:async';
 import 'dart:developer' as logger;
 
+import 'package:estuduff/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:estuduff/features/auth/presentation/pages/LoginPage.dart';
+import 'package:estuduff/features/environment/presentation/bloc/environment_bloc.dart';
 import 'package:estuduff/features/environment/presentation/pages/BaseEnviromentScreen.dart';
 import 'package:estuduff/features/environment/presentation/pages/FilterByTypeScreen.dart';
 import 'package:estuduff/features/environment/presentation/pages/SingleEnviromentScreen.dart';
+import 'package:estuduff/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dependency_injection.dart' as di;
 
 void main() async {
@@ -22,27 +26,35 @@ void main() async {
   };
 
   runZonedGuarded<Future<void>>(() async {
-    runApp(Estuduff());
+    runApp(
+      MultiBlocProvider(
+        providers: [
+          BlocProvider<AuthBloc>(
+            create: (_) => di.getIt<AuthBloc>(),
+          ),
+          BlocProvider<EnvironmentBloc>(
+            create: (_) => di.getIt<EnvironmentBloc>(),
+          ),
+          BlocProvider<ProfileBloc>(
+            create: (_) => di.getIt<ProfileBloc>(),
+          ),
+        ],
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          home: MyHomePage(title: 'Flutter Demo Home Page'),
+        ),
+      ),
+    );
   }, (Object error, StackTrace stackTrace) {
     // Whenever an error occurs, call the `_reportError` function. This sends
     // Dart errors to the dev console or Sentry depending on the environment.
     logger.log("Error: $error", name: "runZonedGuarded error");
     logger.log("StackTrace: $stackTrace", name: "runZonedGuarded error");
   });
-}
-
-class Estuduff extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
 }
 
 class MyHomePage extends StatefulWidget {
@@ -57,6 +69,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return LoginPage();
+    return BaseEnviromentScreen();
   }
 }
