@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer' as logger;
 
 import 'package:estuduff/features/environment/presentation/pages/BaseEnviromentScreen.dart';
+import 'package:estuduff/features/environment/presentation/pages/FilterByTypeScreen.dart';
 import 'package:estuduff/features/environment/presentation/pages/SingleEnviromentScreen.dart';
 import 'package:flutter/material.dart';
 import 'dependency_injection.dart' as di;
@@ -55,6 +56,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return SingleEnviromentScreen();
+    return FilterByTypeScreen();
   }
 }

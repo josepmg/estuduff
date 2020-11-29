@@ -61,4 +61,11 @@ class StringsEstudUff {
   static const enviroment_building = "Prédio";
   static const enviroment_number = "Número";
   static const enviroment_study_profile = "Perfil de Estudo";
+
+  // Filter by Type
+  static const filter_by_type_title = "Filtrar por Tipo";
+  static const filter_by_type_placeholder =
+      "Ex: sala de estudos, biblioteca...";
+  static const filter_by_type_search_button = "Pesquisar";
+  static const select_type_title = "Selecionar Tipo";
 }
