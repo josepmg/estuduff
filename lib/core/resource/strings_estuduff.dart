@@ -7,17 +7,22 @@ class StringsEstudUff {
   static const cache_failure_message = "Erro ao recuperdar dados locais.";
   static const generic_failure_message = "Houve um erro. Tente mais tarde.";
 
+  // Images Path
+  static const logo = 'assets/images/logo.svg';
+  static const available_env_icon = 'assets/images/logo-availabe.svg';
+  static const wolf_env_icon = 'assets/images/logo-wolf.svg';
+  static const share_env_icon = 'assets/images/logo-share.svg';
+  static const green_marker = 'assets/images/green.png';
+  static const red_marker = 'assets/images/red-marker.svg';
+  static const blue_marker = 'assets/images/blue-marker.svg';
+
   // General strings
   static const send_button_title = "Enviar";
   static const you_are_here = "você está aqui";
   static const home_page_title = "Início";
-
-  // Images Path
-  static const logo = 'assets/images/logo.svg';
-  static const available_env_icon = 'assets/images/logo-availabe.svg';
-  static const green_marker = 'assets/images/green.png';
-  static const red_marker = 'assets/images/red-marker.svg';
-  static const blue_marker = 'assets/images/blue-marker.svg';
+  static const wolf_profile = "Lobo Solitário";
+  static const jack_profile = "Não tem tempo ruim";
+  static const share_profile = "Da Galera";
 
   // Accessibility
   static const mail_icon_semantic_label = "ícone de um envelope fechado";
