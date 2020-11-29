@@ -1,4 +1,5 @@
 import 'package:estuduff/core/resource/dimensions.dart';
+import 'package:estuduff/core/ui/error_estuduff.dart';
 import 'package:estuduff/features/auth/presentation/widgets/LoginTabBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

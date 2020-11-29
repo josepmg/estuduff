@@ -8,14 +8,15 @@ class StringsEstudUff {
   static const generic_failure_message = "Houve um erro. Tente mais tarde.";
 
   // Images Path
-  static const logo = 'assets/images/logo.svg';
-  static const available_env_icon = 'assets/images/logo-availabe.svg';
-  static const wolf_env_icon = 'assets/images/logo-wolf.svg';
-  static const share_env_icon = 'assets/images/logo-share.svg';
-  static const green_marker = 'assets/images/green.png';
-  static const red_marker = 'assets/images/red-marker.svg';
-  static const blue_marker = 'assets/images/blue-marker.svg';
+  static const logo = "assets/images/logo.svg";
+  static const available_env_icon = "assets/images/logo-availabe.svg";
+  static const wolf_env_icon = "assets/images/logo-wolf.svg";
+  static const share_env_icon = "assets/images/logo-share.svg";
+  static const green_marker = "assets/images/green.png";
+  static const red_marker = "assets/images/red-marker.svg";
+  static const blue_marker = "assets/images/blue-marker.svg";
   static const library_photo = "assets/images/biblioteca.png";
+  static const error_icon = "assets/images/error-icon.svg";
 
   // General strings
   static const send_button_title = "Enviar";
