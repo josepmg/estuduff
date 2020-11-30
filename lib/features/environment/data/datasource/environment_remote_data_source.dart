@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:developer' as logger;
 import 'package:dio/dio.dart';
 import 'package:estuduff/core/platform/connection.dart';
+import 'package:estuduff/core/util/converter.dart';
 import 'package:estuduff/features/environment/data/model/environment_model.dart';
 import 'package:estuduff/features/environment/domain/entity/environment.dart';
-import 'package:flutter/services.dart';
 
 abstract class EnvironmentRemoteDataSource {
   Future<List<Environment>> getEnvironments({int profileId, int typeId});
@@ -20,7 +20,7 @@ class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
       // });
       // return EnvironmentModel.listFromJson(response.data);
       String response =
-          await _loadFromAsset('assets/mock/get_environments.json');
+          await Converter.loadFromAsset('assets/mock/get_environments.json');
       List<Environment> envList = (json.decode(response) as List)
           .map(
             (data) => EnvironmentModel.fromJson(data),
@@ -31,13 +31,9 @@ class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
     } catch (e) {
       logger.log(
         "Error: ${e.toString()}",
-        name: "AuthRemoteDataSourceImpl - signUp",
+        name: "EnvironmentRemoteDataSourceImpl - getEnvironments",
       );
       throw e();
     }
-  }
-
-  Future<String> _loadFromAsset(String path) async {
-    return await rootBundle.loadString(path);
   }
 }

@@ -12,9 +12,23 @@ class StudyProfileModel {
   //   );
   // }
 
-  static StudyProfileEnum fromJson(Map<String, dynamic> json) {
-    if (json == null) return null;
-    switch (json['id']) {
+  // static StudyProfileEnum fromJson(Map<String, dynamic> json) {
+  //   if (json == null) return null;
+  //   switch (json['id']) {
+  //     case 1:
+  //       return StudyProfileEnum.LONELY_WOLF;
+  //     case 2:
+  //       return StudyProfileEnum.JACK_OF_ALL_TRADES;
+  //     case 3:
+  //       return StudyProfileEnum.OUTGOING;
+  //     default:
+  //       return null;
+  //   }
+  // }
+
+  static StudyProfileEnum fromJson(int id) {
+    if (id == null) return null;
+    switch (id) {
       case 1:
         return StudyProfileEnum.LONELY_WOLF;
       case 2:

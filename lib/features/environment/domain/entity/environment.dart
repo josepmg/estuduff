@@ -10,6 +10,8 @@ class Environment extends Equatable {
   final Building building;
   final StudyPlaceType type;
   final StudyProfileEnum studyProfile;
+  final double latitude;
+  final double longitude;
 
   Environment({
     this.id,
@@ -18,7 +20,14 @@ class Environment extends Equatable {
     this.building,
     this.type,
     this.studyProfile,
+    this.longitude,
+    this.latitude,
   });
+
+  @override
+  String toString() {
+    return "id: $id; name: $name; complement: $complement; building name: ${building?.name}; type: ${type?.name}; studyProfile: ${studyProfile?.getProfileName()}, latitude: $latitude; longitude: $longitude";
+  }
 
   @override
   List<Object> get props => [
@@ -28,5 +37,7 @@ class Environment extends Equatable {
         this.building,
         this.type,
         this.studyProfile,
+        this.latitude,
+        this.longitude,
       ];
 }

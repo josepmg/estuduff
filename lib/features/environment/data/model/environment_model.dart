@@ -11,6 +11,8 @@ class EnvironmentModel extends Environment {
     building,
     type,
     studyProfile,
+    latitude,
+    longitude,
   }) : super(
           id: id,
           name: name,
@@ -18,13 +20,22 @@ class EnvironmentModel extends Environment {
           building: building,
           type: type,
           studyProfile: studyProfile,
+          latitude: latitude,
+          longitude: longitude,
         );
 
   factory EnvironmentModel.fromJson(Map<String, dynamic> json) {
     if (json == null) return null;
+    print("latitude: ${json['latitude'].runtimeType}");
     return EnvironmentModel(
       id: json['id'],
       name: json['name'],
+      complement: json['complement'],
+      building: BuildingModel.fromJson(json['building']),
+      type: StudyPlaceTypeModel.fromJson(json['type']),
+      studyProfile: StudyProfileModel.fromJson(json['studyProfile']),
+      latitude: (json['latitude'] is double) ? json['latitude'] : null,
+      longitude: (json['longitude'] is double) ? json['longitude'] : null,
     );
   }
 
@@ -37,6 +48,8 @@ class EnvironmentModel extends Environment {
       building: environment.building,
       studyProfile: environment.studyProfile,
       type: environment.type,
+      latitude: environment.latitude,
+      longitude: environment.longitude,
     );
   }
 
@@ -50,6 +63,8 @@ class EnvironmentModel extends Environment {
     if (studyProfile != null)
       json['studyProfile'] = (studyProfile as StudyProfileModel).toJson();
     if (type != null) json['type'] = (type as StudyPlaceTypeModel).toJson();
+    if (latitude != null) json['latitude'] = "$latitude";
+    if (longitude != null) json['latitude'] = "$longitude";
 
     return json;
   }

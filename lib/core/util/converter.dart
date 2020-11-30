@@ -1,5 +1,6 @@
 import 'package:estuduff/core/error/failure.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
+import 'package:flutter/services.dart';
 
 class Converter {
   static String mapFailureToMessages(Failure failure) {
@@ -13,5 +14,9 @@ class Converter {
       return StringsEstudUff.cache_failure_message;
     } else
       return StringsEstudUff.generic_failure_message;
+  }
+
+  static Future<String> loadFromAsset(String path) async {
+    return await rootBundle.loadString(path);
   }
 }

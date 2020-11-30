@@ -25,22 +25,22 @@ class EnvironmentBloc extends Bloc<EnvironmentEvent, EnvironmentState> {
     if (event is GetByTypeEvent) {
       yield LoadingEnvironmentState();
       final result = await getEnvironmentuseCase(Params(type: event.type));
-      yield _getEnvListOrFailure(result);
+      yield* _getEnvListOrFailure(result);
     } else if (event is GetByProfileEvent) {
       yield LoadingEnvironmentState();
       final result =
           await getEnvironmentuseCase(Params(studyProfile: event.studyProfile));
-      yield _getEnvListOrFailure(result);
+      yield* _getEnvListOrFailure(result);
     } else if (event is GetAllEvent) {
       yield LoadingEnvironmentState();
       final result = await getEnvironmentuseCase(Params());
-      yield _getEnvListOrFailure(result);
+      yield* _getEnvListOrFailure(result);
     }
   }
 
-  EnvironmentState _getEnvListOrFailure(
-      Either<Failure, List<Environment>> result) {
-    result.fold(
+  Stream<EnvironmentState> _getEnvListOrFailure(
+      Either<Failure, List<Environment>> result) async* {
+    yield result.fold(
       (Failure failure) {
         if (failure is PlatformFailure)
           return ErrorEnvironmentState(failure.message);
