@@ -1,6 +1,9 @@
 import 'package:estuduff/core/error/failure.dart';
+import 'package:estuduff/core/resource/markers_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
+import 'package:estuduff/features/environment/domain/entity/environment.dart';
 import 'package:flutter/services.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Converter {
   static String mapFailureToMessages(Failure failure) {
@@ -18,5 +21,17 @@ class Converter {
 
   static Future<String> loadFromAsset(String path) async {
     return await rootBundle.loadString(path);
+  }
+
+  static List<Marker> getMarkersFromList(List<Environment> list) {
+    List<Marker> newList = List<Marker>();
+    for (Environment env in list) {
+      newList.add(MarkersEstudUff.getMarker(
+        latitude: env.latitude,
+        longitude: env.longitude,
+        studyProfileEnum: env.studyProfile,
+      ));
+    }
+    return newList;
   }
 }

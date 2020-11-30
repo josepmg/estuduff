@@ -1,6 +1,42 @@
+import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MarkersEstudUff {
+  /// Get marker from Environment
+  static Marker getMarker({
+    @required double latitude,
+    @required double longitude,
+    @required StudyProfileEnum studyProfileEnum,
+  }) {
+    MarkerId markerId;
+    double hue;
+    switch (studyProfileEnum) {
+      case StudyProfileEnum.LONELY_WOLF:
+        markerId = MarkerId('blue');
+        hue = BitmapDescriptor.hueBlue;
+        break;
+      case StudyProfileEnum.OUTGOING:
+        markerId = MarkerId('red');
+        hue = BitmapDescriptor.hueRed;
+        break;
+      default:
+        markerId = MarkerId('green');
+        hue = BitmapDescriptor.hueGreen;
+        break;
+    }
+
+    return Marker(
+      markerId: markerId,
+      draggable: false,
+      onTap: () {
+        // TO-DO: implementar onTap
+      },
+      position: LatLng(latitude, longitude),
+      icon: BitmapDescriptor.defaultMarkerWithHue(hue),
+    );
+  }
+
   static final List<Marker> jackAllTradesMarkers = [
     Marker(
       markerId: MarkerId('green'),
