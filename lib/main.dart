@@ -4,9 +4,6 @@ import 'dart:developer' as logger;
 import 'package:estuduff/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:estuduff/features/auth/presentation/pages/LoginPage.dart';
 import 'package:estuduff/features/environment/presentation/bloc/environment_bloc.dart';
-import 'package:estuduff/features/environment/presentation/pages/BaseEnviromentScreen.dart';
-import 'package:estuduff/features/environment/presentation/pages/FilterByTypeScreen.dart';
-import 'package:estuduff/features/environment/presentation/pages/SingleEnviromentScreen.dart';
 import 'package:estuduff/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -69,6 +66,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return BaseEnviromentScreen();
+    return LoginPage();
   }
 }

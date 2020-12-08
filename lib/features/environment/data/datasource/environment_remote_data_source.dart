@@ -14,11 +14,14 @@ class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
   @override
   Future<List<Environment>> getEnvironments({int profileId, int typeId}) async {
     try {
+      //TODO Change endpoint
       // Response response = await Connection.get('/register', queryParameters: {
       //   "profileId": profileId,
       //   "typeId": typeId,
       // });
       // return EnvironmentModel.listFromJson(response.data);
+
+      // Mock
       String response =
           await Converter.loadFromAsset('assets/mock/get_environments.json');
       List<Environment> envList = (json.decode(response) as List)
@@ -26,7 +29,6 @@ class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
             (data) => EnvironmentModel.fromJson(data),
           )
           .toList();
-
       return envList;
     } catch (e) {
       logger.log(

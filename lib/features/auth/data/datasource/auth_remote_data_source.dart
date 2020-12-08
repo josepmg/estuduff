@@ -22,11 +22,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<User> signIn(String email, String password) async {
     try {
-      Response response = await Connection.post('/login',
-          data: {
-            "email": email,
-            "password": _hashPassword(password),
-          });
+      Response response = await MockedConnection.post('/login', data: {
+        "email": email,
+        "password": _hashPassword(password),
+      });
       return UserModel.fromJson(response.data);
     } catch (e) {
       logger.log(
@@ -45,7 +44,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     int programId,
   }) async {
     try {
-      Response response = await Connection.post('/register', data: {
+      Response response = await MockedConnection.post('/register', data: {
         "name": name,
         "email": email,
         "password": _hashPassword(password),
