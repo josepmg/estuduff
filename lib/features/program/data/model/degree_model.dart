@@ -1,4 +1,4 @@
-import 'package:estuduff/features/auth/domain/entity/degree.dart';
+import 'package:estuduff/features/program/domain/entity/degree.dart';
 import 'package:flutter/foundation.dart';
 
 class DegreeModel extends Degree {

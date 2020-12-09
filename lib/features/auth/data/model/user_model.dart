@@ -1,5 +1,5 @@
-import 'package:estuduff/features/auth/data/model/program_model.dart';
-import 'package:estuduff/features/auth/domain/entity/program.dart';
+import 'package:estuduff/features/program/data/model/program_model.dart';
+import 'package:estuduff/features/program/domain/entity/program.dart';
 import 'package:estuduff/features/auth/domain/entity/user.dart';
 import 'package:estuduff/features/profile/data/model/study_profile_model.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
