@@ -5,6 +5,7 @@ import 'package:estuduff/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:estuduff/features/auth/presentation/pages/LoginPage.dart';
 import 'package:estuduff/features/environment/presentation/bloc/environment_bloc.dart';
 import 'package:estuduff/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:estuduff/features/program/presentation/bloc/program_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dependency_injection.dart' as di;
@@ -34,6 +35,9 @@ void main() async {
           ),
           BlocProvider<ProfileBloc>(
             create: (_) => di.getIt<ProfileBloc>(),
+          ),
+          BlocProvider<ProgramBloc>(
+            create: (_) => di.getIt<ProgramBloc>(),
           ),
         ],
         child: MaterialApp(

@@ -1,10 +1,7 @@
 import 'package:estuduff/core/error/exception.dart';
 import 'package:estuduff/core/platform/network_info.dart';
-import 'package:estuduff/features/auth/data/datasource/auth_remote_data_source.dart';
-import 'package:estuduff/features/auth/data/model/user_model.dart';
 import 'package:estuduff/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:estuduff/features/auth/domain/entity/user.dart';
 import 'package:estuduff/features/program/data/datasource/program_remote_data_source.dart';
 import 'package:estuduff/features/program/domain/entity/program.dart';
 import 'package:estuduff/features/program/domain/repository/program_repository.dart';

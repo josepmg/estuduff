@@ -8,7 +8,7 @@ abstract class ProgramRemoteDataSource {
   Future<List<Program>> getAll();
 }
 
-class AuthRemoteDataSourceImpl implements ProgramRemoteDataSource {
+class ProgramRemoteDataSourceImpl implements ProgramRemoteDataSource {
   @override
   Future<List<Program>> getAll() async {
     try {
