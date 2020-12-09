@@ -38,8 +38,8 @@ class AuthRepositoryImpl implements AuthRepository {
         if (studentModel != null && studentModel.id != null)
           await localDataSource.cacheUserToken(studentModel.id);
         return Right(studentModel);
-      } on ServerException {
-        return Left(ServerFailure());
+      } on ServerException catch (e) {
+        return Left(ServerFailure(e.statusCode, e.message));
       } on PlatformException catch (e) {
         return Left(PlatformFailure(message: e.message));
       } catch (e) {
@@ -54,13 +54,12 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, User>> signIn(String email, String password) async {
     if (await networkInfo.isConnected) {
       try {
-        UserModel studentModel =
-            await remoteDataSource.signIn(email, password);
+        UserModel studentModel = await remoteDataSource.signIn(email, password);
         if (studentModel != null && studentModel.id != null)
           await localDataSource.cacheUserToken(studentModel.id);
         return Right(studentModel);
-      } on ServerException {
-        return Left(ServerFailure());
+      } on ServerException catch (e) {
+        return Left(ServerFailure(e.statusCode, e.message));
       } on PlatformException catch (e) {
         return Left(PlatformFailure(message: e.message));
       } catch (e) {

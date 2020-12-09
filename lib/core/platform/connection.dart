@@ -243,6 +243,13 @@ class MockedConnection {
             );
           }
           throw ServerException(statusCode: 400, message: "Invalid params");
+        case "/program":
+          return Response(
+            statusCode: 200,
+            data: json.decode(
+              await Converter.loadFromAsset('assets/mock/programs.json'),
+            ),
+          );
         default:
           throw ServerException(statusCode: 400, message: "Invalid path $path");
       }
@@ -261,7 +268,7 @@ class MockedConnection {
       print(stacktrace);
       logger.log(
         "Error: ${e.toString()}",
-        name: "Connection - GET",
+        name: "MockedConnection - GET",
       );
       throw GenericException();
     }
@@ -305,10 +312,12 @@ class MockedConnection {
       );
     } on PlatformException catch (e, stacktrace) {
       throw e;
+    } on ServerException catch (e, stacktrace) {
+      throw ServerException(statusCode: e.statusCode, message: e.message);
     } catch (e, stacktrace) {
       logger.log(
         "Error: ${e.toString()}",
-        name: "Connection - POST",
+        name: "MockedConnection - POST",
       );
       throw GenericException();
     }

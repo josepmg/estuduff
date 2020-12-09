@@ -34,6 +34,7 @@ class StringsEstudUff {
   static const outgoing_icon = "assets/images/outgoing_icon.png";*/
 
   // Accessibility
+  static const user_icon_semantic_label = "ícone de uma pessoa";
   static const mail_icon_semantic_label = "ícone de um envelope fechado";
   static const lock_icon_semantic_label = "ícone de um cadeado fechado";
   static const open_book_icon_semantic_label = "ícone de um livro aberto";
@@ -41,6 +42,7 @@ class StringsEstudUff {
   // Login and Register
   static const login_title = "Login";
   static const register_title = "Cadastre-se";
+  static const insert_name_placeholder = "Insira seu nome";
   static const insert_mail_placeholder = "Insira seu e-mail";
   static const insert_password_placeholder = "Insira sua senha";
   static const insert_current_course_placeholder = "Insira o seu curso atual";

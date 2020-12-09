@@ -42,7 +42,8 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    margin: Dimensions.getEdgeInsets(context, left: 30),
+                    margin:
+                        Dimensions.getEdgeInsets(context, left: 30, top: 10),
                     child: SvgPicture.asset(
                       StringsEstudUff.logo,
                       width: Dimensions.getConvertedWidthSize(280, context),
@@ -54,6 +55,15 @@ class _LoginPageState extends State<LoginPage> {
             } else if (state is AuthLoading) {
               return Center(
                 child: CircularProgressIndicator(),
+              );
+            } else if (state is AuthSignedIn) {
+              return Center(
+                child:
+                    Text("State is: ${state.toString()}; id: ${state.token}"),
+              );
+            } else {
+              return Center(
+                child: Text("State is: ${state.toString()}"),
               );
             }
           },

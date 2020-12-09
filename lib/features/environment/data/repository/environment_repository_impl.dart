@@ -21,8 +21,8 @@ class EnvironmentRepositoryImpl implements EnvironmentRepository {
         List<Environment> list = await remoteDataSource.getEnvironments(
             profileId: profileId, typeId: typeId);
         return Right(list);
-      } on ServerException {
-        return Left(ServerFailure());
+      } on ServerException catch (e) {
+        return Left(ServerFailure(e.statusCode, e.message));
       } on PlatformException catch (e) {
         return Left(PlatformFailure(message: e.message));
       } catch (e) {

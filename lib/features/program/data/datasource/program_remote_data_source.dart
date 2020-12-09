@@ -12,7 +12,7 @@ class ProgramRemoteDataSourceImpl implements ProgramRemoteDataSource {
   @override
   Future<List<Program>> getAll() async {
     try {
-      Response response = await MockedConnection.post('/program');
+      Response response = await MockedConnection.get('/program');
       return ProgramModel.listFromJson(response.data);
     } catch (e) {
       logger.log(

@@ -20,8 +20,8 @@ class ProgramRepositoryImpl implements ProgramRepository {
     if (await networkInfo.isConnected) {
       try {
         return Right(await remoteDataSource.getAll());
-      } on ServerException {
-        return Left(ServerFailure());
+      } on ServerException catch (e) {
+        return Left(ServerFailure(e.statusCode, e.message));
       } on PlatformException catch (e) {
         return Left(PlatformFailure(message: e.message));
       } catch (e) {
