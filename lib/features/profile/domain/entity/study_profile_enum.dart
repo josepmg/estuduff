@@ -2,6 +2,7 @@ enum StudyProfileEnum {
   LONELY_WOLF,
   JACK_OF_ALL_TRADES,
   OUTGOING,
+  AVAILABLE,
 }
 
 extension StudyProfileEnumExtension on StudyProfileEnum {
@@ -9,10 +10,16 @@ extension StudyProfileEnumExtension on StudyProfileEnum {
     switch (this) {
       case StudyProfileEnum.LONELY_WOLF:
         return 1;
+        break;
       case StudyProfileEnum.JACK_OF_ALL_TRADES:
         return 2;
+        break;
       case StudyProfileEnum.OUTGOING:
         return 3;
+        break;
+      case StudyProfileEnum.AVAILABLE:
+        return 4;
+        break;
     }
   }
 
@@ -24,6 +31,8 @@ extension StudyProfileEnumExtension on StudyProfileEnum {
         return "Não tem tempo ruim";
       case StudyProfileEnum.OUTGOING:
         return "Da galera";
+      case StudyProfileEnum.AVAILABLE:
+        return "Ambientes Disponíveis";
     }
   }
 }

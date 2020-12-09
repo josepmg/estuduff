@@ -27,12 +27,6 @@ class StringsEstudUff {
   static const jack_profile = "Não tem tempo ruim";
   static const share_profile = "Da Galera";
 
-  // Images Path
-  /*static const lonely_wolf_icon = "assets/images/lonely_wolf_icon.png";
-  static const jack_of_all_trades_icon =
-      "assets/images/jack_of_all_trades_icon.png";
-  static const outgoing_icon = "assets/images/outgoing_icon.png";*/
-
   // Accessibility
   static const mail_icon_semantic_label = "ícone de um envelope fechado";
   static const lock_icon_semantic_label = "ícone de um cadeado fechado";

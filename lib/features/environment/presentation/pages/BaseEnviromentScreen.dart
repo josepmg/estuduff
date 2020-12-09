@@ -4,11 +4,15 @@ import 'package:estuduff/core/resource/markers_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/ui/appbar_estuduff.dart';
 import 'package:estuduff/features/environment/presentation/widgets/EnviromentsTopWidget.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class BaseEnviromentScreen extends StatefulWidget {
+  final StudyProfileEnum profile;
+
+  const BaseEnviromentScreen({Key key, @required this.profile})
+      : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _BaseEnviromentScreenState();
