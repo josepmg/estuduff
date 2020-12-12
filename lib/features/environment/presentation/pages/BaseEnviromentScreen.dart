@@ -94,7 +94,9 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
                                   zoom: 16.5),
                               markers: Set.from(
                                 Converter.getMarkersFromList(
-                                    state.environmentList),
+                                  state.environmentList,
+                                  context,
+                                ),
                               ),
                             ),
                           ),

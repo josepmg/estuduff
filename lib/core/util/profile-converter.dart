@@ -16,11 +16,11 @@ class ProfileConverter {
 
   static String recoverProfileIcon(StudyProfileEnum profile) {
     if (profile == StudyProfileEnum.JACK_OF_ALL_TRADES) {
-      return StringsEstudUff.available_env_icon;
+      return StringsEstudUff.jack_env_icon;
     } else if (profile == StudyProfileEnum.LONELY_WOLF) {
       return StringsEstudUff.wolf_env_icon;
     } else {
-      return StringsEstudUff.share_env_icon;
+      return StringsEstudUff.outgoing_env_icon;
     }
   }
 

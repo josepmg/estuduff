@@ -125,6 +125,7 @@ class _FilterByTypeScreenState extends State<FilterByTypeScreen> {
                         markers: Set.from(
                           Converter.getMarkersFromList(
                             state.environmentList,
+                            context,
                           ),
                         ),
                       ),

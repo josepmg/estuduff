@@ -11,8 +11,8 @@ class StringsEstudUff {
   static const logo = "assets/images/logo.svg";
   static const available_env_icon = "assets/images/logo-availabe.svg";
   static const wolf_env_icon = "assets/images/logo-wolf.svg";
-  static const share_env_icon = "assets/images/logo-share.svg";
-  static const out_env_icon = "assets/images/logo-jack.svg";
+  static const outgoing_env_icon = "assets/images/logo-share.svg";
+  static const jack_env_icon = "assets/images/logo-jack.svg";
   static const green_marker = "assets/images/green.png";
   static const red_marker = "assets/images/red-marker.svg";
   static const blue_marker = "assets/images/blue-marker.svg";
@@ -88,7 +88,7 @@ class StringsEstudUff {
   static const enviroment_title = "Ambiente";
   static const enviroment_adress = "Endereço";
   static const enviroment_building = "Prédio";
-  static const enviroment_number = "Número";
+  static const enviroment_number = "Campus";
   static const enviroment_study_profile = "Perfil de Estudo";
 
   // Filter by Type
