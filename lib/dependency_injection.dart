@@ -13,8 +13,10 @@ import 'package:estuduff/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:estuduff/features/environment/data/datasource/environment_remote_data_source.dart';
 import 'package:estuduff/features/environment/data/repository/environment_repository_impl.dart';
 import 'package:estuduff/features/environment/domain/repository/environment_repository.dart';
+import 'package:estuduff/features/environment/domain/usecase/get_all_study_place_types_use_case.dart';
 import 'package:estuduff/features/environment/domain/usecase/get_environment_use_case.dart';
 import 'package:estuduff/features/environment/presentation/bloc/environment_bloc.dart';
+import 'package:estuduff/features/environment/presentation/bloc/study_place_types_bloc.dart';
 import 'package:estuduff/features/profile/data/datasource/study_profile_data_source.dart';
 import 'package:estuduff/features/profile/data/repository/study_profile_repository_impl.dart';
 import 'package:estuduff/features/profile/domain/repository/study_profile_repository.dart';
@@ -106,9 +108,11 @@ _initEnvironment() {
 
   // Use cases
   getIt.registerLazySingleton(() => GetEnvironmentuseCase(getIt()));
+  getIt.registerLazySingleton(() => GetAllStudyPlaceTypesUseCase(getIt()));
 
   // BLoC
   getIt.registerFactory(() => EnvironmentBloc(getIt()));
+  getIt.registerFactory(() => StudyPlaceTypesBloc(getIt()));
 }
 
 _initProfile() {

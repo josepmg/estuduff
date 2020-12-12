@@ -15,6 +15,7 @@ part 'environment_state.dart';
 
 class EnvironmentBloc extends Bloc<EnvironmentEvent, EnvironmentState> {
   final GetEnvironmentuseCase getEnvironmentuseCase;
+
   EnvironmentBloc(this.getEnvironmentuseCase)
       : super(InitialEnvironmentState());
 

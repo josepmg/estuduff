@@ -4,6 +4,8 @@ import 'dart:developer' as logger;
 import 'package:estuduff/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:estuduff/features/auth/presentation/pages/LoginPage.dart';
 import 'package:estuduff/features/environment/presentation/bloc/environment_bloc.dart';
+import 'package:estuduff/features/environment/presentation/bloc/study_place_types_bloc.dart';
+import 'package:estuduff/features/environment/presentation/pages/FilterByTypeScreen.dart';
 import 'package:estuduff/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:estuduff/features/program/presentation/bloc/program_bloc.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +41,9 @@ void main() async {
           BlocProvider<ProgramBloc>(
             create: (_) => di.getIt<ProgramBloc>(),
           ),
+          BlocProvider<StudyPlaceTypesBloc>(
+            create: (_) => di.getIt<StudyPlaceTypesBloc>(),
+          ),
         ],
         child: MaterialApp(
           title: 'Flutter Demo',
@@ -70,6 +75,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return LoginPage();
+    return FilterByTypeScreen();
   }
 }

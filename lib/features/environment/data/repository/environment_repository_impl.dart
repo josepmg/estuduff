@@ -4,6 +4,7 @@ import 'package:estuduff/features/environment/data/datasource/environment_remote
 import 'package:estuduff/features/environment/domain/entity/environment.dart';
 import 'package:estuduff/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
+import 'package:estuduff/features/environment/domain/entity/study_place_type.dart';
 import 'package:estuduff/features/environment/domain/repository/environment_repository.dart';
 import 'package:flutter/services.dart';
 
@@ -20,6 +21,26 @@ class EnvironmentRepositoryImpl implements EnvironmentRepository {
       try {
         List<Environment> list = await remoteDataSource.getEnvironments(
             profileId: profileId, typeId: typeId);
+        return Right(list);
+      } on ServerException catch (e) {
+        return Left(ServerFailure(e.statusCode, e.message));
+      } on PlatformException catch (e) {
+        return Left(PlatformFailure(message: e.message));
+      } catch (e) {
+        return Left(GenericFailure(message: e.message));
+      }
+    } else {
+      return Left(NoInternetConnectionFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<StudyPlaceType>>>
+      getAllStudyPlaceTypeTypes() async {
+    if (await networkInfo.isConnected) {
+      try {
+        List<StudyPlaceType> list =
+            await remoteDataSource.getAllStudyPlaceTypeTypes();
         return Right(list);
       } on ServerException catch (e) {
         return Left(ServerFailure(e.statusCode, e.message));

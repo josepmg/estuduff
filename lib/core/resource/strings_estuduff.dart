@@ -93,8 +93,7 @@ class StringsEstudUff {
 
   // Filter by Type
   static const filter_by_type_title = "Filtrar por Tipo";
-  static const filter_by_type_placeholder =
-      "Ex: sala de estudos, biblioteca...";
+  static const filter_by_type_placeholder = "Selecione o tipo do local";
   static const filter_by_type_search_button = "Pesquisar";
   static const select_type_title = "Selecionar Tipo";
 }
