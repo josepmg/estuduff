@@ -58,81 +58,65 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
             );
           }
         },
-        child: BlocListener<ProfileBloc, ProfileState>(
-          listener: (context, state) {
-            if (state is SettedProfileState) {
-              String profile = state.studyProfileEnum.getProfileName();
-              print("$profile in ProfileForm");
-              Scaffold.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    "Perfil $profile selecionado!",
-                  ),
-                  duration: Duration(seconds: 5),
+        child: BlocBuilder<EnvironmentBloc, EnvironmentState>(
+          builder: (context, state) {
+            if (state is InitialEnvironmentState ||
+                state is LoadingEnvironmentState) {
+              return Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 5,
                 ),
               );
-            }
-          },
-          child: BlocBuilder<EnvironmentBloc, EnvironmentState>(
-            builder: (context, state) {
-              if (state is InitialEnvironmentState ||
-                  state is LoadingEnvironmentState) {
-                return Center(
-                  child: CircularProgressIndicator(
-                    strokeWidth: 5,
-                  ),
-                );
-              } else if (state is LoadedEnvironmentState) {
-                return Column(
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      height: Dimensions.getConvertedHeightSize(15, context),
-                      decoration: BoxDecoration(
-                        color: _getColor(),
-                      ),
+            } else if (state is LoadedEnvironmentState) {
+              return Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: Dimensions.getConvertedHeightSize(15, context),
+                    decoration: BoxDecoration(
+                      color: _getColor(),
                     ),
-                    Container(
-                      alignment: Alignment.center,
-                      padding: Dimensions.getEdgeInsetsAll(context, 24),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            EnviromentsTopWidget(
-                              icon: _getProfileIcon(),
-                              name: StringsEstudUff.available_title,
-                            ),
-                            SizedBox(
-                              height: Dimensions.getConvertedHeightSize(
-                                  16, context),
-                            ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height * 0.6,
-                              child: GoogleMap(
-                                initialCameraPosition: CameraPosition(
-                                    bearing: 200.00,
-                                    target: LatLng(-22.9060, -43.1323),
-                                    zoom: 16.5),
-                                markers: Set.from(
-                                  Converter.getMarkersFromList(
-                                    state.environmentList,
-                                    context,
-                                  ),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    padding: Dimensions.getEdgeInsetsAll(context, 24),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          EnviromentsTopWidget(
+                            icon: _getProfileIcon(),
+                            name: StringsEstudUff.available_title,
+                          ),
+                          SizedBox(
+                            height:
+                                Dimensions.getConvertedHeightSize(16, context),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height * 0.6,
+                            child: GoogleMap(
+                              initialCameraPosition: CameraPosition(
+                                  bearing: 200.00,
+                                  target: LatLng(-22.9060, -43.1323),
+                                  zoom: 16.5),
+                              markers: Set.from(
+                                Converter.getMarkersFromList(
+                                  state.environmentList,
+                                  context,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                );
-              } else {
-                return Container();
-              }
-            },
-          ),
+                  ),
+                ],
+              );
+            } else {
+              return Container();
+            }
+          },
         ),
       ),
     );

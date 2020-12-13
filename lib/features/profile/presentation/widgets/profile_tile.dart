@@ -114,7 +114,9 @@ class _ProfileTileState extends State<ProfileTile> {
   _showStudyPlaces() {
     BlocProvider.of<EnvironmentBloc>(context)
         .add(GetByProfileEvent(widget.studyProfile));
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => BaseEnviromentScreen()));
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) =>
+          BaseEnviromentScreen(currentProfile: widget.studyProfile),
+    ));
   }
 }
