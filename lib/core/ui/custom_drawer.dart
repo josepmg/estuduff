@@ -2,7 +2,12 @@ import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/dimensions.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/resource/styles_estuduff.dart';
+import 'package:estuduff/features/environment/presentation/pages/BaseEnviromentScreen.dart';
+import 'package:estuduff/features/environment/presentation/pages/FilterByTypeScreen.dart';
+import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
+import 'package:estuduff/features/profile/presentation/pages/SelectProfilePage.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -62,14 +67,27 @@ class _CustomDrawerState extends State<CustomDrawer> {
               text: StringsEstudUff.home_drawer_item,
               iconData: FeatherIcons.home,
               onTapFunction: () {
-                //TODO Implement onTap function
+                //TODO: Implementar perfil de estudo de acordo com o escolhido pelo user
+                Navigator.of(context).push(
+                  CupertinoPageRoute(
+                    builder: (context) => BaseEnviromentScreen(
+                      profile: StudyProfileEnum.LONELY_WOLF,
+                    ),
+                  ),
+                );
               },
             ),
             DrawerItem(
               text: StringsEstudUff.available_environments_drawer_item,
               iconData: FeatherIcons.heart,
               onTapFunction: () {
-                //TODO Implement onTap function
+                Navigator.of(context).push(
+                  CupertinoPageRoute(
+                    builder: (context) => BaseEnviromentScreen(
+                      profile: StudyProfileEnum.AVAILABLE,
+                    ),
+                  ),
+                );
               },
             ),
             DrawerItem(
@@ -78,7 +96,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
               onTapFunction: () {
                 setState(() {
                   this.showSubItems = !this.showSubItems;
-                  //TODO Implement onTap function
                 });
               },
             ),
@@ -92,20 +109,22 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         DrawerItem(
                           text: StringsEstudUff.type_filter_drawer_item,
                           onTapFunction: () {
-                            //TODO Implement onTap function
-                            setState(() {
-                              this.showSubItems = !this.showSubItems;
-                            });
+                            Navigator.of(context).push(
+                              CupertinoPageRoute(
+                                builder: (context) => FilterByTypeScreen(),
+                              ),
+                            );
                           },
                         ),
                         DrawerItem(
                           text:
                               StringsEstudUff.study_profile_filter_drawer_item,
                           onTapFunction: () {
-                            //TODO Implement onTap function
-                            setState(() {
-                              this.showSubItems = !this.showSubItems;
-                            });
+                            Navigator.of(context).push(
+                              CupertinoPageRoute(
+                                builder: (context) => SelectProfilePage(),
+                              ),
+                            );
                           },
                         ),
                       ],
@@ -116,7 +135,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
               text: StringsEstudUff.change_study_profile_drawer_item,
               iconData: FeatherIcons.edit,
               onTapFunction: () {
-                //TODO Implement onTap function
+                Navigator.of(context).push(
+                  CupertinoPageRoute(
+                    builder: (context) => SelectProfilePage(),
+                  ),
+                );
               },
             ),
             DrawerItem(

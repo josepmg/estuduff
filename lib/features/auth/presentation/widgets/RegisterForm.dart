@@ -3,6 +3,7 @@ import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/ui/button_estuduff.dart';
 import 'package:estuduff/core/ui/input_estuduff.dart';
+import 'package:estuduff/features/profile/presentation/pages/ProfileForm.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +57,12 @@ class _RegisterFormState extends State<RegisterForm> {
           ButtonEstudUff(
             text: StringsEstudUff.save_account_button_title.toUpperCase(),
             onPressed: () {
-              // TO-DO: implementar chamada de evento para logar o usuário
+              // TO-DO: implementar chamada de evento para cadastrar o usuário
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) => ProfileForm(),
+                ),
+              );
             },
             width: double.infinity,
           ),

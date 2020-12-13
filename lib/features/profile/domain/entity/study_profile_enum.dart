@@ -1,3 +1,5 @@
+import 'package:estuduff/core/resource/strings_estuduff.dart';
+
 enum StudyProfileEnum {
   LONELY_WOLF,
   JACK_OF_ALL_TRADES,
@@ -26,13 +28,13 @@ extension StudyProfileEnumExtension on StudyProfileEnum {
   String getProfileName() {
     switch (this) {
       case StudyProfileEnum.LONELY_WOLF:
-        return "Lobo solitário";
+        return StringsEstudUff.wolf_profile;
       case StudyProfileEnum.JACK_OF_ALL_TRADES:
-        return "Não tem tempo ruim";
+        return StringsEstudUff.jack_profile;
       case StudyProfileEnum.OUTGOING:
-        return "Da galera";
+        return StringsEstudUff.outgoing_profile;
       case StudyProfileEnum.AVAILABLE:
-        return "Ambientes Disponíveis";
+        return StringsEstudUff.available_title;
     }
   }
 }

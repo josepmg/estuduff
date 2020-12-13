@@ -29,7 +29,7 @@ class EnviromentsTopWidget extends StatelessWidget {
                 style: TextStyle(
                   color: ColorsEstudUff.darkGrey,
                   fontFamily: FontsEstudUff.rubik,
-                  fontSize: Dimensions.getTextSize(26, context),
+                  fontSize: Dimensions.getTextSize(25, context),
                 ),
               ),
             ),

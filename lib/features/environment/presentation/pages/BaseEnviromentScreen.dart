@@ -3,6 +3,7 @@ import 'package:estuduff/core/resource/dimensions.dart';
 import 'package:estuduff/core/resource/markers_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/ui/appbar_estuduff.dart';
+import 'package:estuduff/core/util/profile-converter.dart';
 import 'package:estuduff/features/environment/presentation/widgets/EnviromentsTopWidget.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
             width: double.infinity,
             height: Dimensions.getConvertedHeightSize(15, context),
             decoration: BoxDecoration(
-              color: ColorsEstudUff.lightGrey,
+              color: ProfileConverter.recoverProfileColor(widget.profile),
             ),
           ),
           Container(
@@ -49,15 +50,15 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
               child: Column(
                 children: [
                   EnviromentsTopWidget(
-                    icon: StringsEstudUff.available_env_icon,
-                    name: StringsEstudUff.available_title,
+                    icon: ProfileConverter.recoverProfileIcon(widget.profile),
+                    name: ProfileConverter.recoverStudyProfile(widget.profile),
                   ),
                   SizedBox(
-                    height: Dimensions.getConvertedHeightSize(16, context),
+                    height: Dimensions.getConvertedHeightSize(24, context),
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.62,
+                    width: Dimensions.getConvertedWidthSize(350, context),
+                    height: Dimensions.getConvertedHeightSize(385, context),
                     child: GoogleMap(
                       initialCameraPosition: CameraPosition(
                           bearing: 200.00,

@@ -25,7 +25,7 @@ class StringsEstudUff {
   static const home_page_title = "Início";
   static const wolf_profile = "Lobo Solitário";
   static const jack_profile = "Não tem tempo ruim";
-  static const share_profile = "Da Galera";
+  static const outgoing_profile = "Da Galera";
 
   // Accessibility
   static const mail_icon_semantic_label = "ícone de um envelope fechado";
@@ -55,11 +55,9 @@ class StringsEstudUff {
 
   // Select Profile page
   static const select_profile_app_bar_title = "Selecionar perfil";
-  static const lonely_wolf_title = "Lobo Solitário";
   static const lonely_wolf_subtitle = "quero estudar sozinho";
   static const jack_of_all_trades_title = "Não tem\ntempo ruim";
   static const jack_of_all_trades_subtitle = "estou feliz em qualquer lugar";
-  static const outgoing_title = "Da Galera";
   static const outgoing_subtitle = "cadê os migos?";
   // Profile Form
   static const profile_form_title = "Questionário";

@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'dart:developer' as logger;
 
-import 'package:estuduff/core/resource/routes.dart';
+import 'package:estuduff/core/resource/routes_estuduff.dart';
 import 'package:estuduff/features/auth/presentation/pages/LoginPage.dart';
 import 'package:estuduff/features/environment/presentation/pages/BaseEnviromentScreen.dart';
 import 'package:estuduff/features/environment/presentation/pages/FilterByTypeScreen.dart';
 import 'package:estuduff/features/environment/presentation/pages/SingleEnviromentScreen.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 import 'package:estuduff/features/profile/presentation/pages/ProfileForm.dart';
-import 'package:estuduff/features/profile/presentation/pages/select_profile_page.dart';
+import 'package:estuduff/features/profile/presentation/pages/SelectProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'dependency_injection.dart' as di;
 

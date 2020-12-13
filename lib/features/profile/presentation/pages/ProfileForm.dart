@@ -5,6 +5,7 @@ import 'package:estuduff/core/resource/fonts_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/ui/button_estuduff.dart';
 import 'package:estuduff/core/ui/dropdown_estuduff.dart';
+import 'package:estuduff/features/profile/presentation/pages/SelectProfilePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -71,7 +72,12 @@ class _ProfileFormState extends State<ProfileForm> {
                 width: double.infinity,
                 text: StringsEstudUff.send_button_title,
                 onPressed: () {
-                  // TO-DO: Criar redirecionamento para perfil correto
+                  // TO-DO: Criar redirecionamento para perfil correto de acordo com as respostas do usuário
+                  Navigator.of(context).push(
+                    CupertinoPageRoute(
+                      builder: (context) => SelectProfilePage(),
+                    ),
+                  );
                 },
               ),
             ],

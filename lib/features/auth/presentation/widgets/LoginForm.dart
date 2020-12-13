@@ -3,6 +3,7 @@ import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/ui/button_estuduff.dart';
 import 'package:estuduff/core/ui/input_estuduff.dart';
+import 'package:estuduff/features/profile/presentation/pages/SelectProfilePage.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,12 @@ class _LoginFormState extends State<LoginForm> {
           ButtonEstudUff(
             text: StringsEstudUff.send_button_title.toUpperCase(),
             onPressed: () {
-              // TO-DO: implementar chamada de evento para logar o usuário
+              // TODO: Colocar o profile de acordo com o perfil do usuário logado
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) => SelectProfilePage(),
+                ),
+              );
             },
             width: double.infinity,
           ),

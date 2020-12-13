@@ -16,7 +16,7 @@ class ProfileConverter {
 
   static String recoverProfileIcon(StudyProfileEnum profile) {
     if (profile == StudyProfileEnum.JACK_OF_ALL_TRADES) {
-      return StringsEstudUff.available_env_icon;
+      return StringsEstudUff.out_env_icon;
     } else if (profile == StudyProfileEnum.LONELY_WOLF) {
       return StringsEstudUff.wolf_env_icon;
     } else {
@@ -30,7 +30,7 @@ class ProfileConverter {
     } else if (profile == StudyProfileEnum.LONELY_WOLF) {
       return StringsEstudUff.wolf_profile;
     } else {
-      return StringsEstudUff.share_profile;
+      return StringsEstudUff.outgoing_profile;
     }
   }
 }
