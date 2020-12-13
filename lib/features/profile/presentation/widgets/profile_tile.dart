@@ -4,8 +4,7 @@ import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/features/environment/presentation/bloc/environment_bloc.dart';
 import 'package:estuduff/features/environment/presentation/pages/BaseEnviromentScreen.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
-import 'package:estuduff/features/profile/presentation/bloc/profile_bloc.dart';
-import 'package:estuduff/features/profile/presentation/pages/select_profile_page.dart';
+import 'package:estuduff/features/profile/presentation/pages/SelectProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -115,8 +114,7 @@ class _ProfileTileState extends State<ProfileTile> {
     BlocProvider.of<EnvironmentBloc>(context)
         .add(GetByProfileEvent(widget.studyProfile));
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) =>
-          BaseEnviromentScreen(currentProfile: widget.studyProfile),
+      builder: (context) => BaseEnviromentScreen(profile: widget.studyProfile),
     ));
   }
 }
