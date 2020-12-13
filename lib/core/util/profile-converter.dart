@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 
 class ProfileConverter {
   static Color recoverProfileColor(StudyProfileEnum profile) {
-    if (profile == StudyProfileEnum.JACK_OF_ALL_TRADES) {
-      return ColorsEstudUff.primaryGreen;
+    if (profile == StudyProfileEnum.OUTGOING) {
+      return ColorsEstudUff.primaryRed;
     } else if (profile == StudyProfileEnum.LONELY_WOLF) {
       return ColorsEstudUff.primaryBlue;
     } else {
-      return ColorsEstudUff.primaryRed;
+      return ColorsEstudUff.primaryGreen;
     }
   }
 
@@ -29,8 +29,10 @@ class ProfileConverter {
       return StringsEstudUff.jack_profile;
     } else if (profile == StudyProfileEnum.LONELY_WOLF) {
       return StringsEstudUff.wolf_profile;
+    } else if (profile == StudyProfileEnum.OUTGOING) {
+      return StringsEstudUff.outgoing_profile;
     } else {
-      return StringsEstudUff.share_profile;
+      return StringsEstudUff.available_title;
     }
   }
 }

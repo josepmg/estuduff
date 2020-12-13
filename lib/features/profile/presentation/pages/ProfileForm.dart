@@ -59,10 +59,13 @@ class _ProfileFormState extends State<ProfileForm> {
             BlocProvider.of<EnvironmentBloc>(context)
                 .add(GetByProfileEvent(state.studyProfileEnum));
             // Navigate to profile's environment places page
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
                 builder: (context) => BaseEnviromentScreen(
-                      currentProfile: state.studyProfileEnum,
-                    )));
+                  profile: state.studyProfileEnum,
+                ),
+              ),
+            );
           }
         },
         child: BlocBuilder<ProfileBloc, ProfileState>(

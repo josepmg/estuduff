@@ -65,6 +65,13 @@ class _InputEstudUffState extends State<InputEstudUff> {
           hintText: widget.hintMessage,
           errorText: widget.errorMessage,
           labelText: widget.placeHolder,
+          focusedBorder: OutlineInputBorder(
+            borderSide:
+                const BorderSide(color: ColorsEstudUff.lightGrey, width: 1.0),
+            borderRadius: const BorderRadius.all(
+              const Radius.circular(4.0),
+            ),
+          ),
           labelStyle: TextStyle(
               color: ColorsEstudUff.mediumGrey,
               fontFamily: FontsEstudUff.open_sans),

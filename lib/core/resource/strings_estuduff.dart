@@ -25,13 +25,7 @@ class StringsEstudUff {
   static const home_page_title = "Início";
   static const wolf_profile = "Lobo Solitário";
   static const jack_profile = "Não tem tempo ruim";
-  static const share_profile = "Da Galera";
-
-  // Images Path
-  /*static const lonely_wolf_icon = "assets/images/lonely_wolf_icon.png";
-  static const jack_of_all_trades_icon =
-      "assets/images/jack_of_all_trades_icon.png";
-  static const outgoing_icon = "assets/images/outgoing_icon.png";*/
+  static const outgoing_profile = "Da Galera";
 
   // Accessibility
   static const user_icon_semantic_label = "ícone de uma pessoa";
@@ -56,18 +50,16 @@ class StringsEstudUff {
   static const available_environments_drawer_item = "Ambientes Disponíveis";
   static const filter_environments_drawer_item = "Filtrar Ambientes";
   static const type_filter_drawer_item = "Filtrar por Tipo";
-  static const study_profile_filter_drawer_item = "Filtrar por Perfils";
+  static const study_profile_filter_drawer_item = "Filtrar por Perfis";
   static const change_study_profile_drawer_item = "Trocar Perfil";
   static const edit_account_item = "Editar Conta";
   static const sign_out_item = "Sair da Conta";
 
   // Select Profile page
   static const select_profile_app_bar_title = "Selecionar perfil";
-  static const lonely_wolf_title = "Lobo Solitário";
   static const lonely_wolf_subtitle = "quero estudar sozinho";
   static const jack_of_all_trades_title = "Não tem\ntempo ruim";
   static const jack_of_all_trades_subtitle = "estou feliz em qualquer lugar";
-  static const outgoing_title = "Da Galera";
   static const outgoing_subtitle = "cadê os migos?";
   // Profile Form
   static const profile_form_title = "Questionário";

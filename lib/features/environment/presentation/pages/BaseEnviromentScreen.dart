@@ -1,24 +1,22 @@
 import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/dimensions.dart';
-import 'package:estuduff/core/resource/markers_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/ui/appbar_estuduff.dart';
 import 'package:estuduff/core/util/converter.dart';
-import 'package:estuduff/features/environment/domain/entity/environment.dart';
+import 'package:estuduff/core/util/profile-converter.dart';
 import 'package:estuduff/features/environment/presentation/bloc/environment_bloc.dart';
 import 'package:estuduff/features/environment/presentation/widgets/EnviromentsTopWidget.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
-import 'package:estuduff/features/profile/presentation/bloc/profile_bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class BaseEnviromentScreen extends StatefulWidget {
-  final StudyProfileEnum currentProfile;
+  final StudyProfileEnum profile;
+  final String title;
 
-  const BaseEnviromentScreen({Key key, this.currentProfile}) : super(key: key);
-
+  const BaseEnviromentScreen({Key key, @required this.profile, this.title})
+      : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _BaseEnviromentScreenState();
@@ -29,7 +27,7 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
   @override
   void initState() {
     super.initState();
-    if (widget.currentProfile == null)
+    if (widget.profile == null)
       BlocProvider.of<EnvironmentBloc>(context).add(GetAllEvent());
   }
 
@@ -39,13 +37,10 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
   }
 
   Widget _buildBody(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(56),
-        child: AppBarEstudUff(
-          title: StringsEstudUff.available_title,
-        ),
-      ),
+    return AppBarEstudUff(
+      title: widget.title == null
+          ? ProfileConverter.recoverStudyProfile(widget.profile)
+          : widget.title,
       body: BlocListener<EnvironmentBloc, EnvironmentState>(
         listener: (context, state) {
           if (state is ErrorEnvironmentState) {
@@ -123,7 +118,7 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
   }
 
   Color _getColor() {
-    switch (widget.currentProfile) {
+    switch (widget.profile) {
       case StudyProfileEnum.JACK_OF_ALL_TRADES:
         return ColorsEstudUff.primaryGreen;
       case StudyProfileEnum.OUTGOING:
@@ -136,7 +131,7 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
   }
 
   String _getProfileIcon() {
-    switch (widget.currentProfile) {
+    switch (widget.profile) {
       case StudyProfileEnum.JACK_OF_ALL_TRADES:
         return StringsEstudUff.jack_env_icon;
       case StudyProfileEnum.OUTGOING:

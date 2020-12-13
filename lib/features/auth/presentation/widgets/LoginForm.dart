@@ -62,11 +62,15 @@ class _LoginFormState extends State<LoginForm> {
           ButtonEstudUff(
             text: StringsEstudUff.send_button_title.toUpperCase(),
             onPressed: () {
-              // TODO: implementar chamada de evento para logar o usuário
               BlocProvider.of<AuthBloc>(context).add(SignInEvent(
                 email: _formData[EMAIL_LABEL],
                 password: _formData[PASSWORD_LABEL],
               ));
+              // Navigator.of(context).push(
+              //   CupertinoPageRoute(
+              //     builder: (context) => SelectProfilePage(),
+              //   ),
+              // );
             },
             width: double.infinity,
           ),

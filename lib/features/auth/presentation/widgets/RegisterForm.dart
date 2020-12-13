@@ -3,7 +3,6 @@ import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/ui/button_estuduff.dart';
 import 'package:estuduff/core/ui/input_estuduff.dart';
-import 'package:estuduff/core/ui/program_dropdown_estuduff.dart';
 import 'package:estuduff/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:estuduff/features/program/presentation/bloc/program_bloc.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
@@ -161,6 +160,11 @@ class _RegisterFormState extends State<RegisterForm> {
         name: _formData[NAME_LABEL],
         programId: _formData[PROGRAM_LABEL],
       ));
+      // Navigator.of(context).push(
+      //   CupertinoPageRoute(
+      //     builder: (context) => ProfileForm(),
+      //   ),
+      // );
     } else {
       Scaffold.of(context).showSnackBar(
         SnackBar(

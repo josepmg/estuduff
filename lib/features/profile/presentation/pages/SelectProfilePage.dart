@@ -4,6 +4,7 @@ import 'package:estuduff/core/resource/styles_estuduff.dart';
 import 'package:estuduff/core/ui/custom_drawer.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 import 'package:estuduff/features/profile/presentation/widgets/profile_tile.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SelectProfilePage extends StatelessWidget {
@@ -36,7 +37,7 @@ class SelectProfilePage extends StatelessWidget {
               flex: 1,
               child: ProfileTile(
                 tileMarginColor: ColorsEstudUff.primaryBlue,
-                tileTitle: StringsEstudUff.lonely_wolf_title,
+                tileTitle: StringsEstudUff.wolf_profile,
                 tileSubtitle: StringsEstudUff.lonely_wolf_subtitle,
                 tileIcon: StringsEstudUff.wolf_env_icon,
                 studyProfile: StudyProfileEnum.LONELY_WOLF,
@@ -58,7 +59,7 @@ class SelectProfilePage extends StatelessWidget {
               flex: 1,
               child: ProfileTile(
                 tileMarginColor: ColorsEstudUff.primaryRed,
-                tileTitle: StringsEstudUff.outgoing_title,
+                tileTitle: StringsEstudUff.outgoing_profile,
                 tileSubtitle: StringsEstudUff.outgoing_subtitle,
                 tileIcon: StringsEstudUff.outgoing_env_icon,
                 studyProfile: StudyProfileEnum.OUTGOING,
