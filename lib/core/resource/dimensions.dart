@@ -10,7 +10,7 @@ class Dimensions {
   static final double baseScreenWidth = 360.0;
 
   static double getTextSize(double sizeInPixel, BuildContext context) {
-    return getConvertedHeightSize(sizeInPixel, context);
+    return getConvertedWidthSize(sizeInPixel, context);
   }
 
   static double getConvertedHeightSize(

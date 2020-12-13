@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:estuduff/features/auth/data/model/degree_model.dart';
-import 'package:estuduff/features/auth/data/model/modality_model.dart';
-import 'package:estuduff/features/auth/domain/entity/program.dart';
+import 'package:estuduff/features/program/data/model/degree_model.dart';
+import 'package:estuduff/features/program/data/model/modality_model.dart';
+import 'package:estuduff/features/program/domain/entity/program.dart';
 import 'package:flutter/foundation.dart';
 
 class ProgramModel extends Program {
@@ -42,5 +42,11 @@ class ProgramModel extends Program {
       json['degree'] =
           degree is DegreeModel ? (degree as DegreeModel).toJson() : null;
     return json;
+  }
+
+  static List<ProgramModel> listFromJson(List<dynamic> json) {
+    return json == null
+        ? null
+        : json.map((value) => ProgramModel.fromJson(value)).toList();
   }
 }

@@ -7,12 +7,18 @@ import 'package:estuduff/core/util/converter.dart';
 import 'package:estuduff/features/environment/domain/entity/environment.dart';
 import 'package:estuduff/features/environment/presentation/bloc/environment_bloc.dart';
 import 'package:estuduff/features/environment/presentation/widgets/EnviromentsTopWidget.dart';
+import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
+import 'package:estuduff/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class BaseEnviromentScreen extends StatefulWidget {
+  final StudyProfileEnum currentProfile;
+
+  const BaseEnviromentScreen({Key key, this.currentProfile}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _BaseEnviromentScreenState();
@@ -23,7 +29,8 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<EnvironmentBloc>(context).add(GetAllEvent());
+    if (widget.currentProfile == null)
+      BlocProvider.of<EnvironmentBloc>(context).add(GetAllEvent());
   }
 
   @override
@@ -67,7 +74,7 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
                     width: double.infinity,
                     height: Dimensions.getConvertedHeightSize(15, context),
                     decoration: BoxDecoration(
-                      color: ColorsEstudUff.lightGrey,
+                      color: _getColor(),
                     ),
                   ),
                   Container(
@@ -77,7 +84,7 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
                       child: Column(
                         children: [
                           EnviromentsTopWidget(
-                            icon: StringsEstudUff.available_env_icon,
+                            icon: _getProfileIcon(),
                             name: StringsEstudUff.available_title,
                           ),
                           SizedBox(
@@ -86,7 +93,7 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * 0.62,
+                            height: MediaQuery.of(context).size.height * 0.6,
                             child: GoogleMap(
                               initialCameraPosition: CameraPosition(
                                   bearing: 200.00,
@@ -94,7 +101,9 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
                                   zoom: 16.5),
                               markers: Set.from(
                                 Converter.getMarkersFromList(
-                                    state.environmentList),
+                                  state.environmentList,
+                                  context,
+                                ),
                               ),
                             ),
                           ),
@@ -111,5 +120,31 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
         ),
       ),
     );
+  }
+
+  Color _getColor() {
+    switch (widget.currentProfile) {
+      case StudyProfileEnum.JACK_OF_ALL_TRADES:
+        return ColorsEstudUff.primaryGreen;
+      case StudyProfileEnum.OUTGOING:
+        return ColorsEstudUff.primaryRed;
+      case StudyProfileEnum.LONELY_WOLF:
+        return ColorsEstudUff.primaryBlue;
+      default:
+        return ColorsEstudUff.lightGrey;
+    }
+  }
+
+  String _getProfileIcon() {
+    switch (widget.currentProfile) {
+      case StudyProfileEnum.JACK_OF_ALL_TRADES:
+        return StringsEstudUff.jack_env_icon;
+      case StudyProfileEnum.OUTGOING:
+        return StringsEstudUff.outgoing_env_icon;
+      case StudyProfileEnum.LONELY_WOLF:
+        return StringsEstudUff.wolf_env_icon;
+      default:
+        return StringsEstudUff.available_env_icon;
+    }
   }
 }

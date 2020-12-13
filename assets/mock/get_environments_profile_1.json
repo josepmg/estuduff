@@ -1,0 +1,22 @@
+[
+    {
+        "id": 3,
+        "name": "Hall de entada",
+        "complement": "Térreo",
+        "building": {
+            "id": 3,
+            "name": "Física antiga",
+            "campus": {
+                "id": 3,
+                "name": "Praia Vermelha"
+            }
+        },
+        "type": {
+            "id": 1,
+            "name": "Ambiente comum"
+        },
+        "studyProfile": 1,
+        "latitude": -22.905237,
+        "longitude": -43.133365
+    }
+]

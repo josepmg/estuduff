@@ -7,7 +7,14 @@ abstract class Failure extends Equatable {
 }
 
 // General failures
-class ServerFailure extends Failure {}
+class ServerFailure extends Failure {
+  final int statusCode;
+  final String message;
+
+  ServerFailure(this.statusCode, this.message);
+
+  List<Object> get props => [statusCode, message];
+}
 
 class CacheFailure extends Failure {}
 

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:estuduff/features/auth/domain/entity/program.dart';
+import 'package:estuduff/features/program/domain/entity/program.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 
 class User extends Equatable {
@@ -11,7 +11,7 @@ class User extends Equatable {
 
   User({this.id, this.name, this.email, this.program, this.studyProfile});
 
-  bool get isValid => id != null && email != null;
+  bool get isValid => id != null;
 
   @override
   List<Object> get props => [id, name, email, program, studyProfile];

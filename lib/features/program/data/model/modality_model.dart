@@ -1,4 +1,4 @@
-import 'package:estuduff/features/auth/domain/entity/modality.dart';
+import 'package:estuduff/features/program/domain/entity/modality.dart';
 import 'package:flutter/foundation.dart';
 
 class ModalityModel extends Modality {

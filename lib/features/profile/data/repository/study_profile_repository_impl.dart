@@ -19,12 +19,12 @@ class StudyProfileRepositoryImpl implements StudyProfileRepository {
     if (await networkInfo.isConnected) {
       try {
         return Right(await remoteDataSource.setStudyProfile(studyProfile));
-      } on ServerException {
-        return Left(ServerFailure());
+      } on ServerException catch (e) {
+        return Left(ServerFailure(e.statusCode, e.message));
       } on PlatformException catch (e) {
         return Left(PlatformFailure(message: e.message));
       } catch (e) {
-        return Left(GenericFailure(message: e.message));
+        return Left(GenericFailure());
       }
     } else {
       return Left(NoInternetConnectionFailure());

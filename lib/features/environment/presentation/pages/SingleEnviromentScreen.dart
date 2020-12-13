@@ -1,22 +1,18 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/dimensions.dart';
 import 'package:estuduff/core/resource/fonts_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/ui/appbar_estuduff.dart';
 import 'package:estuduff/core/util/profile-converter.dart';
-import 'package:estuduff/features/environment/domain/entity/building.dart';
-import 'package:estuduff/features/environment/domain/entity/campus.dart';
 import 'package:estuduff/features/environment/domain/entity/environment.dart';
-import 'package:estuduff/features/environment/domain/entity/study_place_type.dart';
-import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SingleEnviromentScreen extends StatefulWidget {
-  // TODO: Colocar 'final'
-  Environment enviroment;
+  final Environment environment;
 
-  SingleEnviromentScreen({Key key, this.enviroment}) : super(key: key);
+  SingleEnviromentScreen({Key key, this.environment}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _SingleEnviromentScreenState();
@@ -28,22 +24,8 @@ class _SingleEnviromentScreenState extends State<SingleEnviromentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: remover inicialização de enviroment
-    widget.enviroment = new Environment(
-      id: 01,
-      name: 'Biblioteca',
-      complement: 'Rua Passo da Pátria',
-      studyProfile: StudyProfileEnum.LONELY_WOLF,
-      type: StudyPlaceType(id: 01, name: 'Biblioteca'),
-      building: Building(
-        id: 01,
-        campus: Campus(id: 01, name: 'PV'),
-        name: 'Biblioteca',
-      ),
-    );
-
     this.enviromentColor =
-        ProfileConverter.recoverProfileColor(widget.enviroment.studyProfile);
+        ProfileConverter.recoverProfileColor(widget.environment.studyProfile);
     return _buildBody(context);
   }
 
@@ -95,12 +77,13 @@ class _SingleEnviromentScreenState extends State<SingleEnviromentScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        widget.enviroment.type.name,
+                      AutoSizeText(
+                        widget.environment.type.name,
                         style: TextStyle(
-                            color: Colors.black87,
-                            fontSize: Dimensions.getTextSize(22, context),
-                            fontFamily: FontsEstudUff.rubik),
+                          color: Colors.black87,
+                          fontSize: Dimensions.getTextSize(18, context),
+                          fontFamily: FontsEstudUff.rubik,
+                        ),
                       ),
                       Container(
                         width: Dimensions.getConvertedWidthSize(160, context),
@@ -110,7 +93,7 @@ class _SingleEnviromentScreenState extends State<SingleEnviromentScreen> {
                             vertical: 8),
                       ),
                       Text(
-                        widget.enviroment.name,
+                        widget.environment.name,
                         style: TextStyle(
                           fontFamily: FontsEstudUff.open_sans,
                           color: ColorsEstudUff.mediumGrey,
@@ -125,23 +108,26 @@ class _SingleEnviromentScreenState extends State<SingleEnviromentScreen> {
                 height: Dimensions.getConvertedHeightSize(30, context),
               ),
               _textInfo(
-                  info: widget.enviroment.complement,
+                  info: widget.environment.complement,
                   label: StringsEstudUff.enviroment_adress),
               _textInfo(
-                  info: widget.enviroment.building.name,
+                  info: widget.environment.building.name,
                   label: StringsEstudUff.enviroment_building),
               _textInfo(
-                  info: widget.enviroment.building.campus.name,
+                  info: widget.environment.building.campus.name,
                   label: StringsEstudUff.enviroment_number),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _textInfo(
                       info: ProfileConverter.recoverStudyProfile(
-                          widget.enviroment.studyProfile),
+                          widget.environment.studyProfile),
                       label: StringsEstudUff.enviroment_study_profile),
-                  SvgPicture.asset(ProfileConverter.recoverProfileIcon(
-                      widget.enviroment.studyProfile)),
+                  SvgPicture.asset(
+                    ProfileConverter.recoverProfileIcon(
+                      widget.environment.studyProfile,
+                    ),
+                  ),
                 ],
               ),
             ],

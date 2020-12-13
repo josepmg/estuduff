@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "Ambiente externo"
+    },
+    {
+        "id": 2,
+        "name": "Ambiente comun"
+    },
+    {
+        "id": 3,
+        "name": "Sala de estudo"
+    }
+]

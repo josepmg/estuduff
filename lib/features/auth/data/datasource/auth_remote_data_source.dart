@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer' as logger;
 import 'package:crypto/crypto.dart';
 import 'package:dio/dio.dart';
+import 'package:estuduff/core/error/exception.dart';
 import 'package:estuduff/core/platform/connection.dart';
 import 'package:estuduff/core/platform/settings.dart';
 import 'package:estuduff/features/auth/data/model/user_model.dart';
@@ -22,11 +23,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<User> signIn(String email, String password) async {
     try {
-      Response response = await Connection.post('/login',
-          data: {
-            "email": email,
-            "password": _hashPassword(password),
-          });
+      Response response = await MockedConnection.post('/login', data: {
+        "email": email,
+        "password": _hashPassword(password),
+      });
       return UserModel.fromJson(response.data);
     } catch (e) {
       logger.log(
@@ -45,13 +45,19 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     int programId,
   }) async {
     try {
-      Response response = await Connection.post('/register', data: {
+      Response response = await MockedConnection.post('/user', data: {
         "name": name,
         "email": email,
         "password": _hashPassword(password),
         "programId": programId,
       });
       return UserModel.fromJson(response.data);
+    } on ServerException catch (e, stacktrace) {
+      logger.log(
+        "Error: ${e.message}",
+        name: "AuthRemoteDataSourceImpl - signUp",
+      );
+      throw e;
     } catch (e) {
       logger.log(
         "Error: ${e.toString()}",

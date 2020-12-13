@@ -2,11 +2,14 @@ import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/resource/styles_estuduff.dart';
 import 'package:estuduff/core/ui/custom_drawer.dart';
+import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 import 'package:estuduff/features/profile/presentation/widgets/profile_tile.dart';
 import 'package:flutter/material.dart';
 
 class SelectProfilePage extends StatelessWidget {
-  const SelectProfilePage({Key key}) : super(key: key);
+  final bool shouldChangeProfile;
+  SelectProfilePage({Key key, this.shouldChangeProfile = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +39,8 @@ class SelectProfilePage extends StatelessWidget {
                 tileTitle: StringsEstudUff.lonely_wolf_title,
                 tileSubtitle: StringsEstudUff.lonely_wolf_subtitle,
                 tileIcon: StringsEstudUff.wolf_env_icon,
-                onTapFunction: () {},
+                studyProfile: StudyProfileEnum.LONELY_WOLF,
+                shouldChangeProfile: shouldChangeProfile,
               ),
             ),
             Expanded(
@@ -45,8 +49,9 @@ class SelectProfilePage extends StatelessWidget {
                 tileMarginColor: ColorsEstudUff.primaryGreen,
                 tileTitle: StringsEstudUff.jack_of_all_trades_title,
                 tileSubtitle: StringsEstudUff.jack_of_all_trades_subtitle,
-                tileIcon: StringsEstudUff.out_env_icon,
-                onTapFunction: () {},
+                tileIcon: StringsEstudUff.jack_env_icon,
+                studyProfile: StudyProfileEnum.JACK_OF_ALL_TRADES,
+                shouldChangeProfile: shouldChangeProfile,
               ),
             ),
             Expanded(
@@ -55,8 +60,9 @@ class SelectProfilePage extends StatelessWidget {
                 tileMarginColor: ColorsEstudUff.primaryRed,
                 tileTitle: StringsEstudUff.outgoing_title,
                 tileSubtitle: StringsEstudUff.outgoing_subtitle,
-                tileIcon: StringsEstudUff.share_env_icon,
-                onTapFunction: () {},
+                tileIcon: StringsEstudUff.outgoing_env_icon,
+                studyProfile: StudyProfileEnum.OUTGOING,
+                shouldChangeProfile: shouldChangeProfile,
               ),
             ),
           ],

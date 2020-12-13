@@ -11,8 +11,8 @@ class StringsEstudUff {
   static const logo = "assets/images/logo.svg";
   static const available_env_icon = "assets/images/logo-availabe.svg";
   static const wolf_env_icon = "assets/images/logo-wolf.svg";
-  static const share_env_icon = "assets/images/logo-share.svg";
-  static const out_env_icon = "assets/images/logo-jack.svg";
+  static const outgoing_env_icon = "assets/images/logo-share.svg";
+  static const jack_env_icon = "assets/images/logo-jack.svg";
   static const green_marker = "assets/images/green.png";
   static const red_marker = "assets/images/red-marker.svg";
   static const blue_marker = "assets/images/blue-marker.svg";
@@ -34,6 +34,7 @@ class StringsEstudUff {
   static const outgoing_icon = "assets/images/outgoing_icon.png";*/
 
   // Accessibility
+  static const user_icon_semantic_label = "ícone de uma pessoa";
   static const mail_icon_semantic_label = "ícone de um envelope fechado";
   static const lock_icon_semantic_label = "ícone de um cadeado fechado";
   static const open_book_icon_semantic_label = "ícone de um livro aberto";
@@ -41,6 +42,7 @@ class StringsEstudUff {
   // Login and Register
   static const login_title = "Login";
   static const register_title = "Cadastre-se";
+  static const insert_name_placeholder = "Insira seu nome";
   static const insert_mail_placeholder = "Insira seu e-mail";
   static const insert_password_placeholder = "Insira sua senha";
   static const insert_current_course_placeholder = "Insira o seu curso atual";
@@ -86,13 +88,12 @@ class StringsEstudUff {
   static const enviroment_title = "Ambiente";
   static const enviroment_adress = "Endereço";
   static const enviroment_building = "Prédio";
-  static const enviroment_number = "Número";
+  static const enviroment_number = "Campus";
   static const enviroment_study_profile = "Perfil de Estudo";
 
   // Filter by Type
   static const filter_by_type_title = "Filtrar por Tipo";
-  static const filter_by_type_placeholder =
-      "Ex: sala de estudos, biblioteca...";
+  static const filter_by_type_placeholder = "Selecione o tipo do local";
   static const filter_by_type_search_button = "Pesquisar";
   static const select_type_title = "Selecionar Tipo";
 }

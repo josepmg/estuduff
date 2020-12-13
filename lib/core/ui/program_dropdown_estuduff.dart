@@ -1,15 +1,16 @@
 import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/dimensions.dart';
+import 'package:estuduff/features/program/domain/entity/program.dart';
 import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
 
-class DropDownEstudUff extends StatefulWidget {
-  final List<String> options;
+class ProgramDropDownEstudUff extends StatefulWidget {
+  final List<Program> options;
   final String placeholder;
   //final bool isRequired;
   final Function onSelected;
 
-  const DropDownEstudUff({
+  const ProgramDropDownEstudUff({
     Key key,
     @required this.options,
     @required this.placeholder,
@@ -18,28 +19,33 @@ class DropDownEstudUff extends StatefulWidget {
   }) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return _DropDownEstudUffState();
+    return _ProgramDropDownEstudUffState();
   }
 }
 
-class _DropDownEstudUffState extends State<DropDownEstudUff> {
-  var dropdownValue;
+class _ProgramDropDownEstudUffState extends State<ProgramDropDownEstudUff> {
+  int dropdownValue;
+
   @override
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        margin: Dimensions.getEdgeInsets(context, bottom: 28),
+        margin: Dimensions.getEdgeInsets(context, top: 20),
         child: FormField<String>(
           // TO-DO: Validator
-          builder: (FormFieldStatestate) {
+          builder: (FormFieldState<String> state) {
             return InputDecorator(
               decoration: InputDecoration(
-                  errorStyle: TextStyle(
-                      color: Colors.redAccent,
-                      fontSize: Dimensions.getTextSize(16.0, context)),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                      borderSide: BorderSide(color: ColorsEstudUff.lightGrey))),
+                errorStyle: TextStyle(
+                  color: Colors.redAccent,
+                  fontSize: Dimensions.getTextSize(16.0, context),
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  borderSide:
+                      BorderSide(color: ColorsEstudUff.lightGrey, width: 1.0),
+                ),
+              ),
               isEmpty: dropdownValue == '',
               child: DropdownButtonHideUnderline(
                 child: DropdownButton(
@@ -49,14 +55,13 @@ class _DropDownEstudUffState extends State<DropDownEstudUff> {
                   onChanged: (newValue) {
                     setState(() {
                       dropdownValue = newValue;
-                      widget.onSelected(newValue);
-                      // debugPrint("$newValue is a ${newValue.runtimeType}");
+                      state.didChange(newValue);
                     });
                   },
-                  items: widget.options.map((value) {
+                  items: widget.options.map((program) {
                     return DropdownMenuItem(
-                      value: widget.options.indexOf(value),
-                      child: Text(value),
+                      value: program.id,
+                      child: Text("${program.name}"),
                     );
                   }).toList(),
                 ),

@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "Bacharel em Sistemas de Informação"
+    },
+    {
+        "id": 2,
+        "name": "Mestrado em Computação"
+    },
+    {
+        "id": 3,
+        "name": "Doutrorado em Computação"
+    }
+]

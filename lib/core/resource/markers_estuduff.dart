@@ -1,5 +1,8 @@
+import 'package:estuduff/features/environment/domain/entity/environment.dart';
+import 'package:estuduff/features/environment/presentation/pages/SingleEnviromentScreen.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MarkersEstudUff {
@@ -8,6 +11,8 @@ class MarkersEstudUff {
     @required double latitude,
     @required double longitude,
     @required StudyProfileEnum studyProfileEnum,
+    @required Environment environment,
+    @required BuildContext context,
   }) {
     MarkerId markerId;
     double hue;
@@ -30,7 +35,9 @@ class MarkersEstudUff {
       markerId: markerId,
       draggable: false,
       onTap: () {
-        // TO-DO: implementar onTap
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) =>
+                SingleEnviromentScreen(environment: environment)));
       },
       position: LatLng(latitude, longitude),
       icon: BitmapDescriptor.defaultMarkerWithHue(hue),

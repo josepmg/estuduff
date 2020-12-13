@@ -64,7 +64,7 @@ class _LoginTabBarWidgetState extends State<LoginTabBarWidget> {
           Container(
             margin: Dimensions.getEdgeInsets(context, left: 30),
             width: Dimensions.getConvertedWidthSize(295, context),
-            height: Dimensions.getConvertedHeightSize(320, context),
+            height: Dimensions.getConvertedHeightSize(380, context),
             child: TabBarView(
               children: [
                 LoginForm(),
