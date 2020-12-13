@@ -11,8 +11,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class BaseEnviromentScreen extends StatefulWidget {
   final StudyProfileEnum profile;
+  final String title;
 
-  const BaseEnviromentScreen({Key key, @required this.profile})
+  const BaseEnviromentScreen({Key key, @required this.profile, this.title})
       : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -27,13 +28,10 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
   }
 
   Widget _buildBody(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(56),
-        child: AppBarEstudUff(
-          title: StringsEstudUff.available_title,
-        ),
-      ),
+    return AppBarEstudUff(
+      title: widget.title == null
+          ? ProfileConverter.recoverStudyProfile(widget.profile)
+          : widget.title,
       body: Column(
         children: [
           Container(

@@ -22,13 +22,8 @@ class _FilterByTypeScreenState extends State<FilterByTypeScreen> {
   }
 
   Widget _buildBody(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(56),
-        child: AppBarEstudUff(
-          title: StringsEstudUff.select_type_title,
-        ),
-      ),
+    return AppBarEstudUff(
+      title: StringsEstudUff.select_type_title,
       body: Container(
         alignment: Alignment.topCenter,
         padding: Dimensions.getEdgeInsetsAll(context, 28),

@@ -48,7 +48,7 @@ class StringsEstudUff {
   static const available_environments_drawer_item = "Ambientes Disponíveis";
   static const filter_environments_drawer_item = "Filtrar Ambientes";
   static const type_filter_drawer_item = "Filtrar por Tipo";
-  static const study_profile_filter_drawer_item = "Filtrar por Perfils";
+  static const study_profile_filter_drawer_item = "Filtrar por Perfis";
   static const change_study_profile_drawer_item = "Trocar Perfil";
   static const edit_account_item = "Editar Conta";
   static const sign_out_item = "Sair da Conta";
