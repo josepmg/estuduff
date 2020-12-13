@@ -30,7 +30,7 @@ class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
             'assets/mock/get_environments_type_1.json');
       } else if (profileId != null) {
         response = await Converter.loadFromAsset(
-            'assets/mock/get_environments_profile_2.json');
+            'assets/mock/get_environments_profile_$profileId.json');
       } else {
         response =
             await Converter.loadFromAsset('assets/mock/get_environments.json');

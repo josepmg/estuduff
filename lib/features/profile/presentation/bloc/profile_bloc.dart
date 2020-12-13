@@ -20,10 +20,16 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ) async* {
     if (event is AnswerQuizEvent) {
       yield LoadingProfileState();
-      yield _getStudyProfileFromAnswers(
-          firstAnswer: event.firstAnswer,
-          secondAnswer: event.secondAnswer,
-          thirdAnswer: event.thirdAnswer);
+      print("Yield");
+      this.add(
+        SetProfileEvent(
+          _calculateProfile(
+            firstAnswer: event.firstAnswer,
+            secondAnswer: event.secondAnswer,
+            thirdAnswer: event.thirdAnswer,
+          ),
+        ),
+      );
     } else if (event is SetProfileEvent) {
       yield LoadingProfileState();
       final failureOrBool =
@@ -52,19 +58,19 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     }
   }
 
-  ProfileState _getStudyProfileFromAnswers(
+  StudyProfileEnum _calculateProfile(
       {int firstAnswer, int secondAnswer, int thirdAnswer}) {
     int sumAnswers = firstAnswer + secondAnswer + thirdAnswer;
 
     if (sumAnswers < 5) {
       // Outgoing
-      return QuizAnsweredProfileState(StudyProfileEnum.OUTGOING);
+      return StudyProfileEnum.OUTGOING;
     } else if (sumAnswers >= 5 && sumAnswers <= 7) {
       // Jack of all Trades
-      return QuizAnsweredProfileState(StudyProfileEnum.JACK_OF_ALL_TRADES);
+      return StudyProfileEnum.JACK_OF_ALL_TRADES;
     } else if (sumAnswers > 7) {
       // Lonely wolf
-      return QuizAnsweredProfileState(StudyProfileEnum.LONELY_WOLF);
+      return StudyProfileEnum.LONELY_WOLF;
     }
   }
 }

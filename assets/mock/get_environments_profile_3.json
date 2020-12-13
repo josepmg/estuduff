@@ -1,0 +1,22 @@
+[
+    {
+        "id": 4,
+        "name": "Sala de estudos",
+        "complement": "Térreo",
+        "building": {
+            "id": 1,
+            "name": "Instituto de Computação",
+            "campus": {
+                "id": 3,
+                "name": "Praia Vermelha"
+            }
+        },
+        "type": {
+            "id": 3,
+            "name": "Sala de estudos"
+        },
+        "studyProfile": 3,
+        "latitude": -22.906649,
+        "longitude": -43.133336
+    }
+]

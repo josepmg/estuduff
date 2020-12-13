@@ -7,6 +7,8 @@ import 'package:estuduff/features/environment/presentation/bloc/environment_bloc
 import 'package:estuduff/features/environment/presentation/bloc/study_place_types_bloc.dart';
 import 'package:estuduff/features/environment/presentation/pages/FilterByTypeScreen.dart';
 import 'package:estuduff/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:estuduff/features/profile/presentation/pages/ProfileForm.dart';
+import 'package:estuduff/features/profile/presentation/pages/select_profile_page.dart';
 import 'package:estuduff/features/program/presentation/bloc/program_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -75,6 +77,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return FilterByTypeScreen();
+    return ProfileForm();
   }
 }

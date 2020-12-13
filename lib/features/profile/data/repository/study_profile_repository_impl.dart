@@ -24,7 +24,7 @@ class StudyProfileRepositoryImpl implements StudyProfileRepository {
       } on PlatformException catch (e) {
         return Left(PlatformFailure(message: e.message));
       } catch (e) {
-        return Left(GenericFailure(message: e.message));
+        return Left(GenericFailure());
       }
     } else {
       return Left(NoInternetConnectionFailure());

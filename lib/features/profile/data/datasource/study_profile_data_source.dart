@@ -13,22 +13,21 @@ class StudyProfileRemoteDatasourceImpl implements StudyProfileRemoteDatasource {
   Future<bool> setStudyProfile(StudyProfileEnum studyProfile) async {
     try {
       UserModel studentModel = UserModel.fromJson(
-          (await Connection.get("/profile", withToken: true)).data);
-      Response response = await Connection.put(
-        '/login/${studentModel.id}/profile',
-        data: {
-          "name": studentModel.name,
-          "programId": studentModel.program.id,
-          "studyProfileId": studyProfile.getProfileId()
-        },
+          (await MockedConnection.get("/user", queryParameters: {"id": 2}))
+              .data);
+      Response response = await MockedConnection.patch(
+        '/user/${studentModel.id}',
+        data: {"studyProfile": studyProfile.getProfileId()},
       );
+      // return true;
+      // TODO alterar após integração com back
       return (response.statusCode == 200);
     } catch (e) {
       logger.log(
         "Error: ${e.toString()}",
-        name: "AuthRemoteDataSourceImpl - signIn",
+        name: "StudyProfileRemoteDatasourceImpl - setStudyProfile",
       );
-      throw e();
+      throw e;
     }
   }
 }

@@ -23,7 +23,7 @@ class DropDownEstudUff extends StatefulWidget {
 }
 
 class _DropDownEstudUffState extends State<DropDownEstudUff> {
-  String dropdownValue;
+  var dropdownValue;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +31,7 @@ class _DropDownEstudUffState extends State<DropDownEstudUff> {
         margin: Dimensions.getEdgeInsets(context, bottom: 28),
         child: FormField<String>(
           // TO-DO: Validator
-          builder: (FormFieldState<String> state) {
+          builder: (FormFieldStatestate) {
             return InputDecorator(
               decoration: InputDecoration(
                   errorStyle: TextStyle(
@@ -42,19 +42,20 @@ class _DropDownEstudUffState extends State<DropDownEstudUff> {
                       borderSide: BorderSide(color: ColorsEstudUff.lightGrey))),
               isEmpty: dropdownValue == '',
               child: DropdownButtonHideUnderline(
-                child: DropdownButton<String>(
+                child: DropdownButton(
                   hint: Text(widget.placeholder),
                   value: dropdownValue,
                   isDense: true,
-                  onChanged: (String newValue) {
+                  onChanged: (newValue) {
                     setState(() {
                       dropdownValue = newValue;
-                      state.didChange(newValue);
+                      widget.onSelected(newValue);
+                      // debugPrint("$newValue is a ${newValue.runtimeType}");
                     });
                   },
-                  items: widget.options.map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
+                  items: widget.options.map((value) {
+                    return DropdownMenuItem(
+                      value: widget.options.indexOf(value),
                       child: Text(value),
                     );
                   }).toList(),
