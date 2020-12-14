@@ -11,6 +11,8 @@ import 'package:estuduff/features/auth/domain/entity/user.dart';
 abstract class AuthRemoteDataSource {
   Future<User> signIn(String email, String password);
 
+  Future<User> getUserData(int id);
+
   Future<User> signUp({
     String name,
     String email,
@@ -62,6 +64,23 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       logger.log(
         "Error: ${e.toString()}",
         name: "AuthRemoteDataSourceImpl - signUp",
+      );
+      throw e();
+    }
+  }
+
+  @override
+  Future<User> getUserData(int id) async {
+    try {
+      Response response = await MockedConnection.get(
+        '/user',
+        queryParameters: {"id": id},
+      );
+      return UserModel.fromJson(response.data);
+    } catch (e) {
+      logger.log(
+        "Error: ${e.toString()}",
+        name: "AuthRemoteDataSourceImpl - getUserData",
       );
       throw e();
     }

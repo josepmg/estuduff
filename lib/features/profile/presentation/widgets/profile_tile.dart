@@ -4,6 +4,7 @@ import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/features/environment/presentation/bloc/environment_bloc.dart';
 import 'package:estuduff/features/environment/presentation/pages/BaseEnviromentScreen.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
+import 'package:estuduff/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:estuduff/features/profile/presentation/pages/SelectProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -105,9 +106,9 @@ class _ProfileTileState extends State<ProfileTile> {
         ),
       ),
     );
-    // BlocProvider.of<ProfileBloc>(context).add(
-    //   SetProfileEvent(widget.studyProfile),
-    // );
+    BlocProvider.of<ProfileBloc>(context).add(
+      SetProfileEvent(widget.studyProfile),
+    );
   }
 
   _showStudyPlaces() {

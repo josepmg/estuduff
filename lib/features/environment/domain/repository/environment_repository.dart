@@ -8,4 +8,6 @@ abstract class EnvironmentRepository {
       {int profileId, int typeId});
 
   Future<Either<Failure, List<StudyPlaceType>>> getAllStudyPlaceTypeTypes();
+
+  Future<Either<Failure, List<Environment>>> getHomeEnvironments();
 }

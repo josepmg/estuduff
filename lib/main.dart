@@ -51,14 +51,15 @@ void main() async {
             create: (_) => di.getIt<StudyPlaceTypesBloc>(),
           ),
         ],
-        child: MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-          ),
-          home: MyHomePage(title: 'Flutter Demo Home Page'),
-        ),
+        child: Estuduff(),
+        // MaterialApp(
+        //   title: 'Flutter Demo',
+        //   theme: ThemeData(
+        //     primarySwatch: Colors.blue,
+        //     visualDensity: VisualDensity.adaptivePlatformDensity,
+        //   ),
+        //   home: MyHomePage(title: 'Flutter Demo Home Page'),
+        // ),
       ),
     );
   }, (Object error, StackTrace stackTrace) {

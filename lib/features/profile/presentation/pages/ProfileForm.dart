@@ -7,7 +7,6 @@ import 'package:estuduff/core/ui/button_estuduff.dart';
 import 'package:estuduff/core/ui/dropdown_estuduff.dart';
 import 'package:estuduff/features/environment/presentation/bloc/environment_bloc.dart';
 import 'package:estuduff/features/environment/presentation/pages/BaseEnviromentScreen.dart';
-import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 import 'package:estuduff/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

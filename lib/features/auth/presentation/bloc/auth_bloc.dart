@@ -10,6 +10,8 @@ import 'package:estuduff/core/util/converter.dart';
 import 'package:estuduff/features/auth/domain/entity/user.dart';
 import 'package:estuduff/features/auth/domain/usecase/get_token_use_case.dart'
     as getToken;
+import 'package:estuduff/features/auth/domain/usecase/get_user_data_use_case.dart'
+    as userData;
 import 'package:estuduff/features/auth/domain/usecase/sign_in_use_case.dart'
     as signIn;
 import 'package:estuduff/features/auth/domain/usecase/sign_out_use_case.dart'
@@ -26,11 +28,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final signUp.SignUpseCase signUpUseCase;
   final signIn.SignInUseCase signInUseCase;
   final signOut.SignOutUseCase signOutUseCase;
+  final userData.GetUserDataUseCase getUserDataUseCase;
   AuthBloc(
       {this.getTokenUseCase,
       this.signInUseCase,
       this.signOutUseCase,
-      this.signUpUseCase})
+      this.signUpUseCase,
+      this.getUserDataUseCase})
       : super(AuthInitial());
 
   @override
@@ -43,8 +47,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       yield intOrFailure.fold(
         (failure) =>
             AuthError(message: Converter.mapFailureToMessages(failure)),
-        (int token) =>
-            token != null ? AuthSignedIn(token: token) : AuthNotSignedIn(),
+        (int token) => token != null
+            ? AuthSignedIn(user: User(id: token))
+            : AuthNotSignedIn(),
       );
     } else if (event is SignUpEvent) {
       yield AuthLoading();
@@ -70,6 +75,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             ? AuthNotSignedIn()
             : AuthError(message: StringsEstudUff.cache_failure_message),
       );
+    } else if (event is GetUserDataEvent) {
+      yield AuthLoading();
+      final studentOrFailure = await getUserDataUseCase(NoParams());
+      yield* _eitherSignedInOrErrorWithInt(studentOrFailure);
     }
   }
 
@@ -78,7 +87,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     yield studentOrFailure.fold(
       (failure) => AuthError(message: Converter.mapFailureToMessages(failure)),
       (User student) => student != null && student.isValid
-          ? AuthSignedIn(token: student.id)
+          ? AuthSignedIn(user: student)
           : AuthNotSignedIn(),
     );
   }

@@ -55,8 +55,14 @@ class AuthRepositoryImpl implements AuthRepository {
     if (await networkInfo.isConnected) {
       try {
         UserModel studentModel = await remoteDataSource.signIn(email, password);
+
         if (studentModel != null && studentModel.id != null)
           await localDataSource.cacheUserToken(studentModel.id);
+
+        if (studentModel != null && studentModel.studyProfile != null)
+          await localDataSource
+              .cacheUserStudyProfile(studentModel.studyProfile);
+
         return Right(studentModel);
       } on ServerException catch (e) {
         return Left(ServerFailure(e.statusCode, e.message));
@@ -92,6 +98,37 @@ class AuthRepositoryImpl implements AuthRepository {
       return Left(PlatformFailure(message: e.message));
     } catch (e) {
       return Left(GenericFailure(message: e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, User>> getUserData() async {
+    if (await networkInfo.isConnected) {
+      try {
+        int userId = await localDataSource.getToken();
+        if (userId != null) {
+          UserModel studentModel = await remoteDataSource.getUserData(userId);
+
+          if (studentModel != null && studentModel.id != null)
+            await localDataSource.cacheUserToken(studentModel.id);
+
+          if (studentModel != null && studentModel.studyProfile != null)
+            await localDataSource
+                .cacheUserStudyProfile(studentModel.studyProfile);
+
+          return Right(studentModel);
+        } else {
+          return Left(CacheFailure());
+        }
+      } on ServerException catch (e) {
+        return Left(ServerFailure(e.statusCode, e.message));
+      } on PlatformException catch (e) {
+        return Left(PlatformFailure(message: e.message));
+      } catch (e) {
+        return Left(GenericFailure(message: e.message));
+      }
+    } else {
+      return Left(NoInternetConnectionFailure());
     }
   }
 }

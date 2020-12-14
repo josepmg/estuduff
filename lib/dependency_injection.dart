@@ -6,6 +6,7 @@ import 'package:estuduff/features/auth/data/datasource/auth_remote_data_source.d
 import 'package:estuduff/features/auth/data/repository/auth_repository_impl.dart';
 import 'package:estuduff/features/auth/domain/repository/auth_repository.dart';
 import 'package:estuduff/features/auth/domain/usecase/get_token_use_case.dart';
+import 'package:estuduff/features/auth/domain/usecase/get_user_data_use_case.dart';
 import 'package:estuduff/features/auth/domain/usecase/sign_in_use_case.dart';
 import 'package:estuduff/features/auth/domain/usecase/sign_out_use_case.dart';
 import 'package:estuduff/features/auth/domain/usecase/sign_up_use_case.dart';
@@ -82,6 +83,7 @@ _initAuth() {
   getIt.registerLazySingleton(() => SignUpseCase(getIt()));
   getIt.registerLazySingleton(() => SignOutUseCase(getIt()));
   getIt.registerLazySingleton(() => GetTokenUseCase(getIt()));
+  getIt.registerLazySingleton(() => GetUserDataUseCase(getIt()));
 
   // BLoC
   getIt.registerFactory(() => AuthBloc(
@@ -89,6 +91,7 @@ _initAuth() {
         signInUseCase: getIt(),
         signOutUseCase: getIt(),
         signUpUseCase: getIt(),
+        getUserDataUseCase: getIt(),
       ));
 }
 
@@ -103,6 +106,7 @@ _initEnvironment() {
     () => EnvironmentRepositoryImpl(
       networkInfo: getIt(),
       remoteDataSource: getIt(),
+      authLocalDataSource: getIt(),
     ),
   );
 
@@ -126,6 +130,7 @@ _initProfile() {
     () => StudyProfileRepositoryImpl(
       networkInfo: getIt(),
       remoteDataSource: getIt(),
+      authLocalDataSource: getIt(),
     ),
   );
 

@@ -25,4 +25,6 @@ class GetByProfileEvent extends EnvironmentEvent {
   List<Object> get props => [studyProfile];
 }
 
+class GetHomeEnvironmentsEvent extends EnvironmentEvent {}
+
 class GetAllEvent extends EnvironmentEvent {}

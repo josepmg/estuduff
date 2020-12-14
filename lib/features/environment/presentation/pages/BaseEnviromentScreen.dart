@@ -14,7 +14,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class BaseEnviromentScreen extends StatefulWidget {
   final StudyProfileEnum profile;
   final String title;
-
   const BaseEnviromentScreen({Key key, @required this.profile, this.title})
       : super(key: key);
   @override

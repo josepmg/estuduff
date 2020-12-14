@@ -4,19 +4,21 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:estuduff/core/error/failure.dart';
+import 'package:estuduff/core/platform/generic_use_case.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/features/environment/domain/entity/environment.dart';
 import 'package:estuduff/features/environment/domain/entity/study_place_type.dart';
 import 'package:estuduff/features/environment/domain/usecase/get_environment_use_case.dart';
+import 'package:estuduff/features/profile/data/model/study_profile_model.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 
 part 'environment_event.dart';
 part 'environment_state.dart';
 
 class EnvironmentBloc extends Bloc<EnvironmentEvent, EnvironmentState> {
-  final GetEnvironmentuseCase getEnvironmentuseCase;
+  final GetEnvironmentuseCase getEnvironmentUseCase;
 
-  EnvironmentBloc(this.getEnvironmentuseCase)
+  EnvironmentBloc(this.getEnvironmentUseCase)
       : super(InitialEnvironmentState());
 
   @override
@@ -25,16 +27,16 @@ class EnvironmentBloc extends Bloc<EnvironmentEvent, EnvironmentState> {
   ) async* {
     if (event is GetByTypeEvent) {
       yield LoadingEnvironmentState();
-      final result = await getEnvironmentuseCase(Params(type: event.type));
+      final result = await getEnvironmentUseCase(Params(type: event.type));
       yield* _getEnvListOrFailure(result);
     } else if (event is GetByProfileEvent) {
       yield LoadingEnvironmentState();
       final result =
-          await getEnvironmentuseCase(Params(studyProfile: event.studyProfile));
+          await getEnvironmentUseCase(Params(studyProfile: event.studyProfile));
       yield* _getEnvListOrFailure(result);
     } else if (event is GetAllEvent) {
       yield LoadingEnvironmentState();
-      final result = await getEnvironmentuseCase(Params());
+      final result = await getEnvironmentUseCase(Params());
       yield* _getEnvListOrFailure(result);
     }
   }

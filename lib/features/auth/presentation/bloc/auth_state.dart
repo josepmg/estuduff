@@ -12,15 +12,23 @@ class AuthInitial extends AuthState {}
 class AuthLoading extends AuthState {}
 
 class AuthSignedIn extends AuthState {
-  final int token;
-
-  AuthSignedIn({this.token});
+  final User user;
+  AuthSignedIn({this.user});
 
   @override
-  List<Object> get props => [token];
+  List<Object> get props => [user];
 }
 
 class AuthNotSignedIn extends AuthState {}
+
+class AuthUserLoaded extends AuthState {
+  final User user;
+
+  AuthUserLoaded(this.user);
+
+  @override
+  List<Object> get props => [user];
+}
 
 class AuthError extends AuthState {
   final String message;

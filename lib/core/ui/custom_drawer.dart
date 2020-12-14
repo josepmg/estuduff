@@ -1,7 +1,11 @@
 import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/dimensions.dart';
+import 'package:estuduff/core/resource/routes_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/resource/styles_estuduff.dart';
+import 'package:estuduff/features/auth/data/datasource/auth_local_data_source.dart';
+import 'package:estuduff/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:estuduff/features/environment/presentation/bloc/environment_bloc.dart';
 import 'package:estuduff/features/environment/presentation/pages/BaseEnviromentScreen.dart';
 import 'package:estuduff/features/environment/presentation/pages/FilterByTypeScreen.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
@@ -9,6 +13,8 @@ import 'package:estuduff/features/profile/presentation/pages/SelectProfilePage.d
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key key}) : super(key: key);
@@ -19,6 +25,14 @@ class CustomDrawer extends StatefulWidget {
 
 class _CustomDrawerState extends State<CustomDrawer> {
   bool showSubItems = false;
+
+  @override
+  void initState() {
+    super.initState();
+    debugPrint("Initstate");
+    BlocProvider.of<AuthBloc>(context).add(GetUserDataEvent());
+  }
+
   @override
   Widget build(BuildContext context) {
     //TODO Add BLoC listener/builder to dsplay user's data
@@ -44,34 +58,65 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                 ),
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "${StringsEstudUff.greeting_drawer_title} Bárbara",
-                    style: StylesEstudUff.drawerTitleTextStyle(context),
-                  ),
-                  SizedBox(
-                    height: Dimensions.getConvertedHeightSize(5, context),
-                  ),
-                  Text(
-                    "bramos@id.uff.br",
-                    style: StylesEstudUff.drawerSubtitleTextStyle(context),
-                  ),
-                ],
+              child: BlocBuilder<AuthBloc, AuthState>(
+                builder: (context, state) {
+                  if (state is AuthLoading) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(),
+                      ],
+                    );
+                  } else if (state is AuthUserLoaded) {
+                    String userName = state.user.name.split(" ")[0];
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //TODO Get user name
+                        Text(
+                          "${StringsEstudUff.greeting_drawer_title} $userName",
+                          style: StylesEstudUff.drawerTitleTextStyle(context),
+                        ),
+                        SizedBox(
+                          height: Dimensions.getConvertedHeightSize(5, context),
+                        ),
+                        //TODO Get user e-mail
+                        Text(
+                          "${state.user.email}",
+                          style:
+                              StylesEstudUff.drawerSubtitleTextStyle(context),
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
               ),
             ),
             // Items
             DrawerItem(
               text: StringsEstudUff.home_drawer_item,
               iconData: FeatherIcons.home,
-              onTapFunction: () {
+              onTapFunction: () async {
                 //TODO: Implementar perfil de estudo de acordo com o escolhido pelo user
+                StudyProfileEnum studyProfile = await GetIt.I
+                    .get<AuthLocalDataSource>()
+                    .getUserStudyProfile();
+
+                print("JP - ${studyProfile.getProfileId()}");
+
+                BlocProvider.of<EnvironmentBloc>(context)
+                    .add(GetByProfileEvent(studyProfile));
+
+                Navigator.of(context).pop();
+
                 Navigator.of(context).push(
-                  CupertinoPageRoute(
+                  MaterialPageRoute(
                     builder: (context) => BaseEnviromentScreen(
-                      profile: StudyProfileEnum.LONELY_WOLF,
+                      profile: studyProfile,
                     ),
                   ),
                 );
@@ -81,8 +126,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
               text: StringsEstudUff.available_environments_drawer_item,
               iconData: FeatherIcons.heart,
               onTapFunction: () {
+                BlocProvider.of<EnvironmentBloc>(context).add(GetAllEvent());
+                Navigator.of(context).pop();
+
                 Navigator.of(context).push(
-                  CupertinoPageRoute(
+                  MaterialPageRoute(
                     builder: (context) => BaseEnviromentScreen(
                       profile: StudyProfileEnum.AVAILABLE,
                     ),
@@ -109,8 +157,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         DrawerItem(
                           text: StringsEstudUff.type_filter_drawer_item,
                           onTapFunction: () {
+                            Navigator.of(context).pop();
+
                             Navigator.of(context).push(
-                              CupertinoPageRoute(
+                              MaterialPageRoute(
                                 builder: (context) => FilterByTypeScreen(),
                               ),
                             );
@@ -120,8 +170,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           text:
                               StringsEstudUff.study_profile_filter_drawer_item,
                           onTapFunction: () {
+                            Navigator.of(context).pop();
+
                             Navigator.of(context).push(
-                              CupertinoPageRoute(
+                              MaterialPageRoute(
                                 builder: (context) => SelectProfilePage(),
                               ),
                             );
@@ -135,25 +187,25 @@ class _CustomDrawerState extends State<CustomDrawer> {
               text: StringsEstudUff.change_study_profile_drawer_item,
               iconData: FeatherIcons.edit,
               onTapFunction: () {
+                Navigator.of(context).pop();
+
                 Navigator.of(context).push(
-                  CupertinoPageRoute(
-                    builder: (context) => SelectProfilePage(),
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        SelectProfilePage(shouldChangeProfile: true),
                   ),
                 );
-              },
-            ),
-            DrawerItem(
-              text: StringsEstudUff.edit_account_item,
-              iconData: FeatherIcons.settings,
-              onTapFunction: () {
-                //TODO Implement onTap function
               },
             ),
             DrawerItem(
               text: StringsEstudUff.sign_out_item,
               iconData: FeatherIcons.logOut,
               onTapFunction: () {
-                //TODO Implement onTap function
+                Navigator.of(context).pop();
+
+                BlocProvider.of<AuthBloc>(context).add(SignOutEvent());
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil(Routes.start_page, (r) => false);
               },
             ),
           ],

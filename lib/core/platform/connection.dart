@@ -291,20 +291,13 @@ class MockedConnection {
             statusCode: 200,
             data: json.decode(
               await Converter.loadFromAsset(
-                'assets/mock/post_login.json',
+                'assets/mock/get_profile_1.json',
               ),
             ),
           );
         default:
           throw ServerException(statusCode: 400, message: "Invalid path $path");
       }
-    } on DioError catch (e, stacktrace) {
-      throw ServerException(
-        statusCode: e.response.statusCode,
-        message: e.response.data is String && e.response.data != null
-            ? e.response.data
-            : e.response.statusMessage,
-      );
     } on PlatformException catch (e, stacktrace) {
       throw e;
     } on ServerException catch (e, stacktrace) {
