@@ -1,29 +1,16 @@
 import 'dart:convert';
 import 'dart:developer' as logger;
 import 'dart:io';
+import 'package:estuduff/core/platform/settings.dart';
 import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
 import 'package:estuduff/core/error/exception.dart';
-import 'package:estuduff/core/platform/settings.dart';
 import 'package:estuduff/core/util/converter.dart';
 import 'package:flutter/services.dart';
-import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Connection {
   static SharedPreferences _sharedPreferences;
-
-  static String getToken() {
-    _sharedPreferences = _sharedPreferences ?? GetIt.I.get<SharedPreferences>();
-    if (_sharedPreferences.containsKey(Settings.CACHED_USER_TOKEN_KEY)) {
-      logger.log(
-        "UserToken: ${_sharedPreferences.get(Settings.CACHED_USER_TOKEN_KEY)}",
-        name: "Connection - getToken",
-      );
-      return _sharedPreferences.get(Settings.CACHED_USER_TOKEN_KEY).toString();
-    }
-    return null;
-  }
 
   static Future<String> get(
     String path, {
@@ -57,36 +44,44 @@ class Connection {
   static Future<String> post(
     String path, {
     bool withToken = false,
-    dynamic data,
+    Map<String, dynamic> data,
     Map<String, dynamic> queryParameters,
   }) async {
     try {
       var headers = {'Content-Type': 'application/json'};
-      // path = "${Settings.API_BASE_URL}/$path/";
+      var uri = Uri.parse("${Settings.API_BASE_URL}/$path");
+
+      var body = json.encode(data);
 
       var response = await http.post(
-        Uri.parse('http://10.0.2.2:8000/user/login/'),
-        body:
-            '''{\n    "email": "jose@mail.com",\n    "password": "3519bf0df8743399deca3d59b8e0c5c456c07c8623f37638e04c182d4e602db9"\n}''',
+        uri,
+        body: body,
         headers: headers,
       );
 
-      // var response =
-      //     await _http.post(path, data: data, queryParameters: queryParameters);
-      logger.log("6 - $response");
-
-      return response.body;
-    } on DioError catch (e, stacktrace) {
-      logger.log("DioError");
-      logger.log("$e");
-      logger.log("$stacktrace");
-      throw ServerException(
-        statusCode: e.response.statusCode,
-        message: e.response?.data is String && e.response.data != null
-            ? e.response.data
-            : e.response.statusMessage,
+      if (response.statusCode >= 200 && response.statusCode <= 299)
+        return response.body;
+      else
+        throw ServerException(
+          statusCode: response.statusCode,
+          message: response.body,
+        );
+    } on HttpException catch (e, stacktrace) {
+      logger.log(
+        "HttpException: ${e.message}",
+        name: "Connection - POST",
       );
+      throw ServerException(
+        statusCode: 400,
+        message: e.message,
+      );
+    } on ServerException catch (e) {
+      throw e;
     } on PlatformException catch (e, stacktrace) {
+      logger.log(
+        "PlatformException: ${e.message}",
+        name: "Connection - POST",
+      );
       throw e;
     } catch (e, stacktrace) {
       logger.log(
@@ -117,13 +112,11 @@ class Connection {
   //         await _http.put(path, data: data, queryParameters: queryParameters);
 
   //     return response;
-  //   } on DioError catch (e, stacktrace) {
-  //     throw ServerException(
-  //       statusCode: e.response.statusCode,
-  //       message: e.response.data is String && e.response.data != null
-  //           ? e.response.data
-  //           : e.response.statusMessage,
-  //     );
+  //   } on n HttpException catch (e, stacktrace) {
+  // throw ServerException(
+  //   statusCode: 400,
+  //   message: e.message,
+  // );
   //   } on PlatformException catch (e, stacktrace) {
   //     throw e;
   //   } catch (e, stacktrace) {
@@ -155,13 +148,11 @@ class Connection {
   //         await _http.patch(path, data: data, queryParameters: queryParameters);
 
   //     return response;
-  //   } on DioError catch (e, stacktrace) {
-  //     throw ServerException(
-  //       statusCode: e.response.statusCode,
-  //       message: e.response.data is String && e.response.data != null
-  //           ? e.response.data
-  //           : e.response.statusMessage,
-  //     );
+  //   } on n HttpException catch (e, stacktrace) {
+  // throw ServerException(
+  //   statusCode: 400,
+  //   message: e.message,
+  // );
   //   } on PlatformException catch (e, stacktrace) {
   //     throw e;
   //   } catch (e, stacktrace) {

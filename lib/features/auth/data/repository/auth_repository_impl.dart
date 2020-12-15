@@ -65,11 +65,15 @@ class AuthRepositoryImpl implements AuthRepository {
 
         return Right(studentModel);
       } on ServerException catch (e) {
-        return Left(
-            ServerFailure(e?.statusCode ?? 400, e?.message ?? "Deu ruim"));
+        print("ServerException");
+        return Left(ServerFailure(
+          e.statusCode ?? 400,
+          e.message ?? "Deu ruim",
+        ));
       } on PlatformException catch (e) {
         return Left(PlatformFailure(message: e?.message ?? "Deu ruim"));
       } catch (e) {
+        print("GenericFailure");
         return Left(GenericFailure());
       }
     } else {

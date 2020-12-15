@@ -95,10 +95,25 @@ class _LoginFormState extends State<LoginForm> {
                   ButtonEstudUff(
                     text: StringsEstudUff.send_button_title.toUpperCase(),
                     onPressed: () {
-                      BlocProvider.of<AuthBloc>(context).add(SignInEvent(
-                        email: "jose@mail.com", //_formData[EMAIL_LABEL],
-                        password: "abc123", //_formData[PASSWORD_LABEL],
-                      ));
+                      if (_formData != null &&
+                          _formData.isNotEmpty &&
+                          _formData[EMAIL_LABEL] != null &&
+                          _formData[EMAIL_LABEL].isNotEmpty &&
+                          _formData[PASSWORD_LABEL] != null &&
+                          _formData[PASSWORD_LABEL].isNotEmpty) {
+                        BlocProvider.of<AuthBloc>(context).add(SignInEvent(
+                          email: _formData[EMAIL_LABEL],
+                          password: _formData[PASSWORD_LABEL],
+                        ));
+                      } else {
+                        Scaffold.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              "Preencha todos os campos",
+                            ),
+                          ),
+                        );
+                      }
                     },
                     width: double.infinity,
                   ),

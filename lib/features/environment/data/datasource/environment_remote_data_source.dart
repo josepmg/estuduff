@@ -17,7 +17,7 @@ class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
   Future<List<Environment>> getEnvironments({int profileId, int typeId}) async {
     try {
       //TODO Change endpoint
-      // Response response = await Connection.get('/register', queryParameters: {
+      // Response response = await Connection.get('register/', queryParameters: {
       //   "profileId": profileId,
       //   "typeId": typeId,
       // });
@@ -54,7 +54,7 @@ class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
   Future<List<StudyPlaceType>> getAllStudyPlaceTypeTypes() async {
     try {
       //TODO Change endpoint
-      // Response response = await Connection.get('/register', queryParameters: {
+      // Response response = await Connection.get('register/', queryParameters: {
       //   "profileId": profileId,
       //   "typeId": typeId,
       // });

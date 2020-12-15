@@ -26,7 +26,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<User> signIn(String email, String password) async {
     try {
       String response = await Connection.post(
-        'user/login',
+        'user/login/',
         data: {
           "email": email,
           "password": _hashPassword(password),
@@ -39,12 +39,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       logger.log("response: $programResp");
       map['program'] = json.decode(programResp);
       return UserModel.fromJson(map);
-    } catch (e) {
+    } on GenericException catch (e) {
       logger.log(
         "Error: ${e.toString()}",
         name: "AuthRemoteDataSourceImpl - signIn",
       );
-      throw e();
+      throw e;
     }
   }
 
