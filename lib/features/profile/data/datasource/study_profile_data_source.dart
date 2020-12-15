@@ -1,6 +1,6 @@
+import 'dart:convert';
 import 'dart:developer' as logger;
 import 'package:estuduff/core/platform/connection.dart';
-import 'package:estuduff/features/auth/data/model/user_model.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 
 abstract class StudyProfileRemoteDatasource {
@@ -11,17 +11,21 @@ class StudyProfileRemoteDatasourceImpl implements StudyProfileRemoteDatasource {
   @override
   Future<bool> setStudyProfile(StudyProfileEnum studyProfile) async {
     try {
-      String response = await Connection.get("user/", withToken: true);
-      // UserModel studentModel = UserModel.fromJson(
-      //     (await MockedConnection.get("/user", queryParameters: {"id": 2}))
-      //         .data);
-      // String response = await Connection.put(
-      //   '/user/${studentModel.id}',
-      //   data: {"studyProfile": studyProfile.getProfileId()},
-      // );
-      // // return true;
-      // // TODO alterar após integração com back
-      // return (response.statusCode == 200);
+      String putResponse = await Connection.patch(
+        "user/",
+        withToken: true,
+        data: json.encode({'studyProfile': studyProfile.getProfileId()}),
+      );
+      var map = json.decode(putResponse);
+
+      // Retrieving program data
+      String programResp = await Connection.get(
+        "program/${map['program']}",
+      );
+      logger.log("response: $programResp");
+      map['program'] = json.decode(programResp);
+
+      return map != null && map['id'] != null && map['id'] is int;
     } catch (e) {
       logger.log(
         "Error: ${e.toString()}",

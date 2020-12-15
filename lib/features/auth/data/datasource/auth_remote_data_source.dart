@@ -97,11 +97,20 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<User> getUserData(int id) async {
     try {
-      Response response = await MockedConnection.get(
+      String response = await Connection.get(
         'user/',
-        queryParameters: {"id": id},
+        withToken: true,
       );
-      return UserModel.fromJson(response.data);
+      var map = json.decode(response);
+
+      // Retrieving program data
+      String programResp = await Connection.get(
+        "program/${map['program']}",
+      );
+      logger.log("response: $programResp");
+      map['program'] = json.decode(programResp);
+
+      return UserModel.fromJson(map);
     } catch (e) {
       logger.log(
         "Error: ${e.toString()}",
