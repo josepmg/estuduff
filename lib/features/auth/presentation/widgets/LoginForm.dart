@@ -27,6 +27,7 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
+        print("$state");
         if (state is AuthSignedIn) {
           BlocProvider.of<EnvironmentBloc>(context)
               .add(GetByProfileEvent(state.user.studyProfile));
@@ -95,8 +96,8 @@ class _LoginFormState extends State<LoginForm> {
                     text: StringsEstudUff.send_button_title.toUpperCase(),
                     onPressed: () {
                       BlocProvider.of<AuthBloc>(context).add(SignInEvent(
-                        email: _formData[EMAIL_LABEL],
-                        password: _formData[PASSWORD_LABEL],
+                        email: "jose@mail.com", //_formData[EMAIL_LABEL],
+                        password: "abc123", //_formData[PASSWORD_LABEL],
                       ));
                     },
                     width: double.infinity,

@@ -1,5 +1,6 @@
 class Settings {
-  static final String API_BASE_URL = "https://test-estuduff.uff.br";
+  static final String API_BASE_URL = "http://10.0.2.2:8000";
+  //"https://test-estuduff.uff.br";
   static final CACHED_USER_TOKEN_KEY = "CACHED_USER_TOKEN";
   static final CACHED_USER_STUDY_PROFILE_KEY = "CACHED_USER_STUDY_PROFILE_KEY";
   static final HMAC_KEY =

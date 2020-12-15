@@ -15,8 +15,8 @@ class ProgramModel extends Program {
     return ProgramModel(
       id: json['id'],
       name: json['name'],
-      modality: ModalityModel.fromJson(json['modality']),
-      degree: DegreeModel.fromJson(json['degree']),
+      // modality: ModalityModel.fromJson(json['modality']),
+      // degree: DegreeModel.fromJson(json['degree']),
     );
   }
 
@@ -25,8 +25,8 @@ class ProgramModel extends Program {
     return ProgramModel(
       id: program.id,
       name: program.name,
-      modality: program.modality,
-      degree: program.degree,
+      // modality: program.modality,
+      // degree: program.degree,
     );
   }
 
@@ -34,13 +34,13 @@ class ProgramModel extends Program {
     Map<String, dynamic> json = {};
     if (id != null) json['id'] = id;
     if (name != null) json['name'] = name;
-    if (modality != null)
-      json['modality'] = modality is ModalityModel
-          ? (modality as ModalityModel).toJson()
-          : null;
-    if (degree != null)
-      json['degree'] =
-          degree is DegreeModel ? (degree as DegreeModel).toJson() : null;
+    // if (modality != null)
+    //   json['modality'] = modality is ModalityModel
+    //       ? (modality as ModalityModel).toJson()
+    //       : null;
+    // if (degree != null)
+    //   json['degree'] =
+    //       degree is DegreeModel ? (degree as DegreeModel).toJson() : null;
     return json;
   }
 

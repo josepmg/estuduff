@@ -9,15 +9,15 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class Converter {
   static String mapFailureToMessages(Failure failure) {
     if (failure is PlatformFailure)
-      return failure.message;
+      return failure.message ?? "Deu ruim";
     else if (failure is ServerFailure)
-      return StringsEstudUff.server_failure_message;
+      return StringsEstudUff.server_failure_message ?? "Deu ruim";
     else if (failure is NoInternetConnectionFailure)
-      return StringsEstudUff.server_failure_message;
+      return StringsEstudUff.server_failure_message ?? "Deu ruim";
     else if (failure is CacheFailure) {
-      return StringsEstudUff.cache_failure_message;
+      return StringsEstudUff.cache_failure_message ?? "Deu ruim";
     } else
-      return StringsEstudUff.generic_failure_message;
+      return StringsEstudUff.generic_failure_message ?? "Deu ruim";
   }
 
   static Future<String> loadFromAsset(String path) async {

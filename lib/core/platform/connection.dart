@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:developer' as logger;
+import 'dart:io';
+import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
 import 'package:estuduff/core/error/exception.dart';
 import 'package:estuduff/core/platform/settings.dart';
@@ -29,7 +31,7 @@ class Connection {
     return null;
   }
 
-  static Future<Response> get(
+  static Future<String> get(
     String path, {
     bool withToken = false,
     Map<String, dynamic> queryParameters,
@@ -39,13 +41,16 @@ class Connection {
 
       var token = withToken ? getToken() : null;
 
-      path = (token != null) ? path + "/$token" : null;
+      path = (token != null) ? path + "/$token" : path;
       // _http.options.headers["authorization"] =
       //     (token != null) ? "Bearer $token" : null;
 
-      Response response =
-          await _http.get(path, queryParameters: queryParameters);
-      return response;
+      // Response response =
+      //     await _http.get(path, queryParameters: queryParameters);
+      var response = await http.get(
+        Uri.parse('http://10.0.2.2:8000$path/'),
+      );
+      return response.body;
     } on DioError catch (e, stacktrace) {
       print(stacktrace);
       throw ServerException(
@@ -67,33 +72,50 @@ class Connection {
     }
   }
 
-  static Future<Response> post(
+  static Future<String> post(
     String path, {
     bool withToken = false,
     dynamic data,
     Map<String, dynamic> queryParameters,
   }) async {
-    Response response;
     try {
+      logger.log("1");
       _setHttpBaseUrl();
-
+      logger.log("2");
       //TODO: recuperar token do Preference
       var token = withToken ? getToken() : null;
+      logger.log("3");
 
-      path = (token != null) ? path + "/$token" : null;
+      path = (token != null) ? path + "/$token" : path;
+      logger.log("4 - ${_http.options.baseUrl}$path");
       // _http.options.headers["authorization"] =
       //     (token != null) ? "Bearer $token" : null;
 
       _http.options.headers['content-Type'] = 'application/json';
+      logger.log("5 - ${_http.options.headers}");
 
-      response =
-          await _http.post(path, data: data, queryParameters: queryParameters);
+      var url = "${Settings.API_BASE_URL}$path/";
+      print("$url");
 
-      return response;
+      var response = await http.post(
+        Uri.parse('http://10.0.2.2:8000/user/login/'),
+        body:
+            '''{\n    "email": "jose@mail.com",\n    "password": "3519bf0df8743399deca3d59b8e0c5c456c07c8623f37638e04c182d4e602db9"\n}''',
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      // var response =
+      //     await _http.post(path, data: data, queryParameters: queryParameters);
+      logger.log("6 - $response");
+
+      return response.body;
     } on DioError catch (e, stacktrace) {
+      logger.log("DioError");
+      logger.log("$e");
+      logger.log("$stacktrace");
       throw ServerException(
         statusCode: e.response.statusCode,
-        message: e.response.data is String && e.response.data != null
+        message: e.response?.data is String && e.response.data != null
             ? e.response.data
             : e.response.statusMessage,
       );
