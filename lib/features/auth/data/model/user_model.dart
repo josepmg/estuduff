@@ -23,7 +23,8 @@ class UserModel extends User {
   factory UserModel.fromJson(Map<String, dynamic> json) {
     if (json == null) return null;
     return UserModel(
-      id: json['id'],
+      // TODO retornar ID da API
+      id: json['id'] ?? 1,
       name: json['name'],
       email: json['email'],
       program: ProgramModel.fromJson(json['program']),

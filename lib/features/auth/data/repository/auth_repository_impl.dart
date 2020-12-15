@@ -43,7 +43,7 @@ class AuthRepositoryImpl implements AuthRepository {
       } on PlatformException catch (e) {
         return Left(PlatformFailure(message: e.message));
       } catch (e) {
-        return Left(GenericFailure(message: e.message));
+        return Left(GenericFailure());
       }
     } else {
       return Left(NoInternetConnectionFailure());
@@ -70,7 +70,7 @@ class AuthRepositoryImpl implements AuthRepository {
       } on PlatformException catch (e) {
         return Left(PlatformFailure(message: e?.message ?? "Deu ruim"));
       } catch (e) {
-        return Left(GenericFailure(message: e?.message ?? "Deu ruim"));
+        return Left(GenericFailure());
       }
     } else {
       return Left(NoInternetConnectionFailure());
@@ -98,7 +98,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } on PlatformException catch (e) {
       return Left(PlatformFailure(message: e.message));
     } catch (e) {
-      return Left(GenericFailure(message: e.message));
+      return Left(GenericFailure());
     }
   }
 
@@ -126,7 +126,7 @@ class AuthRepositoryImpl implements AuthRepository {
       } on PlatformException catch (e) {
         return Left(PlatformFailure(message: e.message));
       } catch (e) {
-        return Left(GenericFailure(message: e.message));
+        return Left(GenericFailure());
       }
     } else {
       return Left(NoInternetConnectionFailure());

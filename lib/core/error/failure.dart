@@ -31,9 +31,5 @@ class PlatformFailure extends Failure {
 class UserNotCachedFailure extends Failure {}
 
 class GenericFailure extends Failure {
-  final String message;
-
-  GenericFailure({this.message});
-
-  List<Object> get props => [message];
+  GenericFailure();
 }

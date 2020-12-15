@@ -11,13 +11,13 @@ class Converter {
     if (failure is PlatformFailure)
       return failure.message ?? "Deu ruim";
     else if (failure is ServerFailure)
-      return StringsEstudUff.server_failure_message ?? "Deu ruim";
+      return failure.message ?? StringsEstudUff.server_failure_message;
     else if (failure is NoInternetConnectionFailure)
-      return StringsEstudUff.server_failure_message ?? "Deu ruim";
+      return StringsEstudUff.server_failure_message;
     else if (failure is CacheFailure) {
-      return StringsEstudUff.cache_failure_message ?? "Deu ruim";
+      return StringsEstudUff.cache_failure_message;
     } else
-      return StringsEstudUff.generic_failure_message ?? "Deu ruim";
+      return StringsEstudUff.generic_failure_message;
   }
 
   static Future<String> loadFromAsset(String path) async {

@@ -31,7 +31,7 @@ class EnvironmentRepositoryImpl implements EnvironmentRepository {
       } on PlatformException catch (e) {
         return Left(PlatformFailure(message: e.message));
       } catch (e) {
-        return Left(GenericFailure(message: e.message));
+        return Left(GenericFailure());
       }
     } else {
       return Left(NoInternetConnectionFailure());
@@ -51,7 +51,7 @@ class EnvironmentRepositoryImpl implements EnvironmentRepository {
       } on PlatformException catch (e) {
         return Left(PlatformFailure(message: e.message));
       } catch (e) {
-        return Left(GenericFailure(message: e.message));
+        return Left(GenericFailure());
       }
     } else {
       return Left(NoInternetConnectionFailure());
@@ -76,7 +76,7 @@ class EnvironmentRepositoryImpl implements EnvironmentRepository {
       } on PlatformException catch (e) {
         return Left(PlatformFailure(message: e.message));
       } catch (e) {
-        return Left(GenericFailure(message: e.message));
+        return Left(GenericFailure());
       }
     } else {
       return Left(NoInternetConnectionFailure());

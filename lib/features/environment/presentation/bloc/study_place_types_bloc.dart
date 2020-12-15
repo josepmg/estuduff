@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:estuduff/core/error/failure.dart';
 import 'package:estuduff/core/platform/generic_use_case.dart';
-import 'package:estuduff/core/resource/strings_estuduff.dart';
+import 'package:estuduff/core/util/converter.dart';
 import 'package:estuduff/features/environment/domain/entity/study_place_type.dart';
 import 'package:estuduff/features/environment/domain/usecase/get_all_study_place_types_use_case.dart';
 
@@ -34,16 +34,8 @@ class StudyPlaceTypesBloc
       Either<Failure, List<StudyPlaceType>> result) async* {
     yield result.fold(
       (Failure failure) {
-        if (failure is PlatformFailure)
-          return ErrorStudyPlacesTypeState(failure.message);
-        else if (failure is ServerFailure)
-          return ErrorStudyPlacesTypeState(
-              StringsEstudUff.server_failure_message);
-        else if (failure is GenericFailure)
-          return ErrorStudyPlacesTypeState(failure.message);
-        else
-          return ErrorStudyPlacesTypeState(
-              StringsEstudUff.generic_failure_message);
+        return ErrorStudyPlacesTypeState(
+            Converter.mapFailureToMessages(failure));
       },
       (List<StudyPlaceType> list) {
         return LoadedStudyPlacesTypeState(list);

@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:estuduff/core/error/failure.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
+import 'package:estuduff/core/util/converter.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 import 'package:estuduff/features/profile/domain/usecase/set_study_profile_use_case.dart';
 
@@ -35,17 +35,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           await setStudyProfileUseCase(Params(event.studyProfile));
       yield failureOrBool.fold(
         (failure) {
-          if (failure is PlatformFailure)
-            return ErrorProfileState(failure.message);
-          else if (failure is ServerFailure)
-            return ErrorProfileState(StringsEstudUff.server_failure_message);
-          else if (failure is GenericFailure)
-            return ErrorProfileState(failure.message);
-          else if (failure is NoInternetConnectionFailure)
-            return ErrorProfileState(
-                StringsEstudUff.no_internet_failure_message);
-          else
-            return ErrorProfileState(StringsEstudUff.generic_failure_message);
+          return ErrorProfileState(Converter.mapFailureToMessages(failure));
         },
         (bool _result) {
           if (_result)

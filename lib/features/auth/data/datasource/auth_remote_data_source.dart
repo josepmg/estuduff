@@ -26,7 +26,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<User> signIn(String email, String password) async {
     try {
       String response = await Connection.post(
-        '/user/login',
+        'user/login',
         data: {
           "email": email,
           "password": _hashPassword(password),
@@ -34,7 +34,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
       var map = json.decode(response);
       String programResp = await Connection.get(
-        "/program/${map['program']}",
+        "program/${map['program']}",
       );
       logger.log("response: $programResp");
       map['program'] = json.decode(programResp);

@@ -11,13 +11,7 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Connection {
-  static Dio _http;
   static SharedPreferences _sharedPreferences;
-
-  static _setHttpBaseUrl() {
-    _http = _http ?? GetIt.I.get<Dio>();
-    _http.options.baseUrl = Settings.API_BASE_URL;
-  }
 
   static String getToken() {
     _sharedPreferences = _sharedPreferences ?? GetIt.I.get<SharedPreferences>();
@@ -37,27 +31,15 @@ class Connection {
     Map<String, dynamic> queryParameters,
   }) async {
     try {
-      _setHttpBaseUrl();
-
-      var token = withToken ? getToken() : null;
-
-      path = (token != null) ? path + "/$token" : path;
-      // _http.options.headers["authorization"] =
-      //     (token != null) ? "Bearer $token" : null;
-
-      // Response response =
-      //     await _http.get(path, queryParameters: queryParameters);
       var response = await http.get(
-        Uri.parse('http://10.0.2.2:8000$path/'),
+        Uri.parse('http://10.0.2.2:8000/$path/'),
       );
       return response.body;
-    } on DioError catch (e, stacktrace) {
+    } on HttpException catch (e, stacktrace) {
       print(stacktrace);
       throw ServerException(
-        statusCode: e.response.statusCode,
-        message: e.response.data is String && e.response.data != null
-            ? e.response.data
-            : e.response.statusMessage,
+        statusCode: 400,
+        message: e.message,
       );
     } on PlatformException catch (e, stacktrace) {
       print(stacktrace);
@@ -79,29 +61,14 @@ class Connection {
     Map<String, dynamic> queryParameters,
   }) async {
     try {
-      logger.log("1");
-      _setHttpBaseUrl();
-      logger.log("2");
-      //TODO: recuperar token do Preference
-      var token = withToken ? getToken() : null;
-      logger.log("3");
-
-      path = (token != null) ? path + "/$token" : path;
-      logger.log("4 - ${_http.options.baseUrl}$path");
-      // _http.options.headers["authorization"] =
-      //     (token != null) ? "Bearer $token" : null;
-
-      _http.options.headers['content-Type'] = 'application/json';
-      logger.log("5 - ${_http.options.headers}");
-
-      var url = "${Settings.API_BASE_URL}$path/";
-      print("$url");
+      var headers = {'Content-Type': 'application/json'};
+      // path = "${Settings.API_BASE_URL}/$path/";
 
       var response = await http.post(
         Uri.parse('http://10.0.2.2:8000/user/login/'),
         body:
             '''{\n    "email": "jose@mail.com",\n    "password": "3519bf0df8743399deca3d59b8e0c5c456c07c8623f37638e04c182d4e602db9"\n}''',
-        headers: {'Content-Type': 'application/json'},
+        headers: headers,
       );
 
       // var response =
@@ -130,81 +97,81 @@ class Connection {
     }
   }
 
-  static Future<Response> put(
-    String path, {
-    bool withToken = false,
-    dynamic data,
-    Map<String, dynamic> queryParameters,
-  }) async {
-    try {
-      _setHttpBaseUrl();
+  // static Future<Response> put(
+  //   String path, {
+  //   bool withToken = false,
+  //   dynamic data,
+  //   Map<String, dynamic> queryParameters,
+  // }) async {
+  //   try {
+  //     _setHttpBaseUrl();
 
-      var token = withToken ? getToken() : null;
+  //     var token = withToken ? getToken() : null;
 
-      path = (token != null) ? path + "/$token" : null;
-      // _http.options.headers["authorization"] =
-      //     (token != null) ? "Bearer $token" : null;
-      _http.options.headers['content-Type'] = 'application/json';
+  //     path = (token != null) ? path + "/$token" : null;
+  //     // _http.options.headers["authorization"] =
+  //     //     (token != null) ? "Bearer $token" : null;
+  //     _http.options.headers['content-Type'] = 'application/json';
 
-      Response response =
-          await _http.put(path, data: data, queryParameters: queryParameters);
+  //     Response response =
+  //         await _http.put(path, data: data, queryParameters: queryParameters);
 
-      return response;
-    } on DioError catch (e, stacktrace) {
-      throw ServerException(
-        statusCode: e.response.statusCode,
-        message: e.response.data is String && e.response.data != null
-            ? e.response.data
-            : e.response.statusMessage,
-      );
-    } on PlatformException catch (e, stacktrace) {
-      throw e;
-    } catch (e, stacktrace) {
-      logger.log(
-        "Error: ${e.toString()}",
-        name: "Connection - PUT",
-      );
-      throw GenericException();
-    }
-  }
+  //     return response;
+  //   } on DioError catch (e, stacktrace) {
+  //     throw ServerException(
+  //       statusCode: e.response.statusCode,
+  //       message: e.response.data is String && e.response.data != null
+  //           ? e.response.data
+  //           : e.response.statusMessage,
+  //     );
+  //   } on PlatformException catch (e, stacktrace) {
+  //     throw e;
+  //   } catch (e, stacktrace) {
+  //     logger.log(
+  //       "Error: ${e.toString()}",
+  //       name: "Connection - PUT",
+  //     );
+  //     throw GenericException();
+  //   }
+  // }
 
-  static Future<Response> patch(
-    String path, {
-    bool withToken = false,
-    dynamic data,
-    Map<String, dynamic> queryParameters,
-  }) async {
-    try {
-      _setHttpBaseUrl();
+  // static Future<Response> patch(
+  //   String path, {
+  //   bool withToken = false,
+  //   dynamic data,
+  //   Map<String, dynamic> queryParameters,
+  // }) async {
+  //   try {
+  //     _setHttpBaseUrl();
 
-      var token = withToken ? getToken() : null;
+  //     var token = withToken ? getToken() : null;
 
-      path = (token != null) ? path + "/$token" : null;
-      // _http.options.headers["authorization"] =
-      //     (token != null) ? "Bearer $token" : null;
-      _http.options.headers['content-Type'] = 'application/json';
+  //     path = (token != null) ? path + "/$token" : null;
+  //     // _http.options.headers["authorization"] =
+  //     //     (token != null) ? "Bearer $token" : null;
+  //     _http.options.headers['content-Type'] = 'application/json';
 
-      Response response =
-          await _http.patch(path, data: data, queryParameters: queryParameters);
+  //     Response response =
+  //         await _http.patch(path, data: data, queryParameters: queryParameters);
 
-      return response;
-    } on DioError catch (e, stacktrace) {
-      throw ServerException(
-        statusCode: e.response.statusCode,
-        message: e.response.data is String && e.response.data != null
-            ? e.response.data
-            : e.response.statusMessage,
-      );
-    } on PlatformException catch (e, stacktrace) {
-      throw e;
-    } catch (e, stacktrace) {
-      logger.log(
-        "Error: ${e.toString()}",
-        name: "Connection - PATCH",
-      );
-      throw GenericException();
-    }
-  }
+  //     return response;
+  //   } on DioError catch (e, stacktrace) {
+  //     throw ServerException(
+  //       statusCode: e.response.statusCode,
+  //       message: e.response.data is String && e.response.data != null
+  //           ? e.response.data
+  //           : e.response.statusMessage,
+  //     );
+  //   } on PlatformException catch (e, stacktrace) {
+  //     throw e;
+  //   } catch (e, stacktrace) {
+  //     logger.log(
+  //       "Error: ${e.toString()}",
+  //       name: "Connection - PATCH",
+  //     );
+  //     throw GenericException();
+  //   }
+  // }
 }
 
 class MockedConnection {
