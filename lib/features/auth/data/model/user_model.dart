@@ -24,7 +24,7 @@ class UserModel extends User {
     if (json == null) return null;
     return UserModel(
       // TODO retornar ID da API
-      id: json['id'] ?? 1,
+      id: json['id'],
       name: json['name'],
       email: json['email'],
       program: ProgramModel.fromJson(json['program']),

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer' as logger;
 import 'dart:io';
 import 'package:estuduff/core/platform/settings.dart';
+import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
 import 'package:estuduff/core/error/exception.dart';
@@ -19,6 +20,8 @@ class Connection {
   }) async {
     try {
       var uri = Uri.parse("${Settings.API_BASE_URL}/$path");
+      var token = getToken();
+      logger.log("$token", name: "token");
 
       var response = await http.get(uri);
 
@@ -64,6 +67,11 @@ class Connection {
     try {
       var headers = {'Content-Type': 'application/json'};
       var uri = Uri.parse("${Settings.API_BASE_URL}/$path");
+      if (withToken) {
+        var token = getToken();
+        logger.log("$token", name: "token");
+        uri = Uri.parse("${Settings.API_BASE_URL}/$path/$token");
+      }
 
       var body = json.encode(data);
       print("body: $body");
@@ -109,41 +117,124 @@ class Connection {
     }
   }
 
-  // static Future<Response> put(
-  //   String path, {
-  //   bool withToken = false,
-  //   dynamic data,
-  //   Map<String, dynamic> queryParameters,
-  // }) async {
-  //   try {
-  //     _setHttpBaseUrl();
+  static Future<String> put(
+    String path, {
+    bool withToken = false,
+    dynamic data,
+    Map<String, dynamic> queryParameters,
+  }) async {
+    try {
+      var headers = {'Content-Type': 'application/json'};
+      var uri = Uri.parse("${Settings.API_BASE_URL}/$path");
 
-  //     var token = withToken ? getToken() : null;
+      var body = json.encode(data);
+      print("body: $body");
 
-  //     path = (token != null) ? path + "/$token" : null;
-  //     // _http.options.headers["authorization"] =
-  //     //     (token != null) ? "Bearer $token" : null;
-  //     _http.options.headers['content-Type'] = 'application/json';
+      var response = await http.put(
+        uri,
+        body: body,
+        headers: headers,
+      );
 
-  //     Response response =
-  //         await _http.put(path, data: data, queryParameters: queryParameters);
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
+        logger.log("${response.body}");
+        return response.body;
+      } else {
+        throw ServerException(
+          statusCode: response.statusCode,
+          message: response.body,
+        );
+      }
+    } on HttpException catch (e, stacktrace) {
+      logger.log(
+        "HttpException: ${e.message}",
+        name: "Connection - POST",
+      );
+      throw ServerException(
+        statusCode: 400,
+        message: e.message,
+      );
+    } on ServerException catch (e) {
+      throw e;
+    } on PlatformException catch (e, stacktrace) {
+      logger.log(
+        "PlatformException: ${e.message}",
+        name: "Connection - POST",
+      );
+      throw e;
+    } catch (e, stacktrace) {
+      logger.log(
+        "Error: ${e.toString()}",
+        name: "Connection - POST",
+      );
+      throw GenericException();
+    }
+  }
 
-  //     return response;
-  //   } on n HttpException catch (e, stacktrace) {
-  // throw ServerException(
-  //   statusCode: 400,
-  //   message: e.message,
-  // );
-  //   } on PlatformException catch (e, stacktrace) {
-  //     throw e;
-  //   } catch (e, stacktrace) {
-  //     logger.log(
-  //       "Error: ${e.toString()}",
-  //       name: "Connection - PUT",
-  //     );
-  //     throw GenericException();
-  //   }
-  // }
+  static Future<String> getEnv(
+    String path, {
+    bool withToken = false,
+    dynamic data,
+    Map<String, dynamic> queryParameters,
+  }) async {
+    try {
+      var uri;
+      // Getting paramenters for GET request
+      if (queryParameters != null && queryParameters.isNotEmpty) {
+        var len = queryParameters.length;
+        var i = 0;
+        var queryParamsUri = "";
+        queryParameters.forEach((key, value) {
+          if (value != null) {
+            if (i == len && queryParamsUri.isNotEmpty) {
+              queryParamsUri = "$queryParamsUri&";
+            }
+            queryParamsUri = "$queryParamsUri$key=$value";
+          }
+          i++;
+        });
+        uri = Uri.parse("${Settings.API_BASE_URL}/$path?$queryParamsUri");
+      } else {
+        uri = Uri.parse("${Settings.API_BASE_URL}/$path");
+      }
+
+      var response = await http.get(uri);
+
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
+        var respBody = json.decode(response.body);
+        if (respBody['results'] != null)
+          return json.encode(respBody['results']);
+      } else {
+        throw ServerException(
+          statusCode: response.statusCode,
+          message: response.body,
+        );
+      }
+    } on HttpException catch (e, stacktrace) {
+      logger.log(
+        "HttpException: ${e.message}",
+        name: "Connection - POST",
+      );
+      throw ServerException(
+        statusCode: 400,
+        message: e.message,
+      );
+    } on ServerException catch (e) {
+      throw e;
+    } on PlatformException catch (e, stacktrace) {
+      logger.log(
+        "PlatformException: ${e.message}",
+        name: "Connection - POST",
+      );
+      throw e;
+    } catch (e, stacktrace) {
+      logger.log(
+        "Error: ${e.toString()}",
+        name: "Connection - POST",
+      );
+      throw GenericException();
+    }
+  }
 
   // static Future<Response> patch(
   //   String path, {
@@ -180,6 +271,18 @@ class Connection {
   //     throw GenericException();
   //   }
   // }
+
+  static String getToken() {
+    _sharedPreferences = _sharedPreferences ?? GetIt.I.get<SharedPreferences>();
+    if (_sharedPreferences.containsKey(Settings.CACHED_USER_TOKEN_KEY)) {
+      logger.log(
+        "UserToken: ${_sharedPreferences.get(Settings.CACHED_USER_TOKEN_KEY)}",
+        name: "Connection - getToken",
+      );
+      return _sharedPreferences.get(Settings.CACHED_USER_TOKEN_KEY).toString();
+    }
+    return null;
+  }
 }
 
 class MockedConnection {

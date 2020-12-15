@@ -95,6 +95,10 @@ class _LoginFormState extends State<LoginForm> {
                   ButtonEstudUff(
                     text: StringsEstudUff.send_button_title.toUpperCase(),
                     onPressed: () {
+                      setState(() {
+                        _formData[EMAIL_LABEL] = "b@mail.com";
+                        _formData[PASSWORD_LABEL] = "abc123";
+                      });
                       if (_formData != null &&
                           _formData.isNotEmpty &&
                           _formData[EMAIL_LABEL] != null &&

@@ -17,29 +17,48 @@ class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
   Future<List<Environment>> getEnvironments({int profileId, int typeId}) async {
     try {
       //TODO Change endpoint
-      // Response response = await Connection.get('register/', queryParameters: {
-      //   "profileId": profileId,
-      //   "typeId": typeId,
-      // });
-      // return EnvironmentModel.listFromJson(response.data);
+      String resp = await Connection.getEnv(
+        "studyplace/",
+        // queryParameters: {
+        //   "studyPlaceType": typeId,
+        //   "studyProfile": profileId,
+        // },
+      );
+      var respList = json.decode(resp);
 
-      // Mock
-      String response;
-      if (typeId != null) {
-        response = await Converter.loadFromAsset(
-            'assets/mock/get_environments_type_1.json');
-      } else if (profileId != null) {
-        response = await Converter.loadFromAsset(
-            'assets/mock/get_environments_profile_$profileId.json');
-      } else {
-        response =
-            await Converter.loadFromAsset('assets/mock/get_environments.json');
+      List<Environment> envList = List<Environment>();
+
+      for (dynamic element in respList) {
+        logger.log("element: ${element}", name: "element");
+
+        // Retrieving studyPlaceType data
+        String studyplacetypeResponse = await Connection.get(
+          "studyplacetype/${element['studyPlaceType']}",
+        );
+        logger.log("studyplacetypeResponse: $studyplacetypeResponse");
+        element['studyplacetype'] = json.decode(studyplacetypeResponse);
+
+        // Retrieving building data
+        String buildingResponse = await Connection.get(
+          "building/${element['building']}",
+        );
+        logger.log("buildingResponse: $buildingResponse");
+        element['building'] = json.decode(buildingResponse);
+
+        // Retrieving building's campus data
+        String campusResponse = await Connection.get(
+          "campus/${element['building']['campus']}",
+        );
+        logger.log("buildingResponse: $campusResponse");
+        element['building']['campus'] = json.decode(campusResponse);
+
+        // Adjusting studyProfile
+        element['studyProfile'] = element['studyProfile'][0];
+
+        envList.add(EnvironmentModel.fromJson(element));
       }
-      List<Environment> envList = (json.decode(response) as List)
-          .map(
-            (data) => EnvironmentModel.fromJson(data),
-          )
-          .toList();
+
+      logger.log("envList: ${envList.length}", name: "envList");
       return envList;
     } catch (e) {
       logger.log(
