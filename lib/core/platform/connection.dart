@@ -18,21 +18,35 @@ class Connection {
     Map<String, dynamic> queryParameters,
   }) async {
     try {
-      var response = await http.get(
-        Uri.parse('http://10.0.2.2:8000/$path/'),
-      );
-      return response.body;
+      var uri = Uri.parse("${Settings.API_BASE_URL}/$path");
+
+      var response = await http.get(uri);
+
+      if (response.statusCode >= 200 && response.statusCode <= 299)
+        return response.body;
+      else
+        throw ServerException(
+          statusCode: response.statusCode,
+          message: response.body,
+        );
     } on HttpException catch (e, stacktrace) {
-      print(stacktrace);
+      logger.log(
+        "HttpException: ${e.message}",
+        name: "Connection - GET",
+      );
       throw ServerException(
         statusCode: 400,
         message: e.message,
       );
+    } on ServerException catch (e) {
+      throw e;
     } on PlatformException catch (e, stacktrace) {
-      print(stacktrace);
+      logger.log(
+        "PlatformException: ${e.message}",
+        name: "Connection - GET",
+      );
       throw e;
     } catch (e, stacktrace) {
-      print(stacktrace);
       logger.log(
         "Error: ${e.toString()}",
         name: "Connection - GET",
@@ -52,6 +66,7 @@ class Connection {
       var uri = Uri.parse("${Settings.API_BASE_URL}/$path");
 
       var body = json.encode(data);
+      print("body: $body");
 
       var response = await http.post(
         uri,
@@ -59,13 +74,15 @@ class Connection {
         headers: headers,
       );
 
-      if (response.statusCode >= 200 && response.statusCode <= 299)
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
+        logger.log("${response.body}");
         return response.body;
-      else
+      } else {
         throw ServerException(
           statusCode: response.statusCode,
           message: response.body,
         );
+      }
     } on HttpException catch (e, stacktrace) {
       logger.log(
         "HttpException: ${e.message}",

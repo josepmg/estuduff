@@ -1,5 +1,6 @@
+import 'dart:convert';
 import 'dart:developer' as logger;
-import 'package:dio/dio.dart';
+import 'package:estuduff/core/error/exception.dart';
 import 'package:estuduff/core/platform/connection.dart';
 import 'package:estuduff/features/program/data/model/program_model.dart';
 import 'package:estuduff/features/program/domain/entity/program.dart';
@@ -12,8 +13,13 @@ class ProgramRemoteDataSourceImpl implements ProgramRemoteDataSource {
   @override
   Future<List<Program>> getAll() async {
     try {
-      Response response = await MockedConnection.get('/program');
-      return ProgramModel.listFromJson(response.data);
+      String response = await Connection.get('program/');
+      var map = json.decode(response);
+      print("$map");
+      if (map['results'] != null)
+        return ProgramModel.listFromJson(map['results']);
+      else
+        throw GenericException();
     } catch (e) {
       logger.log(
         "Error: ${e.toString()}",

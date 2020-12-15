@@ -39,9 +39,12 @@ class AuthRepositoryImpl implements AuthRepository {
           await localDataSource.cacheUserToken(studentModel.id);
         return Right(studentModel);
       } on ServerException catch (e) {
-        return Left(ServerFailure(e.statusCode, e.message));
+        return Left(ServerFailure(
+          e.statusCode ?? 400,
+          e.message ?? "Deu ruim",
+        ));
       } on PlatformException catch (e) {
-        return Left(PlatformFailure(message: e.message));
+        return Left(PlatformFailure(message: e?.message ?? "Deu ruim"));
       } catch (e) {
         return Left(GenericFailure());
       }
@@ -65,7 +68,6 @@ class AuthRepositoryImpl implements AuthRepository {
 
         return Right(studentModel);
       } on ServerException catch (e) {
-        print("ServerException");
         return Left(ServerFailure(
           e.statusCode ?? 400,
           e.message ?? "Deu ruim",
@@ -73,7 +75,6 @@ class AuthRepositoryImpl implements AuthRepository {
       } on PlatformException catch (e) {
         return Left(PlatformFailure(message: e?.message ?? "Deu ruim"));
       } catch (e) {
-        print("GenericFailure");
         return Left(GenericFailure());
       }
     } else {
@@ -88,7 +89,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } on PlatformException catch (e) {
       throw e;
     } catch (e) {
-      print("[AuthRemoteDataSourceImpl] ${e.toString()}");
+      print("[AuthRepositoryImpl] ${e.toString()}");
       throw ServerException();
     }
   }

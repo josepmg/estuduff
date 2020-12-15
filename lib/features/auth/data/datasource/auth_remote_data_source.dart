@@ -39,12 +39,17 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       logger.log("response: $programResp");
       map['program'] = json.decode(programResp);
       return UserModel.fromJson(map);
-    } on GenericException catch (e) {
+    } on ServerException catch (e) {
+      logger.log(
+        "ServerException: ${e.toString()}",
+        name: "AuthRemoteDataSourceImpl - signIn",
+      );
+      throw e;
+    } catch (e) {
       logger.log(
         "Error: ${e.toString()}",
         name: "AuthRemoteDataSourceImpl - signIn",
       );
-      throw e;
     }
   }
 
@@ -56,16 +61,27 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     int programId,
   }) async {
     try {
-      Response response = await MockedConnection.post('/user', data: {
+      String response = await Connection.post('user/', data: {
         "name": name,
         "email": email,
         "password": _hashPassword(password),
-        "programId": programId,
+        "program": programId,
+        //TODO remover obrigatoriedade do studyprofile na API
+        "studyProfile": 2,
       });
-      return UserModel.fromJson(response.data);
+      var map = json.decode(response);
+
+      // Retrieving program data
+      String programResp = await Connection.get(
+        "program/${map['program']}",
+      );
+      logger.log("response: $programResp");
+      map['program'] = json.decode(programResp);
+
+      return UserModel.fromJson(map);
     } on ServerException catch (e, stacktrace) {
       logger.log(
-        "Error: ${e.message}",
+        "ServerException: ${e.message}",
         name: "AuthRemoteDataSourceImpl - signUp",
       );
       throw e;
@@ -82,7 +98,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<User> getUserData(int id) async {
     try {
       Response response = await MockedConnection.get(
-        '/user',
+        'user/',
         queryParameters: {"id": id},
       );
       return UserModel.fromJson(response.data);
