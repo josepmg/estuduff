@@ -5,7 +5,7 @@ import 'package:estuduff/features/environment/domain/entity/study_place_type.dar
 
 abstract class EnvironmentRepository {
   Future<Either<Failure, List<Environment>>> getEnvironments(
-      {int profileId, int typeId});
+      {int profileId, int typeId, bool withToken});
 
   Future<Either<Failure, List<StudyPlaceType>>> getAllStudyPlaceTypeTypes();
 

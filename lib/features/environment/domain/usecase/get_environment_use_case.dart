@@ -17,6 +17,7 @@ class GetEnvironmentuseCase extends GenericUseCase<List<Environment>, Params> {
     return await repository.getEnvironments(
       profileId: params.studyProfile?.getProfileId(),
       typeId: params.type?.id,
+      withToken: params.withToken,
     );
   }
 }
@@ -24,8 +25,9 @@ class GetEnvironmentuseCase extends GenericUseCase<List<Environment>, Params> {
 class Params extends Equatable {
   final StudyProfileEnum studyProfile;
   final StudyPlaceType type;
+  final bool withToken;
 
-  Params({this.studyProfile, this.type});
+  Params({this.studyProfile, this.type, this.withToken = false});
 
   @override
   List<Object> get props => [this.studyProfile, this.type];

@@ -24,7 +24,6 @@ class Connection {
       } else {
         uri = Uri.parse("${Settings.API_BASE_URL}/$path");
       }
-      logger.log("uri: $uri");
       var response = await http.get(uri);
 
       if (response.statusCode >= 200 && response.statusCode <= 299)
@@ -71,12 +70,10 @@ class Connection {
       var uri = Uri.parse("${Settings.API_BASE_URL}/$path");
       if (withToken) {
         var token = getToken();
-        logger.log("$token", name: "token");
         uri = Uri.parse("${Settings.API_BASE_URL}/$path/$token");
       }
 
       var body = json.encode(data);
-      print("body: $body");
 
       var response = await http.post(
         uri,
@@ -85,7 +82,6 @@ class Connection {
       );
 
       if (response.statusCode >= 200 && response.statusCode <= 299) {
-        logger.log("${response.body}");
         return response.body;
       } else {
         throw ServerException(
@@ -130,7 +126,6 @@ class Connection {
       var uri = Uri.parse("${Settings.API_BASE_URL}/$path");
 
       var body = json.encode(data);
-      print("body: $body");
 
       var response = await http.put(
         uri,
@@ -139,7 +134,6 @@ class Connection {
       );
 
       if (response.statusCode >= 200 && response.statusCode <= 299) {
-        logger.log("${response.body}");
         return response.body;
       } else {
         throw ServerException(
@@ -255,11 +249,8 @@ class Connection {
 
       var headers = {'Content-Type': 'application/json'};
 
-      logger.log("uri: $uri");
-      logger.log("data: $data");
-      logger.log("data.runtimeType: ${data.runtimeType}");
       var response = await http.patch(uri, body: data, headers: headers);
-      logger.log("response: ${response.body}");
+
       if (response.statusCode >= 200 && response.statusCode <= 299)
         return response.body;
       else

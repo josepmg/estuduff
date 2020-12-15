@@ -26,8 +26,8 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
   @override
   void initState() {
     super.initState();
-    if (widget.profile == null)
-      BlocProvider.of<EnvironmentBloc>(context).add(GetAllEvent());
+    // if (widget.profile == null)
+    //   BlocProvider.of<EnvironmentBloc>(context).add(GetAllEvent());
   }
 
   @override

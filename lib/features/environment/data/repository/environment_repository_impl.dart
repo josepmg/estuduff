@@ -20,11 +20,11 @@ class EnvironmentRepositoryImpl implements EnvironmentRepository {
 
   @override
   Future<Either<Failure, List<Environment>>> getEnvironments(
-      {int profileId, int typeId}) async {
+      {int profileId, int typeId, bool withToken}) async {
     if (await networkInfo.isConnected) {
       try {
         List<Environment> list = await remoteDataSource.getEnvironments(
-            profileId: profileId, typeId: typeId);
+            profileId: profileId, typeId: typeId, withToken: withToken);
         return Right(list);
       } on ServerException catch (e) {
         return Left(ServerFailure(e.statusCode, e.message));

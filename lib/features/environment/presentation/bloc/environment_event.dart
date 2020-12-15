@@ -27,4 +27,6 @@ class GetByProfileEvent extends EnvironmentEvent {
 
 class GetHomeEnvironmentsEvent extends EnvironmentEvent {}
 
+class GetUserProfileEnvironmentsEvent extends EnvironmentEvent {}
+
 class GetAllEvent extends EnvironmentEvent {}

@@ -22,7 +22,7 @@ class StudyProfileRemoteDatasourceImpl implements StudyProfileRemoteDatasource {
       String programResp = await Connection.get(
         "program/${map['program']}",
       );
-      logger.log("response: $programResp");
+
       map['program'] = json.decode(programResp);
 
       return map != null && map['id'] != null && map['id'] is int;

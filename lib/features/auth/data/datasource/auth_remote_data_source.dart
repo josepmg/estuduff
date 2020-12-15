@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer' as logger;
 import 'package:crypto/crypto.dart';
-import 'package:dio/dio.dart';
 import 'package:estuduff/core/error/exception.dart';
 import 'package:estuduff/core/platform/connection.dart';
 import 'package:estuduff/core/platform/settings.dart';
@@ -36,8 +35,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       String programResp = await Connection.get(
         "program/${map['program']}",
       );
-      logger.log("response: $programResp");
+
       map['program'] = json.decode(programResp);
+
       return UserModel.fromJson(map);
     } on ServerException catch (e) {
       logger.log(
@@ -75,7 +75,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       String programResp = await Connection.get(
         "program/${map['program']}",
       );
-      logger.log("response: $programResp");
+
       map['program'] = json.decode(programResp);
 
       return UserModel.fromJson(map);
@@ -107,7 +107,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       String programResp = await Connection.get(
         "program/${map['program']}",
       );
-      logger.log("response: $programResp");
+
       map['program'] = json.decode(programResp);
 
       return UserModel.fromJson(map);

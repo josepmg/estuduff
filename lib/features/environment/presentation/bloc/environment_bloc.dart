@@ -38,6 +38,10 @@ class EnvironmentBloc extends Bloc<EnvironmentEvent, EnvironmentState> {
       yield LoadingEnvironmentState();
       final result = await getEnvironmentUseCase(Params());
       yield* _getEnvListOrFailure(result);
+    } else if (event is GetUserProfileEnvironmentsEvent) {
+      yield LoadingEnvironmentState();
+      final result = await getEnvironmentUseCase(Params(withToken: true));
+      yield* _getEnvListOrFailure(result);
     }
   }
 

@@ -8,47 +8,59 @@ import 'package:estuduff/features/environment/domain/entity/environment.dart';
 import 'package:estuduff/features/environment/domain/entity/study_place_type.dart';
 
 abstract class EnvironmentRemoteDataSource {
-  Future<List<Environment>> getEnvironments({int profileId, int typeId});
+  Future<List<Environment>> getEnvironments(
+      {int profileId, int typeId, bool withToken});
   Future<List<StudyPlaceType>> getAllStudyPlaceTypeTypes();
 }
 
 class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
   @override
-  Future<List<Environment>> getEnvironments({int profileId, int typeId}) async {
+  Future<List<Environment>> getEnvironments(
+      {int profileId, int typeId, bool withToken}) async {
     try {
-      String resp = await Connection.getEnv(
-        "studyplace/",
-        queryParameters: {
-          "studyPlaceType": typeId,
-          "studyProfile": profileId,
-        },
-      );
+      String resp;
+      if (withToken) {
+        String userData = await Connection.get("user/", withToken: withToken);
+        var map = json.decode(userData);
+
+        resp = await Connection.getEnv(
+          "studyplace/",
+          queryParameters: {
+            "studyProfile": map['studyProfile'],
+          },
+        );
+      } else {
+        resp = await Connection.getEnv(
+          "studyplace/",
+          queryParameters: {
+            "studyPlaceType": typeId,
+            "studyProfile": profileId,
+          },
+        );
+      }
       var respList = json.decode(resp);
 
       List<Environment> envList = List<Environment>();
 
       for (dynamic element in respList) {
-        logger.log("element: ${element}", name: "element");
-
         // Retrieving studyPlaceType data
         String studyplacetypeResponse = await Connection.get(
           "studyplacetype/${element['studyPlaceType']}",
         );
-        logger.log("studyplacetypeResponse: $studyplacetypeResponse");
+
         element['studyplacetype'] = json.decode(studyplacetypeResponse);
 
         // Retrieving building data
         String buildingResponse = await Connection.get(
           "building/${element['building']}",
         );
-        logger.log("buildingResponse: $buildingResponse");
+
         element['building'] = json.decode(buildingResponse);
 
         // Retrieving building's campus data
         String campusResponse = await Connection.get(
           "campus/${element['building']['campus']}",
         );
-        logger.log("buildingResponse: $campusResponse");
         element['building']['campus'] = json.decode(campusResponse);
 
         // Adjusting studyProfile
@@ -57,7 +69,6 @@ class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
         envList.add(EnvironmentModel.fromJson(element));
       }
 
-      logger.log("envList: ${envList.length}", name: "envList");
       return envList;
     } catch (e) {
       logger.log(

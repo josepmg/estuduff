@@ -35,7 +35,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    //TODO Add BLoC listener/builder to dsplay user's data
+    //TODO Add BLoC listener/builder to display user's data
     return Drawer(
       child: SafeArea(
         child: Column(
@@ -100,20 +100,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
               text: StringsEstudUff.home_drawer_item,
               iconData: FeatherIcons.home,
               onTapFunction: () async {
-                StudyProfileEnum studyProfile = await GetIt.I
-                    .get<AuthLocalDataSource>()
-                    .getUserStudyProfile();
-
                 BlocProvider.of<EnvironmentBloc>(context)
-                    .add(GetByProfileEvent(studyProfile));
+                    .add(GetUserProfileEnvironmentsEvent());
 
                 Navigator.of(context).pop();
 
                 Navigator.of(context).push(
+                  // TODO Como passar o perfil?
                   MaterialPageRoute(
                     builder: (context) => BaseEnviromentScreen(
-                      profile: studyProfile,
-                    ),
+                        // profile: null,
+                        ),
                   ),
                 );
               },
