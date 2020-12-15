@@ -25,4 +25,9 @@ class StudyPlaceTypeModel extends StudyPlaceType {
     if (name != null) json['name'] = name;
     return json;
   }
+
+  static List<StudyPlaceTypeModel> listFromJson(List<dynamic> list) {
+    if (list == null || list.isEmpty) return [];
+    return list.map((e) => StudyPlaceTypeModel.fromJson(e)).toList();
+  }
 }

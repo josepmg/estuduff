@@ -16,13 +16,12 @@ class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
   @override
   Future<List<Environment>> getEnvironments({int profileId, int typeId}) async {
     try {
-      //TODO Change endpoint
       String resp = await Connection.getEnv(
         "studyplace/",
-        // queryParameters: {
-        //   "studyPlaceType": typeId,
-        //   "studyProfile": profileId,
-        // },
+        queryParameters: {
+          "studyPlaceType": typeId,
+          "studyProfile": profileId,
+        },
       );
       var respList = json.decode(resp);
 
@@ -72,22 +71,10 @@ class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
   @override
   Future<List<StudyPlaceType>> getAllStudyPlaceTypeTypes() async {
     try {
-      //TODO Change endpoint
-      // Response response = await Connection.get('register/', queryParameters: {
-      //   "profileId": profileId,
-      //   "typeId": typeId,
-      // });
-      // return EnvironmentModel.listFromJson(response.data);
+      String resp = await Connection.get("studyplacetype/");
+      var respList = json.decode(resp);
 
-      // Mock
-      String response =
-          await Converter.loadFromAsset('assets/mock/study_place_types.json');
-      List<StudyPlaceType> envList = (json.decode(response) as List)
-          .map(
-            (data) => StudyPlaceTypeModel.fromJson(data),
-          )
-          .toList();
-      return envList;
+      return StudyPlaceTypeModel.listFromJson(respList['results']);
     } catch (e) {
       logger.log(
         "Error: ${e.toString()}",

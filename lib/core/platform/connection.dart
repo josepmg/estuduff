@@ -21,7 +21,6 @@ class Connection {
     try {
       var uri = Uri.parse("${Settings.API_BASE_URL}/$path");
       var token = getToken();
-      logger.log("$token", name: "token");
 
       var response = await http.get(uri);
 
