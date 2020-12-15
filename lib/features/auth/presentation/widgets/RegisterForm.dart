@@ -1,5 +1,6 @@
 import 'package:estuduff/core/resource/dimensions.dart';
 import 'package:estuduff/core/resource/colors_estuduff.dart';
+import 'package:estuduff/core/resource/fonts_estuduff.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/ui/button_estuduff.dart';
 import 'package:estuduff/core/ui/input_estuduff.dart';
@@ -79,9 +80,9 @@ class _RegisterFormState extends State<RegisterForm> {
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is ProgramLoaded) {
-                    return Container(
-                      margin:
-                          Dimensions.getEdgeInsets(context, top: 15, left: 10),
+                    return SingleChildScrollView(
+                      /*margin:
+                          Dimensions.getEdgeInsets(context, top: 15, left: 10),*/
                       child: Column(
                         children: [
                           InputEstudUff(
@@ -133,29 +134,39 @@ class _RegisterFormState extends State<RegisterForm> {
                               });
                             },
                           ),
-                          // ProgramDropDownEstudUff(
-                          //   options: state.porgramList,
-                          //   placeholder:
-                          //       StringsEstudUff.insert_current_course_placeholder,
-                          //   onSelected: (value) {
-                          //     setState(() {
-                          //       _formData[PROGRAM_LABEL] = value;
-                          //     });
-                          //   },
-                          // ),
-                          DropdownButton(
-                            value: _formData[PROGRAM_LABEL],
-                            items: state.porgramList.map((program) {
-                              return DropdownMenuItem(
-                                value: program.id,
-                                child: Text("${program.name}"),
-                              );
-                            }).toList(),
-                            onChanged: (value) {
-                              setState(() {
-                                _formData[PROGRAM_LABEL] = value;
-                              });
-                            },
+                          Container(
+                            margin: Dimensions.getEdgeInsets(context, top: 20),
+                            padding: Dimensions.getEdgeInsetsSymetric(context,
+                                horizontal: 10, vertical: 5),
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4.0),
+                              border: Border.all(
+                                  color: ColorsEstudUff.lightGrey,
+                                  style: BorderStyle.solid,
+                                  width: 1),
+                            ),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton(
+                                hint: Text(StringsEstudUff
+                                    .insert_current_course_placeholder),
+                                style: TextStyle(
+                                    color: ColorsEstudUff.mediumGrey,
+                                    fontFamily: FontsEstudUff.open_sans),
+                                value: _formData[PROGRAM_LABEL],
+                                items: state.porgramList.map((program) {
+                                  return DropdownMenuItem(
+                                    value: program.id,
+                                    child: Text("${program.name}"),
+                                  );
+                                }).toList(),
+                                onChanged: (value) {
+                                  setState(() {
+                                    _formData[PROGRAM_LABEL] = value;
+                                  });
+                                },
+                              ),
+                            ),
                           ),
                           SizedBox(
                             height:

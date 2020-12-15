@@ -68,7 +68,8 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
                     width: double.infinity,
                     height: Dimensions.getConvertedHeightSize(15, context),
                     decoration: BoxDecoration(
-                      color: _getColor(),
+                      color:
+                          ProfileConverter.recoverProfileColor(widget.profile),
                     ),
                   ),
                   Container(
@@ -78,8 +79,10 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
                       child: Column(
                         children: [
                           EnviromentsTopWidget(
-                            icon: _getProfileIcon(),
-                            name: StringsEstudUff.available_title,
+                            icon: ProfileConverter.recoverProfileIcon(
+                                widget.profile),
+                            name: ProfileConverter.recoverStudyProfile(
+                                widget.profile),
                           ),
                           SizedBox(
                             height:
@@ -114,31 +117,5 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
         ),
       ),
     );
-  }
-
-  Color _getColor() {
-    switch (widget.profile) {
-      case StudyProfileEnum.JACK_OF_ALL_TRADES:
-        return ColorsEstudUff.primaryGreen;
-      case StudyProfileEnum.OUTGOING:
-        return ColorsEstudUff.primaryRed;
-      case StudyProfileEnum.LONELY_WOLF:
-        return ColorsEstudUff.primaryBlue;
-      default:
-        return ColorsEstudUff.lightGrey;
-    }
-  }
-
-  String _getProfileIcon() {
-    switch (widget.profile) {
-      case StudyProfileEnum.JACK_OF_ALL_TRADES:
-        return StringsEstudUff.jack_env_icon;
-      case StudyProfileEnum.OUTGOING:
-        return StringsEstudUff.outgoing_env_icon;
-      case StudyProfileEnum.LONELY_WOLF:
-        return StringsEstudUff.wolf_env_icon;
-      default:
-        return StringsEstudUff.available_env_icon;
-    }
   }
 }

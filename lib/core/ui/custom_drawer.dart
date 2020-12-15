@@ -30,7 +30,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   void initState() {
     super.initState();
     debugPrint("Initstate");
-    BlocProvider.of<AuthBloc>(context).add(GetUserDataEvent());
+    // BlocProvider.of<AuthBloc>(context).add(GetUserDataEvent());
   }
 
   @override
@@ -105,8 +105,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 StudyProfileEnum studyProfile = await GetIt.I
                     .get<AuthLocalDataSource>()
                     .getUserStudyProfile();
-
-                print("JP - ${studyProfile.getProfileId()}");
 
                 BlocProvider.of<EnvironmentBloc>(context)
                     .add(GetByProfileEvent(studyProfile));
