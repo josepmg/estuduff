@@ -99,7 +99,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             DrawerItem(
               text: StringsEstudUff.home_drawer_item,
               iconData: FeatherIcons.home,
-              onTapFunction: () async {
+              onTapFunction: () {
                 BlocProvider.of<EnvironmentBloc>(context)
                     .add(GetUserProfileEnvironmentsEvent());
 
