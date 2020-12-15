@@ -26,7 +26,9 @@ class StudyProfileRepositoryImpl implements StudyProfileRepository {
       try {
         bool success = await remoteDataSource.setStudyProfile(studyProfile);
 
-        if (success) authLocalDataSource.cacheUserStudyProfile(studyProfile);
+        if (success) {
+          authLocalDataSource.cacheUserStudyProfile(studyProfile);
+        }
 
         return Right(success);
       } on ServerException catch (e) {

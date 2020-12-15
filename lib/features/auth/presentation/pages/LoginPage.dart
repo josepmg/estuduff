@@ -1,14 +1,10 @@
 import 'package:estuduff/core/resource/dimensions.dart';
 import 'package:estuduff/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:estuduff/features/auth/presentation/widgets/LoginTabBar.dart';
-import 'package:estuduff/features/environment/presentation/bloc/environment_bloc.dart';
-import 'package:estuduff/features/environment/presentation/pages/BaseEnviromentScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:estuduff/core/resource/strings_estuduff.dart';
-import 'dart:developer' as logger;
 
 class LoginPage extends StatefulWidget {
   @override

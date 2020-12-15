@@ -29,8 +29,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   void initState() {
     super.initState();
-    debugPrint("Initstate");
-    // BlocProvider.of<AuthBloc>(context).add(GetUserDataEvent());
+
+    BlocProvider.of<AuthBloc>(context).add(GetUserDataEvent());
   }
 
   @override
@@ -60,6 +60,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
               child: BlocBuilder<AuthBloc, AuthState>(
                 builder: (context, state) {
+                  print(state);
                   if (state is AuthLoading) {
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -74,7 +75,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        //TODO Get user name
                         Text(
                           "${StringsEstudUff.greeting_drawer_title} $userName",
                           style: StylesEstudUff.drawerTitleTextStyle(context),
@@ -82,7 +82,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         SizedBox(
                           height: Dimensions.getConvertedHeightSize(5, context),
                         ),
-                        //TODO Get user e-mail
                         Text(
                           "${state.user.email}",
                           style:
@@ -101,7 +100,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
               text: StringsEstudUff.home_drawer_item,
               iconData: FeatherIcons.home,
               onTapFunction: () async {
-                //TODO: Implementar perfil de estudo de acordo com o escolhido pelo user
                 StudyProfileEnum studyProfile = await GetIt.I
                     .get<AuthLocalDataSource>()
                     .getUserStudyProfile();

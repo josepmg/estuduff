@@ -78,7 +78,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } else if (event is GetUserDataEvent) {
       yield AuthLoading();
       final studentOrFailure = await getUserDataUseCase(NoParams());
-      yield* _eitherSignedInOrErrorWithInt(studentOrFailure);
+      yield* _eitherUserLoadedErrorWithInt(studentOrFailure);
     }
   }
 
@@ -88,6 +88,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (failure) => AuthError(message: Converter.mapFailureToMessages(failure)),
       (User student) => student != null && student.isValid
           ? AuthSignedIn(user: student)
+          : AuthNotSignedIn(),
+    );
+  }
+
+  Stream<AuthState> _eitherUserLoadedErrorWithInt(
+      Either<Failure, User> studentOrFailure) async* {
+    yield studentOrFailure.fold(
+      (failure) => AuthError(message: Converter.mapFailureToMessages(failure)),
+      (User student) => student != null && student.isValid
+          ? AuthUserLoaded(user: student)
           : AuthNotSignedIn(),
     );
   }

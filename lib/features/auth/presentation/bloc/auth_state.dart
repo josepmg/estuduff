@@ -24,7 +24,7 @@ class AuthNotSignedIn extends AuthState {}
 class AuthUserLoaded extends AuthState {
   final User user;
 
-  AuthUserLoaded(this.user);
+  AuthUserLoaded({this.user});
 
   @override
   List<Object> get props => [user];

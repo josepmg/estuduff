@@ -1,7 +1,9 @@
 import 'package:estuduff/core/resource/colors_estuduff.dart';
 import 'package:estuduff/core/resource/dimensions.dart';
 import 'package:estuduff/core/ui/custom_drawer.dart';
+import 'package:estuduff/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppBarEstudUff extends StatefulWidget {
   final String title;
@@ -18,6 +20,11 @@ class AppBarEstudUff extends StatefulWidget {
 
 class _AppBarEstudUffState extends State<AppBarEstudUff> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

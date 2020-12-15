@@ -99,15 +99,15 @@ class _ProfileTileState extends State<ProfileTile> {
   }
 
   _updateStudyProfile() {
+    BlocProvider.of<ProfileBloc>(context).add(
+      SetProfileEvent(widget.studyProfile),
+    );
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => SelectProfilePage(
           shouldChangeProfile: true,
         ),
       ),
-    );
-    BlocProvider.of<ProfileBloc>(context).add(
-      SetProfileEvent(widget.studyProfile),
     );
   }
 

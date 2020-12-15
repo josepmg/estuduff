@@ -19,8 +19,10 @@ class ProfileConverter {
       return StringsEstudUff.jack_env_icon;
     } else if (profile == StudyProfileEnum.LONELY_WOLF) {
       return StringsEstudUff.wolf_env_icon;
-    } else {
+    } else if (profile == StudyProfileEnum.OUTGOING) {
       return StringsEstudUff.outgoing_env_icon;
+    } else {
+      return StringsEstudUff.available_env_icon;
     }
   }
 

@@ -20,7 +20,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ) async* {
     if (event is AnswerQuizEvent) {
       yield LoadingProfileState();
-      print("Yield");
       this.add(
         SetProfileEvent(
           _calculateProfile(
