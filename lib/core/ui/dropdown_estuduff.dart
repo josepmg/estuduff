@@ -27,42 +27,42 @@ class _DropDownEstudUffState extends State<DropDownEstudUff> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: double.infinity,
-        margin: Dimensions.getEdgeInsets(context, bottom: 28),
-        child: FormField<String>(
-          // TO-DO: Validator
-          builder: (FormFieldStatestate) {
-            return InputDecorator(
-              decoration: InputDecoration(
-                  errorStyle: TextStyle(
-                      color: Colors.redAccent,
-                      fontSize: Dimensions.getTextSize(16.0, context)),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                      borderSide: BorderSide(color: ColorsEstudUff.lightGrey))),
-              isEmpty: dropdownValue == '',
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton(
-                  hint: Text(widget.placeholder),
-                  value: dropdownValue,
-                  isDense: true,
-                  onChanged: (newValue) {
-                    setState(() {
-                      dropdownValue = newValue;
-                      widget.onSelected(newValue);
-                      // debugPrint("$newValue is a ${newValue.runtimeType}");
-                    });
-                  },
-                  items: widget.options.map((value) {
-                    return DropdownMenuItem(
-                      value: widget.options.indexOf(value),
-                      child: Text(value),
-                    );
-                  }).toList(),
-                ),
+      width: double.infinity,
+      margin: Dimensions.getEdgeInsets(context, bottom: 28),
+      child: FormField<String>(
+        // TO-DO: Validator
+        builder: (FormFieldStatestate) {
+          return InputDecorator(
+            decoration: InputDecoration(
+                errorStyle: TextStyle(
+                    color: Colors.redAccent,
+                    fontSize: Dimensions.getTextSize(16.0, context)),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: BorderSide(color: ColorsEstudUff.lightGrey))),
+            isEmpty: dropdownValue == '',
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton(
+                hint: Text(widget.placeholder),
+                value: dropdownValue,
+                isDense: true,
+                onChanged: (newValue) {
+                  setState(() {
+                    dropdownValue = newValue;
+                    widget.onSelected(newValue);
+                  });
+                },
+                items: widget.options.map((value) {
+                  return DropdownMenuItem(
+                    value: widget.options.indexOf(value),
+                    child: Text(value),
+                  );
+                }).toList(),
               ),
-            );
-          },
-        ));
+            ),
+          );
+        },
+      ),
+    );
   }
 }

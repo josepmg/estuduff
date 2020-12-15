@@ -24,6 +24,7 @@ class _ProfileFormState extends State<ProfileForm> {
   final String SECOND_ANSWER_LABEL = "SECOND_ANSWER_LABEL";
   final String THIRD_ANSWER_LABEL = "THIRD_ANSWER_LABEL";
   var _formData = {};
+
   @override
   Widget build(BuildContext context) {
     return buildBody(context);
@@ -33,14 +34,17 @@ class _ProfileFormState extends State<ProfileForm> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        actions: [
-          // go back to login/register
-        ],
         title: Text(
           StringsEstudUff.profile_form_title,
           style: TextStyle(color: ColorsEstudUff.mediumGrey),
         ),
-        leading: Icon(Icons.chevron_left, color: ColorsEstudUff.mediumGrey),
+        leading: IconButton(
+          icon: Icon(Icons.chevron_left),
+          color: ColorsEstudUff.mediumGrey,
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         elevation: 8.0,
       ),
       body: BlocListener<ProfileBloc, ProfileState>(
@@ -128,7 +132,26 @@ class _ProfileFormState extends State<ProfileForm> {
                       ButtonEstudUff(
                         width: double.infinity,
                         text: StringsEstudUff.send_button_title,
-                        onPressed: _submitAnswers,
+                        onPressed: () {
+                          if (_formData[THIRD_ANSWER_LABEL] != null &&
+                              _formData[SECOND_ANSWER_LABEL] != null &&
+                              _formData[FIRST_ANSWER_LABEL] != null) {
+                            BlocProvider.of<ProfileBloc>(context)
+                                .add(AnswerQuizEvent(
+                              firstAnswer: _formData[FIRST_ANSWER_LABEL],
+                              secondAnswer: _formData[SECOND_ANSWER_LABEL],
+                              thirdAnswer: _formData[THIRD_ANSWER_LABEL],
+                            ));
+                          } else {
+                            Scaffold.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  "Preencha todos os campos",
+                                ),
+                              ),
+                            );
+                          }
+                        },
                       ),
                     ],
                   ),
@@ -145,15 +168,6 @@ class _ProfileFormState extends State<ProfileForm> {
         ),
       ),
     );
-  }
-
-  _submitAnswers() {
-    debugPrint("Enviei");
-    BlocProvider.of<ProfileBloc>(context).add(AnswerQuizEvent(
-      firstAnswer: _formData[FIRST_ANSWER_LABEL],
-      secondAnswer: _formData[SECOND_ANSWER_LABEL],
-      thirdAnswer: _formData[THIRD_ANSWER_LABEL],
-    ));
   }
 
   Widget _buildQuestions(String question) {
