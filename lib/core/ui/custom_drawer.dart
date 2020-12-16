@@ -106,11 +106,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 Navigator.of(context).pop();
 
                 Navigator.of(context).push(
-                  // TODO Como passar o perfil?
                   MaterialPageRoute(
-                    builder: (context) => BaseEnviromentScreen(
-                        // profile: null,
-                        ),
+                    builder: (context) => BaseEnviromentScreen(),
                   ),
                 );
               },

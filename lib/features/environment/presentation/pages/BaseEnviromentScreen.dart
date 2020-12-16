@@ -4,6 +4,7 @@ import 'package:estuduff/core/resource/strings_estuduff.dart';
 import 'package:estuduff/core/ui/appbar_estuduff.dart';
 import 'package:estuduff/core/util/converter.dart';
 import 'package:estuduff/core/util/profile-converter.dart';
+import 'package:estuduff/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:estuduff/features/environment/presentation/bloc/environment_bloc.dart';
 import 'package:estuduff/features/environment/presentation/widgets/EnviromentsTopWidget.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
@@ -11,11 +12,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+// ignore: must_be_immutable
 class BaseEnviromentScreen extends StatefulWidget {
-  final StudyProfileEnum profile;
+  StudyProfileEnum profile;
   final String title;
-  const BaseEnviromentScreen({Key key, @required this.profile, this.title})
-      : super(key: key);
+  BaseEnviromentScreen({Key key, this.profile, this.title}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _BaseEnviromentScreenState();
@@ -26,8 +27,8 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
   @override
   void initState() {
     super.initState();
-    // if (widget.profile == null)
-    //   BlocProvider.of<EnvironmentBloc>(context).add(GetAllEvent());
+    if (widget.profile == null)
+      BlocProvider.of<AuthBloc>(context).add(GetUserDataEvent());
   }
 
   @override
@@ -40,16 +41,12 @@ class _BaseEnviromentScreenState extends State<BaseEnviromentScreen> {
       title: widget.title == null
           ? ProfileConverter.recoverStudyProfile(widget.profile)
           : widget.title,
-      body: BlocListener<EnvironmentBloc, EnvironmentState>(
+      body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
-          if (state is ErrorEnvironmentState) {
-            Scaffold.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  state.message,
-                ),
-              ),
-            );
+          if (state is AuthUserLoaded) {
+            if (widget.profile == null) {
+              widget.profile = state.user.studyProfile;
+            }
           }
         },
         child: BlocBuilder<EnvironmentBloc, EnvironmentState>(
