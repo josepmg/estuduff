@@ -38,7 +38,6 @@ class _RegisterFormState extends State<RegisterForm> {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        print("AuthBloc - $state");
         if (state is AuthSignedIn) {
           Navigator.of(context).push(
             MaterialPageRoute(

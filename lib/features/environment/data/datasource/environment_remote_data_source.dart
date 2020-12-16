@@ -48,7 +48,7 @@ class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
           "studyplacetype/${element['studyPlaceType']}",
         );
 
-        element['studyplacetype'] = json.decode(studyplacetypeResponse);
+        element['studyPlaceType'] = json.decode(studyplacetypeResponse);
 
         // Retrieving building data
         String buildingResponse = await Connection.get(
@@ -66,7 +66,9 @@ class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
         // Adjusting studyProfile
         element['studyProfile'] = element['studyProfile'][0];
 
-        envList.add(EnvironmentModel.fromJson(element));
+        var env = EnvironmentModel.fromJson(element);
+
+        envList.add(env);
       }
 
       return envList;

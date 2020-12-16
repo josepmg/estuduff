@@ -36,8 +36,9 @@ class MarkersEstudUff {
       draggable: false,
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) =>
-                SingleEnviromentScreen(environment: environment)));
+          builder: (context) =>
+              SingleEnviromentScreen(environment: environment),
+        ));
       },
       position: LatLng(latitude, longitude),
       icon: BitmapDescriptor.defaultMarkerWithHue(hue),

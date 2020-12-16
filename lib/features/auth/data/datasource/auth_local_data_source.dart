@@ -43,15 +43,10 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   @override
   Future<void> cacheUserStudyProfile(StudyProfileEnum studyProfile) {
     int profileId = studyProfile.getProfileId();
-    Future<bool> result = sharedPreferences
-        .setInt(
+    sharedPreferences.setInt(
       Settings.CACHED_USER_STUDY_PROFILE_KEY,
       profileId,
-    )
-        .then((value) {
-      print(
-          "JP - ${sharedPreferences.getInt(Settings.CACHED_USER_STUDY_PROFILE_KEY)}");
-    });
+    );
   }
 
   @override

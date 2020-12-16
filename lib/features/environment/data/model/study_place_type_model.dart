@@ -5,10 +5,11 @@ class StudyPlaceTypeModel extends StudyPlaceType {
 
   factory StudyPlaceTypeModel.fromJson(Map<String, dynamic> json) {
     if (json == null) return null;
-    return StudyPlaceTypeModel(
+    var model = StudyPlaceTypeModel(
       id: json['id'],
       name: json['name'],
     );
+    return model;
   }
 
   factory StudyPlaceTypeModel.fromEntity(StudyPlaceType studyPlaceType) {

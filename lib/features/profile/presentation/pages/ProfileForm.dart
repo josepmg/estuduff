@@ -74,7 +74,6 @@ class _ProfileFormState extends State<ProfileForm> {
         },
         child: BlocBuilder<ProfileBloc, ProfileState>(
           builder: (context, state) {
-            debugPrint("$state");
             if (state is InitialProfileState) {
               return Container(
                 alignment: Alignment.center,

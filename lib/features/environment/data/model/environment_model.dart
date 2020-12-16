@@ -26,17 +26,19 @@ class EnvironmentModel extends Environment {
 
   factory EnvironmentModel.fromJson(Map<String, dynamic> json) {
     if (json == null) return null;
-    print("latitude: ${json['latitude'].runtimeType}");
-    return EnvironmentModel(
+    var type = StudyPlaceTypeModel.fromJson(json['studyPlaceType']);
+
+    var envModel = EnvironmentModel(
       id: json['id'],
       name: json['name'],
       complement: json['complement'],
       building: BuildingModel.fromJson(json['building']),
-      type: StudyPlaceTypeModel.fromJson(json['type']),
+      type: type,
       studyProfile: StudyProfileModel.fromJson(json['studyProfile']),
       latitude: (json['latitude'] is double) ? json['latitude'] : null,
       longitude: (json['longitude'] is double) ? json['longitude'] : null,
     );
+    return envModel;
   }
 
   factory EnvironmentModel.fromEntity(Environment environment) {
