@@ -22,13 +22,14 @@ class UserModel extends User {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     if (json == null) return null;
-    return UserModel(
+    UserModel u = UserModel(
       id: json['id'],
       name: json['name'],
       email: json['email'],
       program: ProgramModel.fromJson(json['program']),
       studyProfile: StudyProfileModel.fromJson(json['studyProfile']),
     );
+    return u;
   }
 
   factory UserModel.fromEntity(User student) {

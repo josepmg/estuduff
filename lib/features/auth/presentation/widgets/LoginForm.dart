@@ -28,14 +28,12 @@ class _LoginFormState extends State<LoginForm> {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthSignedIn) {
-          BlocProvider.of<EnvironmentBloc>(context)
-              .add(GetByProfileEvent(state.user.studyProfile));
-          //TODO navigate to other page
+          BlocProvider.of<EnvironmentBloc>(context).add(
+            GetByProfileEvent(state.user.studyProfile),
+          );
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => BaseEnviromentScreen(
-                profile: state.user.studyProfile,
-              ),
+              builder: (context) => BaseEnviromentScreen(),
             ),
           );
         } else if (state is AuthError) {

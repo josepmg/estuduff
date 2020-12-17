@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meta/meta.dart';
 
-class EnviromentsTopWidget extends StatelessWidget {
+class EnviromentsTopWidget extends StatefulWidget {
   final String name;
   final String icon;
 
@@ -14,6 +14,11 @@ class EnviromentsTopWidget extends StatelessWidget {
       {Key key, @required this.name, @required this.icon})
       : super(key: key);
 
+  @override
+  _EnviromentsTopWidgetState createState() => _EnviromentsTopWidgetState();
+}
+
+class _EnviromentsTopWidgetState extends State<EnviromentsTopWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -25,7 +30,7 @@ class EnviromentsTopWidget extends StatelessWidget {
             Container(
               width: Dimensions.getConvertedWidthSize(180, context),
               child: Text(
-                name,
+                widget.name,
                 style: TextStyle(
                   color: ColorsEstudUff.darkGrey,
                   fontFamily: FontsEstudUff.rubik,
@@ -44,7 +49,7 @@ class EnviromentsTopWidget extends StatelessWidget {
           ],
         ),
         SvgPicture.asset(
-          icon,
+          widget.icon,
           width: Dimensions.getConvertedWidthSize(100, context),
         ),
       ],

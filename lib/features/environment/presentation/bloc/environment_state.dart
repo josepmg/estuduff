@@ -13,11 +13,12 @@ class LoadingEnvironmentState extends EnvironmentState {}
 
 class LoadedEnvironmentState extends EnvironmentState {
   final List<Environment> environmentList;
+  final StudyProfileEnum studyProfile;
 
-  LoadedEnvironmentState(this.environmentList);
+  LoadedEnvironmentState(this.environmentList, [this.studyProfile]);
 
   @override
-  List<Object> get props => [environmentList];
+  List<Object> get props => [environmentList, studyProfile];
 }
 
 class ErrorEnvironmentState extends EnvironmentState {

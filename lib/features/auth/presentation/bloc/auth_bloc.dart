@@ -78,7 +78,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } else if (event is GetUserDataEvent) {
       yield AuthLoading();
       final studentOrFailure = await getUserDataUseCase(NoParams());
-      yield* _eitherUserLoadedErrorWithInt(studentOrFailure);
+      var a = _eitherUserLoadedErrorWithInt(studentOrFailure);
+      yield* a;
     }
   }
 

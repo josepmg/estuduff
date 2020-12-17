@@ -9,8 +9,10 @@ class ProfileConverter {
       return ColorsEstudUff.primaryRed;
     } else if (profile == StudyProfileEnum.LONELY_WOLF) {
       return ColorsEstudUff.primaryBlue;
-    } else {
+    } else if (profile == StudyProfileEnum.JACK_OF_ALL_TRADES) {
       return ColorsEstudUff.primaryGreen;
+    } else {
+      return ColorsEstudUff.lightGrey;
     }
   }
 

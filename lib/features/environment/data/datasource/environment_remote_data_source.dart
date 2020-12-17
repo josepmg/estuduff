@@ -1,27 +1,29 @@
 import 'dart:convert';
 import 'dart:developer' as logger;
 import 'package:estuduff/core/platform/connection.dart';
-import 'package:estuduff/core/util/converter.dart';
 import 'package:estuduff/features/environment/data/model/environment_model.dart';
 import 'package:estuduff/features/environment/data/model/study_place_type_model.dart';
 import 'package:estuduff/features/environment/domain/entity/environment.dart';
 import 'package:estuduff/features/environment/domain/entity/study_place_type.dart';
 
 abstract class EnvironmentRemoteDataSource {
-  Future<List<Environment>> getEnvironments(
+  Future<Map<String, dynamic>> getEnvironments(
       {int profileId, int typeId, bool withToken});
   Future<List<StudyPlaceType>> getAllStudyPlaceTypeTypes();
 }
 
 class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
   @override
-  Future<List<Environment>> getEnvironments(
+  Future<Map<String, dynamic>> getEnvironments(
       {int profileId, int typeId, bool withToken}) async {
     try {
+      Map<String, dynamic> finalResponse = Map<String, dynamic>();
       String resp;
       if (withToken) {
         String userData = await Connection.get("user/", withToken: withToken);
         var map = json.decode(userData);
+
+        finalResponse['studyProfile'] = map['studyProfile'];
 
         resp = await Connection.getEnv(
           "studyplace/",
@@ -37,6 +39,7 @@ class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
             "studyProfile": profileId,
           },
         );
+        finalResponse['studyProfile'] = profileId;
       }
       var respList = json.decode(resp);
 
@@ -54,7 +57,6 @@ class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
         String buildingResponse = await Connection.get(
           "building/${element['building']}",
         );
-
         element['building'] = json.decode(buildingResponse);
 
         // Retrieving building's campus data
@@ -71,7 +73,9 @@ class EnvironmentRemoteDataSourceImpl implements EnvironmentRemoteDataSource {
         envList.add(env);
       }
 
-      return envList;
+      finalResponse['envList'] = envList;
+
+      return finalResponse;
     } catch (e) {
       logger.log(
         "Error: ${e.toString()}",

@@ -7,6 +7,7 @@ import 'package:estuduff/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:estuduff/features/environment/domain/entity/study_place_type.dart';
 import 'package:estuduff/features/environment/domain/repository/environment_repository.dart';
+import 'package:estuduff/features/profile/data/model/study_profile_model.dart';
 import 'package:estuduff/features/profile/domain/entity/study_profile_enum.dart';
 import 'package:flutter/services.dart';
 
@@ -19,13 +20,16 @@ class EnvironmentRepositoryImpl implements EnvironmentRepository {
       {this.remoteDataSource, this.authLocalDataSource, this.networkInfo});
 
   @override
-  Future<Either<Failure, List<Environment>>> getEnvironments(
+  Future<Either<Failure, Map<String, dynamic>>> getEnvironments(
       {int profileId, int typeId, bool withToken}) async {
     if (await networkInfo.isConnected) {
       try {
-        List<Environment> list = await remoteDataSource.getEnvironments(
+        Map<String, dynamic> map = await remoteDataSource.getEnvironments(
             profileId: profileId, typeId: typeId, withToken: withToken);
-        return Right(list);
+
+        if (map['studyProfile'] != null)
+          map['studyProfile'] = StudyProfileModel.fromJson(map['studyProfile']);
+        return Right(map);
       } on ServerException catch (e) {
         return Left(ServerFailure(e.statusCode, e.message));
       } on PlatformException catch (e) {
@@ -58,28 +62,28 @@ class EnvironmentRepositoryImpl implements EnvironmentRepository {
     }
   }
 
-  @override
-  Future<Either<Failure, List<Environment>>> getHomeEnvironments() async {
-    if (await networkInfo.isConnected) {
-      try {
-        StudyProfileEnum studyProfile =
-            await authLocalDataSource.getUserStudyProfile();
-        if (studyProfile != null) {
-          List<Environment> list = await remoteDataSource.getEnvironments(
-              profileId: studyProfile.getProfileId());
-          return Right(list);
-        } else {
-          return null;
-        }
-      } on ServerException catch (e) {
-        return Left(ServerFailure(e.statusCode, e.message));
-      } on PlatformException catch (e) {
-        return Left(PlatformFailure(message: e.message));
-      } catch (e) {
-        return Left(GenericFailure());
-      }
-    } else {
-      return Left(NoInternetConnectionFailure());
-    }
-  }
+  // @override
+  // Future<Either<Failure, Map<String, dynamic>>> getHomeEnvironments() async {
+  //   if (await networkInfo.isConnected) {
+  //     try {
+  //       StudyProfileEnum studyProfile =
+  //           await authLocalDataSource.getUserStudyProfile();
+  //       if (studyProfile != null) {
+  //         List<Environment> list = await remoteDataSource.getEnvironments(
+  //             profileId: studyProfile.getProfileId());
+  //         return Right(list);
+  //       } else {
+  //         return null;
+  //       }
+  //     } on ServerException catch (e) {
+  //       return Left(ServerFailure(e.statusCode, e.message));
+  //     } on PlatformException catch (e) {
+  //       return Left(PlatformFailure(message: e.message));
+  //     } catch (e) {
+  //       return Left(GenericFailure());
+  //     }
+  //   } else {
+  //     return Left(NoInternetConnectionFailure());
+  //   }
+  // }
 }

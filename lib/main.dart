@@ -87,15 +87,20 @@ class Estuduff extends StatelessWidget {
               SingleEnviromentScreen(),
           Routes.wolf_profile_page: (BuildContext context) =>
               BaseEnviromentScreen(
-                profile: StudyProfileEnum.LONELY_WOLF,
-              ),
+                  // profile: StudyProfileEnum.LONELY_WOLF,
+                  ),
           Routes.jack_profile_page: (BuildContext context) =>
               BaseEnviromentScreen(
-                  profile: StudyProfileEnum.JACK_OF_ALL_TRADES),
+                  // profile: StudyProfileEnum.JACK_OF_ALL_TRADES,
+                  ),
           Routes.outgoing_profile_page: (BuildContext context) =>
-              BaseEnviromentScreen(profile: StudyProfileEnum.OUTGOING),
+              BaseEnviromentScreen(
+                  // profile: StudyProfileEnum.OUTGOING,
+                  ),
           Routes.available_env_page: (BuildContext context) =>
-              BaseEnviromentScreen(profile: StudyProfileEnum.AVAILABLE),
+              BaseEnviromentScreen(
+                  // profile: StudyProfileEnum.AVAILABLE,
+                  ),
           Routes.profile_form_page: (BuildContext context) => ProfileForm(),
           Routes.switch_profile_page: (BuildContext context) =>
               SelectProfilePage(),

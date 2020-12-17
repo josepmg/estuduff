@@ -122,8 +122,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => BaseEnviromentScreen(
-                      profile: StudyProfileEnum.AVAILABLE,
-                    ),
+                        // profile: StudyProfileEnum.AVAILABLE,
+                        ),
                   ),
                 );
               },

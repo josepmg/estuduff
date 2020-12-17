@@ -46,13 +46,13 @@ class EnvironmentBloc extends Bloc<EnvironmentEvent, EnvironmentState> {
   }
 
   Stream<EnvironmentState> _getEnvListOrFailure(
-      Either<Failure, List<Environment>> result) async* {
+      Either<Failure, Map<String, dynamic>> result) async* {
     yield result.fold(
       (Failure failure) {
         return ErrorEnvironmentState(Converter.mapFailureToMessages(failure));
       },
-      (List<Environment> _list) {
-        return LoadedEnvironmentState(_list);
+      (Map<String, dynamic> map) {
+        return LoadedEnvironmentState(map['envList'], map['studyProfile']);
       },
     );
   }

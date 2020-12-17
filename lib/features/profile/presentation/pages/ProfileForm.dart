@@ -66,8 +66,8 @@ class _ProfileFormState extends State<ProfileForm> {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (context) => BaseEnviromentScreen(
-                  profile: state.studyProfileEnum,
-                ),
+                    // profile: state.studyProfileEnum,
+                    ),
               ),
             );
           }

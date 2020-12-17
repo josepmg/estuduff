@@ -45,8 +45,9 @@ class SelectProfilePage extends StatelessWidget {
             BlocProvider.of<EnvironmentBloc>(context)
                 .add(GetByProfileEvent(state.studyProfileEnum));
             Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) =>
-                  BaseEnviromentScreen(profile: state.studyProfileEnum),
+              builder: (context) => BaseEnviromentScreen(
+                  // profile: state.studyProfileEnum,
+                  ),
             ));
           }
         },
